@@ -1,0 +1,184 @@
+<!doctype html>
+<html>
+    <head>
+		<title>Faustedition Tutorial</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<style>
+		summary::-webkit-details-marker {
+  display: none
+}
+
+summary:after {
+  content: "+";
+  float: left;
+  margin-right: 5px;
+}
+
+details[open] summary:after {
+  content: "-";
+}
+</style>
+    </head>
+	
+    <body>
+        <h1 class="container"><center><b>XML-Tutorial</b></center></h1>
+		<div class="container">
+			<div class="page-header">
+			<h3><b>Inhaltsverzeichnis</b></h3>
+			<nav>
+			<ul>
+			  <li><a href="#1">Grundlegendes</a></li>
+			  <li><a href="#2">XQuery</a></li>
+			  <li><a href="#3">Python</a></li>
+			</ul>
+			</nav>
+			</div>
+		<div>
+<!-- GRUNDLEGENDES ab hier-->
+		<div id="1" class="container">
+			<div class="page-header">
+				<h3><b>Grundlegendes</b></h3>
+			</div>
+		<div>
+			<p>Im Folgenden wird Ihnen erkl�rt, wie Sie au�erhalb der Faustedition selbst�ndig mit den zur Verf�gung stehenden XML-Dateien der Handschriften arbeiten k�nnen und somit tiefer gehende Forschungsfragen kl�ren k�nnen. Momentan stehen Ihnen die Codes zu den Varianten der Schreiber und ein Python-Programm zu Verf�gung. Weitere Codes folgen. Dieses Tutorial richtet sich sowohl an Programmierlaien als auch an Leute mit Programmiervorkenntnissen. 
+			<p>W�hlen Sie <a href="platzhalter" target="_blank">hier</a> eine Handschrift aus und laden Sie die XML-Dateien herunter.</p>
+			<p>F�r XQuery brauchen Sie Folgendes</p>
+			<p>F�r Python brauchen Sie Folgendes<!-- : Laden Sie die neuste Version Python <a href="https://www.python.org/downloads/</p>" target="_blank">hier</a> herunter und installieren Sie es.-->
+		</div>
+		</div>
+		
+		
+<!-- VALENTINS CODE ab hier-->
+		<div id="2" class="container">
+			<div class="page-header">
+				<h3><b>Schreiber und ihre Varianten</b></h3>
+			</div>
+		</div>
+		<div class="container"> <!-- style="width: 80%; background: lavender;" -->
+		<!-- 	<div class="panel-heading">Die Funktionen im Prolog sind von der angegebenen URL �bernommen:</div>-->
+		Mit diesem Programm k�nnen Sie auf einen Blick in den jeweiligen Handschriften herausfinden, welche Schreiber es gibt und welche Varianten ihnen zugeordnet werden. Dies wird mit der Programmiersprache XQuery erreicht.
+		<br>
+		<br>
+
+<!-- XQuery Tut f�r Fortgeschrittene --> 
+		<details><summary><b>Erl�uterung des Quellcodes f�r Fortgeschrittene</b></summary>
+			<div class="panel-body">
+			Die Funktionen im Prolog sind von der angegebenen URL �bernommen:
+				<pre>declare namespace functx = "http://www.functx.com";</pre>
+			</div>
+			<div class="panel-body">Schneidet den Anfang eines strings aus, bis der �bergebene regex matched:
+			<pre>declare function functx:substring-before-match
+( $arg as xs:string? ,
+    $regex as xs:string )  as xs:string {
+
+   tokenize($arg,$regex)[1]
+ } ;</pre></div>
+		<!--copypasteelement:
+			<div class="panel-body">
+			Erkl�rung
+				<pre>Code</pre>
+			</div> -->
+			<div class="panel-body">
+			Schneidet das Ende eines strings aus, ab dem match mit dem �bergebenem regex
+				<pre> declare function functx:substring-after-match
+  ( $arg as xs:string? ,
+    $regex as xs:string )  as xs:string? {
+
+   replace($arg,concat('^.*?',$regex),'')
+ } ;</pre>
+			</div>
+			<div class="panel-body">
+			Speichert Liste mit allen handNote Elementen in liste ab:
+				<pre>let $liste := //handNote</pre>
+			</div>
+			<div class="panel-body">
+			Speichert f�r jedes Listenelement den Anfangsstring, der dem Schreibernamen entspricht
+				<pre>let $w := for $i in $liste/functx:substring-before-match(text(), '\s\(') return $i</pre>
+			</div>
+			<div class="panel-body">
+			Eliminiert alle Dopplungen und speichert bereinigte Schreiberliste in $wri
+				<pre>let $wri := for $i in fn:distinct-values($w) return $i</pre>
+			</div>
+			<div class="panel-body">
+			Bereitet die Ausgabe vor. F�r jeden Schreibernamen in der Liste wird der return Block ausgef�hrt
+				<pre>for $writer in $wri</pre>
+			</div>
+			<div class="panel-body">
+			Sortiert diese alphabetisch
+				<pre>order by $writer
+return </pre>
+			</div>
+			<div class="panel-body">
+			Der Schreibername wird als �berschrift ausgegeben
+				<pre>(&lt;h4>{$writer}&lt;/h4>,</pre>
+			</div>
+			<div class="panel-body">
+			Darunter wird eine Liste mit allen zugeh�rigen Varianten erzeugt
+				<pre>    &lt;ul>{</pre>
+			</div>
+			<div class="panel-body">
+			Speichert all die Elemente in der neuen Liste, die in ihrem Schreiber mit dem Schreiber �bereinstimmen,
+    der zuvor in der �berschrift ausgegeben wurde
+				<pre>    let $variantenListeSchreiber := for $i in $liste where /functx:substring-before-match($i/text(), '\s\(')=$writer return $i</pre>
+			</div>
+			<div class="panel-body">
+			Extrahiert f�r jedes f�r den Schreiber relevante Element den string in eine Liste, 
+    der zwischen Klammern steht und damit die Variante und Sprache beschreibt
+				<pre>    let $v := for $i in $variantenListeSchreiber/functx:substring-before-match(functx:substring-after-match(text(), '\s\('), '\)') return $i</pre>
+			</div>
+			<div class="panel-body">
+			ErkEliminiert Dopplungen von Varianten bei einem einzelnen Schreiber und speichert bereinigte Variantenistel�rung
+				<pre>    let $var := for $i in fn:distinct-values($v) return $i</pre>
+			</div>
+			<div class="panel-body">
+			Iteriert �ber Variantenliste des aktuellen Autors und erzeugt f�r jedes Einzelne ein Listenelement
+				<pre>    for $variant in $var</pre>
+			</div>
+			<div class="panel-body">
+			sortiert Varianten alphabetisch
+				<pre>    order by $variant
+    return &lt;li>{$variant}&lt;/li>}
+    &lt;/ul>)
+}
+&lt;/p>
+&lt;/html>
+</pre>
+			</div></details><br>
+			<div class="panel-footer">
+				<a href = "https://github.com/LennartKeller/faustedition_referat" target="_blank">Hier erhalten Sie den vollst�ndigen Code</a>
+			</div>
+		</div>
+		
+		
+		
+<!-- LENNARTS CODE ab hier-->
+		<div id="3"class="container">
+			<div class="page-header">
+				<h3><b>Python</b></h3>
+			</div>
+		</div>
+		<div class="container"> <!-- style="width: 80%; <!-- background: lavender;"-->
+			<div class="panel-heading">Anderes</div>
+			<ol>
+				<li>Schritt
+				<p>beginnen Sie damit etwas zu machen</p>
+				<li>Schritt
+				<p>profit</p>
+			</ol>
+			<br>
+			<details><summary><b>Erl�uterung des Quellcodes f�r Fortgeschrittene</b></summary>
+			<div class="panel-body">
+			Teilcode:
+				<pre>Hier steht der Teilcode</pre>
+			</div>
+			</details>
+			<br>
+			<div class="panel-footer">
+				<a href = "https://github.com/LennartKeller/faustedition_referat" target="_blank">Hier erhalten Sie den vollst�ndigen Code</a>
+			</div><br>
+		</div>
+		
+    </body>
+</html>
