@@ -1,27 +1,26 @@
-# VORWORT:
-# Innerhalb der Transkripte sind die einzelnen handschriftlichten Abschnitte durch das TEI-Element handShift gekennzeichnet.
-# Dieses zeigt an das ab hier bis zum nächsten Auftreten eines handShift-Elements der Text aus der Feder
-# des im @new-Attribut spezifierten Schreibers sind. Der Wert dieses Attribut ist konform der xml:id aus den <handNote-Elemente> im Header,
-# so dass eine eindeutige Zuordnung der Abschnitte zu Schreiber und Schreibvariante möglich ist.
-# 
-# Nicht nur aus philologischer Sicht ist ein Auslesen dieser Daten interessant, sondern auch auch aus weil die Datenstruktur eine 
-# kleine Herausforderung darstellt, denn die <handShift>-Elemente sind leer, enhalten also keine Kinder. 
-# Die eigentlichen Daten der handShift-Einheit, bilden also keinen Subtree des handShifts-Elements
-# den man einfach per XPath addressieren und auslesen könnte.
-# Im folgenden Beispiel werden diese Daten ausgelesen und in einer sehr einfachen Art verarbeitet und mit bereits bestehenden Daten aggregiert.
-#
-# Das folgende Skript kann grob in 3 Abschnitte gegliedert werden, die eigene Teilaufgaben darstellen:
+#   Innerhalb der Transkripte sind die einzelnen handschriftlichen Abschnitte durch das TEI-Element handShift gekennzeichnet.
+#   Dieses zeigt an,  dass ab hier der Text bis zum nächsten Auftreten eines handShift-Elements aus der Feder
+#   des im @new-Attribut spezifizierten Schreibers ist. Der Wert dieses Attributes ist konform der xml:id aus den handNote-Elemente im Header,
+#   so dass eine eindeutige Zuordnung der Abschnitte zu Schreiber und Schreibvariante möglich ist.
+  
+#   Nicht nur aus philologischer Sicht ist ein Auslesen dieser Daten interessant, sondern auch da die Datenstruktur eine 
+#   kleine Herausforderung darstellt  - die handShift-Elemente sind leer, enthalten also keine Kindelemente. 
+#   Die eigentlichen Daten der handShift-Einheit bilden also keinen Teilbaum des handShifts-Elements, 
+#   den man einfach per XPath adressieren und auslesen könnte.
+#   Im folgenden Beispiel werden diese Daten ausgelesen und in einer sehr einfachen Art verarbeitet und mit bereits bestehenden Daten aggregiert.
 
-# 1. Definition von einfachen Klassen, in denen die Daten später gespeichert werden.
-# => Dies hat den Vorteil, dass im weiteren Programmablauf nicht mehr mit Listen hantiert werden muss, bei denen man auf die Daten nur
-# über einen "nicht sprechenden" Index zugreifen kann.
+#   Das folgende Skript kann grob in 3 Abschnitte gegliedert werden, die eigene Teilaufgaben darstellen:
 
-# 2. Auslesen der gesuchten Daten aus mehreren xml-Dateien mithilfe der der Bibliotheken glob und lxml
-# ACHTUNG: lxml gehört nicht zum Standardumfang einer Python-Installation, kann aber einfach mit : '$ pip install lxml' nachinstalliert werden.
-#  
-# 3. Im letzten Schritte werden die Daten dann in die Ergebnis-Datei aus dem ersten Beispiel integriert.
-# => Dies führt jedoch dazu, dass diese relativ groß und unübersichtlich wird. Jedoch kann man so gut zeigen,
-# wie einfach sich mit Hilfe von lxml xml-Dateien modifizieren lassen.
+#   1. Definition von einfachen Hilfsklassen, in denen die Daten später gespeichert werden.
+#   = Dies hat den Vorteil, dass im weiteren Programmablauf nicht mehr mit Listen hantiert werden muss, bei denen man auf die Daten nur
+#   über einen "nicht sprechenden" Index zugreifen kann.
+
+#   2. Auslesen der gesuchten Daten aus mehreren XML-Dateien mithilfe der beiden Bibliotheken glob und lxml. 
+#   ACHTUNG: lxml gehört nicht zum Standardumfang einer Python-Installation, kann aber einfach mit : 'pip install lxml' nachinstalliert werden.
+   
+#   3. Im letzten Schritt werden die Daten dann in die Ergebnis-Datei aus dem XQuery-Beispiel integriert.
+#   = Dies führt jedoch dazu, dass diese Datei relativ groß und unübersichtlich wird. Jedoch kann damit gut zeigen,
+#   wie einfach sich mithilfe von lxml XML-Dateien modifizieren lassen.
 
 from lxml import etree
 import glob
@@ -218,4 +217,4 @@ for handshift in result:
         print('No entry with wID = {} was found.'.format(handshift.writer_id))
 
 # für xhtml das vom Broswer verarbeitet werden kann muss die Ausgabe Datei als kanonisches XML geschrieben werden.
-writer_doc.write_c14n('result.html')
+writer_doc.write_c14n('Python_Tutorial_Result.html')
