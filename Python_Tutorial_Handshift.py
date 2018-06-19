@@ -12,14 +12,14 @@
 #   Das folgende Skript kann grob in 3 Abschnitte gegliedert werden, die eigene Teilaufgaben darstellen:
 
 #   1. Definition von einfachen Hilfsklassen, in denen die Daten später gespeichert werden.
-#   = Dies hat den Vorteil, dass im weiteren Programmablauf nicht mehr mit Listen hantiert werden muss, bei denen man auf die Daten nur
+#   => Dies hat den Vorteil, dass im weiteren Programmablauf nicht mehr mit Listen hantiert werden muss, bei denen man auf die Daten nur
 #   über einen "nicht sprechenden" Index zugreifen kann.
 
 #   2. Auslesen der gesuchten Daten aus mehreren XML-Dateien mithilfe der beiden Bibliotheken glob und lxml. 
 #   ACHTUNG: lxml gehört nicht zum Standardumfang einer Python-Installation, kann aber einfach mit : 'pip install lxml' nachinstalliert werden.
    
 #   3. Im letzten Schritt werden die Daten dann in die Ergebnis-Datei aus dem XQuery-Beispiel integriert.
-#   = Dies führt jedoch dazu, dass diese Datei relativ groß und unübersichtlich wird. Jedoch kann damit gut zeigen,
+#   => Dies führt jedoch dazu, dass diese Datei relativ groß und unübersichtlich wird. Jedoch kann damit gut zeigen,
 #   wie einfach sich mithilfe von lxml XML-Dateien modifizieren lassen.
 
 from lxml import etree
