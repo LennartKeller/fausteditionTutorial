@@ -1,12 +1,11 @@
 <!doctype html>
 <html>
     <head>
-        <meta charset="UTF-8">
+		<meta charset="utf-8">
 		<title>Faustedition Tutorial</title>
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
 		<!--<link rel="stylesheet" href="js/highlight/styles/default.css">
 		<script src="js/highlight/highlight.pack.js"></script>
 		<script>hljs.initHighlightingOnLoad();
@@ -14,18 +13,20 @@
         <link href="js/prism.css" rel="stylesheet" />
         <script src="js/prism.js"></script>
 		<style>
-}
+				summary::-webkit-details-marker {
+		  display: none
+		}
 
-summary:after {
-  content: "+";
-  float: left;
-  margin-right: 5px;
-}
+		summary:after {
+		  content: "+";
+		  float: left;
+		  margin-right: 5px;
+		}
 
-details[open] summary:after {
-  content: "-";
-}
-</style>
+		details[open] summary:after {
+		  content: "-";
+		}
+		</style>
     </head>
 	
     <body>
@@ -38,6 +39,7 @@ details[open] summary:after {
 			  <li><a href="#1">Grundlegendes</a></li>
 			  <li><a href="#2">XQuery</a></li>
 			  <li><a href="#3">Python</a></li>
+			  <li><a href="#4">Links</a></li>
 			</ul>
 			</nav>
 			</div>
@@ -48,158 +50,195 @@ details[open] summary:after {
 				<h3><b>Grundlegendes</b></h3>
 			</div>
 		<div>
-			<r>Im Folgenden wird Ihnen erklärt, wie Sie außerhalb der Faustedition selbständig mit den zur Verfügung stehenden XML-Dateien der Handschriften arbeiten können und somit tiefer gehende Forschungsfragen klären können. Momentan stehen Ihnen die Codes zu den Varianten der Schreiber und ein Python-Programm zu Verfügung. Weitere Codes folgen. Dieses Tutorial richtet sich sowohl an Programmierlaien als auch an Leute mit Programmiervorkenntnissen. 
+			<p>Im Folgenden wird Ihnen anhand von zwei Beispielen erklärt, wie Sie außerhalb der Faustedition selbständig mit den zur Verfügung stehenden XML-Dateien der Handschriften arbeiten können und somit tiefer gehende Forschungsfragen klären können. Momentan stehen Ihnen die Codes zu einer XQuery- und einer Python-Variante zur Verfügung. Weitere Codes werden folgen. Dieses Tutorial richtet sich sowohl an Programmierlaien als auch an Leute mit Programmiervorkenntnissen. </p>
+			<p>Sie können auch selbst Codes einreichen, um anderen die Forschung zu erleichtern: <a href="Platzhalter" target="_blank">Formular zur Einreichung von selbsterstellten Programmen</a></p>
 			<p>Wählen Sie <a href="platzhalter" target="_blank">hier</a> eine Handschrift aus und laden Sie die XML-Dateien herunter.</p>
-			<p>Um mit den Dateien zu arbeiten brauchen einen Text-Editor. Wir empfehlen Ihnen Notepad++. Sie können es <a href="https://notepad-plus-plus.org/download/v7.5.6.html">hier</a> herunterladen.</p>
-			<p>Für XQuery brauchen Sie Folgendes</p>
-			<p>Für Python brauchen Sie Folgendes<!-- : Laden Sie die neuste Version Python <a href="https://www.python.org/downloads/</p>" target="_blank">hier</a> herunter und installieren Sie es.-->
+			<p>Für XQuery--Beispiel brauchen Sie Folgendes: xQuery Editor (z.B. <a href="https://www.oxygenxml.com/xml_editor/download_oxygenxml_editor.html">oXygen</a>), Transformationsprozessor (z.B. Saxon; in Oxygen implementiert)</p>
+			<p>Für Python-Beispiel brauchen Sie Folgendes: <a href="https://www.python.org/downloads/" target="_blank">Python</a>, lxml-Bibliothek (pip install lxml)
 		</div>
 		</div>
 		
 		
-<!-- VALENTINS CODE ab hier-->
+<!-- XQUERY-BEISPIEL ab hier-->
 		<div id="2" class="container">
 			<div class="page-header">
-				<h3><b>Schreiber und ihre Varianten</b></h3>
+				<h3><b>XQuery-Beispiel</b></h3>
 			</div>
 		</div>
-		<div class="container"> <!-- style="width: 80%; background: lavender;" -->
-		<!-- 	<div class="panel-heading">Die Funktionen im Prolog sind von der angegebenen URL übernommen:</div>-->
-		Mit diesem Programm können Sie auf einen Blick in den jeweiligen Handschriften herausfinden, welche Schreiber es gibt und welche Varianten ihnen zugeordnet werden. Dies wird mit der Programmiersprache XQuery erreicht.
-		<br>
+		<div class="container">
+		<div class="panel-heading"><h4>Schreiber und ihre Varianten</h4></div>
+		Mit diesem Programm können Sie auf einen Blick in den jeweiligen Handschriften herausfinden, welche Schreiber es gibt und welche Varianten ihnen zugeordnet werden. Dies wird mit der Abfragesprache XQuery erreicht.
+		<br/>
+		<div class="panel-heading">Tutorial für Anfänger:</div>
+			<ol>
+				<li><p>Laden Sie die XML-Dateien <a href="platzhalter" target="_blank">hier</a> herunter und verschieben Sie sie in einen leeren Ordner.</p></li>
+				<li><p>Laden Sie die Datei mit dem XQuery-Code <a href="platzhalter" target="_blank">hier</a> herunter.</p></li>
+				<li><p>Öffnen Sie das XQuery-Dokument mit Oxygen.</p></li>
+				<li><p>Drücken Sie in Oxygen Strg+Umschalt+C, um ein Transformations-Szenario zu konfigurieren.</p></li>
+				<li><p>Erstellen Sie eine neue XQuery-Transformation.</p></li>
+				<li><p>Im Feld XML URL: suchen Sie ihre gewünschte Handschriften-Datei aus.</p></li>
+				<li><p>Unter dem Reiter Ausgangsdatei: entfernen Sie den Haken bei „Als Sequenz darstellen“ und geben Sie den Speicherort der HTML-Datei mit „.html“-Endung ein.</p></li>
+				<li><p>Drücken Sie auf „OK“ und dann auf „Speichern und schließen“.</p></li>
+				<li><p>Drücken Sie Strg+Umschalt+T, um das Transformations-Szenario auszuwenden. Nun ist eine fertige HTML-Datei im von Ihnen ausgewählten Ordner verfügbar. Diese kann mit einem beliebigen Browser geöffnet werden.</p></li>
+				
+			</ol>
 		
-		<br>
+		<br/>
 
-<!-- XQuery Tut für Fortgeschrittene --> 
+<!-- XQUERY-CODE --> 
 		<details><summary><b>Erläuterung des Quellcodes für Fortgeschrittene</b></summary>
 			<div class="panel-body">
 			Die Funktionen im Prolog sind von der angegebenen URL übernommen:
-				<pre>declare namespace functx = "http://www.functx.com";</pre>
+				<pre><code class=„language-xquery“>declare namespace functx = "http://www.functx.com";</code></pre>
 			</div>
 			<div class="panel-body">Schneidet den Anfang eines strings aus, bis der übergebene regex matched:
-			<pre>declare function functx:substring-before-match
+			<pre><code class=„language-xquery“>declare function functx:substring-before-match
 ( $arg as xs:string? ,
     $regex as xs:string )  as xs:string {
 
    tokenize($arg,$regex)[1]
- } ;</pre></div>
-		<!--copypasteelement:
+ } ;</code></pre></div>
+		<!--copypaste-element:
 			<div class="panel-body">
 			Erklärung
 				<pre>Code</pre>
 			</div> -->
 			<div class="panel-body">
-			Schneidet das Ende eines strings aus, ab dem match mit dem übergebenem regex
-				<pre> declare function functx:substring-after-match
+			Schneidet das Ende eines strings aus, ab dem match mit dem übergebenem regex:
+				<pre><code class=„language-xquery“>declare function functx:substring-after-match
   ( $arg as xs:string? ,
     $regex as xs:string )  as xs:string? {
 
    replace($arg,concat('^.*?',$regex),'')
- } ;</pre>
+ } ;</code></pre>
 			</div>
 			<div class="panel-body">
-			Speichert Liste mit allen handNote Elementen in liste ab:
-				<pre>let $liste := //handNote</pre>
+			Liste mit allen handNote-Elementen wird in $list gespeichert:
+				<pre><code class=„language-xquery“>let $liste := //handNote</pre>
+			</code></div>
+			<div class="panel-body">
+			Sammelt alle vorkommenden IDs der Schreiber aus den Elementen:
+				<pre><code class=„language-xquery“>let $wIDcollection := for $i in $list/functx:substring-before-match(data(@xml:id), '_') return $i</code></pre>
 			</div>
 			<div class="panel-body">
-			Speichert für jedes Listenelement den Anfangsstring, der dem Schreibernamen entspricht
-				<pre>let $w := for $i in $liste/functx:substring-before-match(text(), '\s\(') return $i</pre>
+			Eliminiert Dopplungen:
+				<pre><code class=„language-xquery“>let $wIDlist := for $i in fn:distinct-values($wIDcollection) return $i</code></pre>
 			</div>
 			<div class="panel-body">
-			Eliminiert alle Dopplungen und speichert bereinigte Schreiberliste in $wri
-				<pre>let $wri := for $i in fn:distinct-values($w) return $i</pre>
+			Iteriert über Liste der Schreiber-IDs:
+				<pre><code class=„language-xquery“>for $currentWID in $wIDlist </code></pre>
 			</div>
 			<div class="panel-body">
-			Bereitet die Ausgabe vor. Für jeden Schreibernamen in der Liste wird der return Block ausgeführt
-				<pre><code class="language-xquery">for $writer in $wri</code></pre>
+			Generiert einen &lt;p/>-Block für jeden Schreiber mit Attributen Typ und Schreiber-ID:
+				<pre><code class=„language-xquery“>&lt;p type="writer" xml:id="{$currentWID}"></code></pre>
 			</div>
 			<div class="panel-body">
-			Sortiert diese alphabetisch
-				<pre>order by $writer
-return </pre>
+			Liste mit allen Elementen, die sich auf den aktuellen Schreiber beziehen:
+				<pre><code class=„language-xquery“>let $writerList := for $i in $list where /functx:substring-before-match($i/data(@xml:id), '_')=$currentWID return $i </code></pre>
 			</div>
 			<div class="panel-body">
-			Der Schreibername wird als Überschrift ausgegeben
-				<pre>(&lt;h4>{$writer}&lt;/h4>,</pre>
+			Liste mit den Schreibernamen aus allen relevanten Elementen:
+				<pre><code class=„language-xquery“>let $currentWriter := for $i in $writerList/functx:substring-before-match(text(), '\s\(') return $i</code></pre>
 			</div>
 			<div class="panel-body">
-			Darunter wird eine Liste mit allen zugehörigen Varianten erzeugt
-				<pre>    &lt;ul>{</pre>
+			Eliminiert Dopplungen:
+				<pre><code class=„language-xquery“>let $writer := for $i in fn:distinct-values($currentWriter) return $i</code></pre>
 			</div>
 			<div class="panel-body">
-			Speichert all die Elemente in der neuen Liste, die in ihrem Schreiber mit dem Schreiber übereinstimmen,
-    der zuvor in der Überschrift ausgegeben wurde
-				<pre>    let $variantenListeSchreiber := for $i in $liste where /functx:substring-before-match($i/text(), '\s\(')=$writer return $i</pre>
+			Sammelt alle vorkommenden IDs der Varianten aus den aktuell relevanten Elementen:
+				<pre><code class=„language-xquery“>let $vIDcollection := for $i in $writerList/functx:substring-after-match(data(@xml:id), '_') return $i</code></pre>
 			</div>
 			<div class="panel-body">
-			Extrahiert für jedes für den Schreiber relevante Element den string in eine Liste, 
-    der zwischen Klammern steht und damit die Variante und Sprache beschreibt
-				<pre>    let $v := for $i in $variantenListeSchreiber/functx:substring-before-match(functx:substring-after-match(text(), '\s\('), '\)') return $i</pre>
+			Iteriert über Liste der Varianten-IDs:
+				<pre><code class=„language-xquery“>for $currentVID in $vIDcollection</code></pre>
 			</div>
 			<div class="panel-body">
-			ErkEliminiert Dopplungen von Varianten bei einem einzelnen Schreiber und speichert bereinigte Variantenistelärung
-				<pre>    let $var := for $i in fn:distinct-values($v) return $i</pre>
+			Generiert einen Listeneintrag für jede Variante mit Attributen Typ und Varianten-ID:
+				<pre><code class=„language-xquery“>&lt;li type="variant" xml:id="{$currentVID}"></code></pre>
 			</div>
 			<div class="panel-body">
-			Iteriert über Variantenliste des aktuellen Autors und erzeugt für jedes Einzelne ein Listenelement
-				<pre>    for $variant in $var</pre>
+			Ordnet Elemente der aktuellen Varianten ID zu:
+				<pre><code class=„language-xquery“>let $variantList := for $i in $list where /functx:substring-after-match($i/data(@xml:id), '_')=$currentVID return $i</code></pre>
 			</div>
 			<div class="panel-body">
-			sortiert Varianten alphabetisch
-				<pre>    order by $variant
-    return &lt;li>{$variant}&lt;/li>}
-    &lt;/ul>)
-}
-&lt;/p>
-&lt;/html>
-</pre>
+			Liest die Variantenbezeichnung aus Element aus:
+				<pre><code class=„language-xquery“>let $currentVariant := for $i in $variantList/functx:substring-before-match(functx:substring-after-match(text(), '\s+\('), '\)') return $i</code></pre>
+			</div>
+			<div class="panel-body">
+			Eliminiert Dopplungen:
+				<pre><code class=„language-xquery“>let $variant := fn:distinct-values($currentVariant)</code></pre>
+			</div>
+			<div class="panel-body">
+			Schreibt diese in den Listeneintrag:
+				<pre><code class=„language-xquery“>return $variant</code></pre>
 			</div>
 			</details>
-			<br>
+			<br/>
 			<div class="panel-footer">
-				<a href = "https://github.com/LennartKeller/faustedition_referat" target="_blank">Hier erhalten Sie den vollständigen Code</a>
+				<a href = "https://github.com/LennartKeller/faustedition_referat" target="_blank">Hier erhalten Sie die Datei mit dem vollständigen Code</a>
 			</div>
 		</div>
 		
 		
 		
-<!-- LENNARTS CODE ab hier-->
-		<div id="3"class="container">
+<!-- PYTHON-BEISPIEL ab hier-->
+		<div id="3" class="container">
 			<div class="page-header">
-				<h3><b>Python</b></h3>
+				<h3><b>Python-Beispiel</b></h3>
 			</div>
 		</div>
-		<div class="container"> <!-- style="width: 80%; <!-- background: lavender;"-->
-			<div class="panel-heading">Auslesen der Handshift-Daten</div>
- Innerhalb der Transkripte sind die einzelnen handschriftlichen Abschnitte durch das TEI-Element handShift gekennzeichnet.
- Dieses zeigt an,  dass ab hier der Text bis zum nächsten Auftreten eines handShift-Elements aus der Feder
- des im @new-Attribut spezifizierten Schreibers ist. Der Wert dieses Attributes ist konform der xml:id aus den handNote-Elemente im Header,
- so dass eine eindeutige Zuordnung der Abschnitte zu Schreiber und Schreibvariante möglich ist.
- 
- Nicht nur aus philologischer Sicht ist ein Auslesen dieser Daten interessant, sondern auch da die Datenstruktur eine 
- kleine Herausforderung darstellt  - die handShift-Elemente sind leer, enthalten also keine Kindelemente. 
- Die eigentlichen Daten der handShift-Einheit bilden also keinen Teilbaum des handShifts-Elements, 
- den man einfach per XPath adressieren und auslesen könnte.
- Im folgenden Beispiel werden diese Daten ausgelesen und in einer sehr einfachen Art verarbeitet und mit bereits bestehenden Daten aggregiert.
-
- Das folgende Skript kann grob in 3 Abschnitte gegliedert werden, die eigene Teilaufgaben darstellen:
-
- 1. Definition von einfachen Hilfsklassen, in denen die Daten später gespeichert werden.
- => Dies hat den Vorteil, dass im weiteren Programmablauf nicht mehr mit Listen hantiert werden muss, bei denen man auf die Daten nur
- über einen "nicht sprechenden" Index zugreifen kann.
-
- 2. Auslesen der gesuchten Daten aus mehreren XML-Dateien mithilfe der beiden Bibliotheken glob und lxml. 
- ACHTUNG: lxml gehört nicht zum Standardumfang einer Python-Installation, kann aber einfach mit : 'pip install lxml' nachinstalliert werden.
-  
- 3. Im letzten Schritt werden die Daten dann in die Ergebnis-Datei aus dem XQuery-Beispiel integriert.
- => Dies führt jedoch dazu, dass diese Datei relativ groß und unübersichtlich wird. Jedoch kann damit gut zeigen,
- wie einfach sich mithilfe von lxml XML-Dateien modifizieren lassen.
-			<br>
-			<details><summary><b>Erläuterung des Quellcodes für Fortgeschrittene</b></summary>
+		<div class="container">
+			<div class="panel-heading"><h4>Auslesen der Handshift-Daten</h4></div>
+				<p>Innerhalb der Transkripte sind die einzelnen handschriftlichen Abschnitte durch das TEI-Element handShift gekennzeichnet.
+				 Dieses zeigt an,  dass ab hier der Text bis zum nächsten Auftreten eines handShift-Elements aus der Feder
+				 des im @new-Attribut spezifizierten Schreibers ist. Der Wert dieses Attributes ist konform der xml:id aus den handNote-Elemente im Header,
+				 so dass eine eindeutige Zuordnung der Abschnitte zu Schreiber und Schreibvariante möglich ist.</p>
+				 <p>Nicht nur aus philologischer Sicht ist ein Auslesen dieser Daten interessant, sondern auch da die Datenstruktur eine 
+				 kleine Herausforderung darstellt  - die handShift-Elemente sind leer, enthalten also keine Kindelemente. 
+				 Die eigentlichen Daten der handShift-Einheit bilden also keinen Teilbaum des handShifts-Elements, 
+				 den man einfach per XPath adressieren und auslesen könnte.
+				 Im folgenden Beispiel werden diese Daten ausgelesen und in einer sehr einfachen Art verarbeitet und mit bereits bestehenden Daten aggregiert.</p>
+				 <p>Das folgende Skript kann grob in 3 Abschnitte gegliedert werden, die eigene Teilaufgaben darstellen:</p>
+				<ol>
+					 <li>Definition von einfachen Hilfsklassen, in denen die Daten später gespeichert werden.
+					 => Dies hat den Vorteil, dass im weiteren Programmablauf nicht mehr mit Listen hantiert werden muss, bei denen man auf die Daten nur
+					 über einen "nicht sprechenden" Index zugreifen kann.
+					 </li>
+					 <li>Auslesen der gesuchten Daten aus mehreren XML-Dateien mithilfe der beiden Bibliotheken glob und lxml. 
+					 ACHTUNG: lxml gehört nicht zum Standardumfang einer Python-Installation, kann aber einfach mit : 'pip install lxml' nachinstalliert werden.
+					 </li>
+					 <li>Im letzten Schritt werden die Daten dann in die Ergebnis-Datei aus dem XQuery-Beispiel integriert.
+					 => Dies führt jedoch dazu, dass diese Datei relativ groß und unübersichtlich wird. Jedoch kann damit gut zeigen,
+					 wie einfach sich mithilfe von lxml XML-Dateien modifizieren lassen.</li>
+				 </ol>
+			<br/>
+			<details><summary><b>Quellcode</b></summary>
 			<div class="panel-body">
-			Teilcode:
-				<pre>
-					<code class="language-python">
+				<pre><code class="language-python">
+#   Innerhalb der Transkripte sind die einzelnen handschriftlichen Abschnitte durch das TEI-Element handShift gekennzeichnet.
+#   Dieses zeigt an,  dass ab hier der Text bis zum nächsten Auftreten eines handShift-Elements aus der Feder
+#   des im @new-Attribut spezifizierten Schreibers ist. Der Wert dieses Attributes ist konform der xml:id aus den handNote-Elemente im Header,
+#   so dass eine eindeutige Zuordnung der Abschnitte zu Schreiber und Schreibvariante möglich ist.
+  
+#   Nicht nur aus philologischer Sicht ist ein Auslesen dieser Daten interessant, sondern auch da die Datenstruktur eine 
+#   kleine Herausforderung darstellt  - die handShift-Elemente sind leer, enthalten also keine Kindelemente. 
+#   Die eigentlichen Daten der handShift-Einheit bilden also keinen Teilbaum des handShifts-Elements, 
+#   den man einfach per XPath adressieren und auslesen könnte.
+#   Im folgenden Beispiel werden diese Daten ausgelesen und in einer sehr einfachen Art verarbeitet und mit bereits bestehenden Daten aggregiert.
+
+#   Das folgende Skript kann grob in 3 Abschnitte gegliedert werden, die eigene Teilaufgaben darstellen:
+
+#   1. Definition von einfachen Hilfsklassen, in denen die Daten später gespeichert werden.
+#   => Dies hat den Vorteil, dass im weiteren Programmablauf nicht mehr mit Listen hantiert werden muss, bei denen man auf die Daten nur
+#   über einen "nicht sprechenden" Index zugreifen kann.
+
+#   2. Auslesen der gesuchten Daten aus mehreren XML-Dateien mithilfe der beiden Bibliotheken glob und lxml. 
+#   ACHTUNG: lxml gehört nicht zum Standardumfang einer Python-Installation, kann aber einfach mit : 'pip install lxml' nachinstalliert werden.
+   
+#   3. Im letzten Schritt werden die Daten dann in die Ergebnis-Datei aus dem XQuery-Beispiel integriert.
+#   => Dies führt jedoch dazu, dass diese Datei relativ groß und unübersichtlich wird. Jedoch kann damit gut zeigen,
+#   wie einfach sich mithilfe von lxml XML-Dateien modifizieren lassen.
+
 from lxml import etree
 import glob
 
@@ -234,7 +273,7 @@ class Handshift:
             :param source_doc: Name des Quelldokuments in dem die handShift-Einheit gefunden wurde
             :param element_list: Liste aller Elemente der handShift-Einheit, das erste Element der Liste muss das handShift-Element sein, mit dem gestart wird
         """
-        # Namensräume der transcript/** Dokumente
+        # benötigte Namensräume der XML-Dokumente
         self.tei_ns = Namespace('tei', 'http://www.tei-c.org/ns/1.0')
         self.genetic_edition_ns = Namespace('geneticEdition', 'http://www.tei-c.org/ns/geneticEditions')
         self.faustedition_ns = Namespace('faustedition', 'http://www.faustedition.net/ns')
@@ -246,6 +285,9 @@ class Handshift:
         self.source_doc = source_doc
         self.handShift = element_list[0]
         self.new_attrib = self.handShift.attrib['new'][1:]
+        # die new-Werte haben die Form "writer_id_variantid" oder "writer_id_variantid_variantid"
+        # deshalb wird bei dem ersten Unterstrich geteilt
+        # wenn keine variantid vergeben wurde, enthalten sie nur die writer_id
         if "_" in self.new_attrib:
             ids = self.new_attrib.split('_', 1)
             self.writer_id = ids[0]
@@ -258,7 +300,7 @@ class Handshift:
 
     def get_text(self, text_elements=[]):
         """
-        Gibt den Text, des handShifts Teils zurück, dafür werden die ge:line Elemente ausgewertet
+        Gibt den Text, des handShifts Abschnitts zurück, dafür werden die ge:line Elemente ausgewertet
             :param text_elements=[]: optional, zusätliche Elemente, deren Text auch ausgewertet werden soll
         """   
         string = ''
@@ -267,8 +309,10 @@ class Handshift:
         # da das lxml-Datenmodel keine Textknoten kennt, sondern den Text als Attribut interpretiert
         try:
             handShift_parent = next(self.handShift.iterancestors())
-            text = handShift_parent.xpath('text()')[0]
-            string += text
+            if handShift_parent:
+                text = handShift_parent.xpath('text()')
+                if len(text) > 0:
+                    string += text[0]
         except StopIteration:
             pass
         text_elements.append(str(self.genetic_edition_ns) + 'line')
@@ -282,7 +326,7 @@ class Handshift:
     
     def __repr__(self):
         """
-        Eindeutige Stringrepräsentation der Objektinstanz (zur interakitven Auswertung in einer Python-Shell)
+        Eindeutige Stringrepräsentation der Objektinstanz
         """   
         return super().__repr__() + '\n' + self.source_doc + '\n' + self.writer_id + '\n' + str(self.content)
 
@@ -302,7 +346,8 @@ if __name__ == '__main__':
         genetic_edition_ns.name: genetic_edition_ns.uri,
         faustedition_ns.name: faustedition_ns.uri
     }
-
+    
+    # rekurisves Durchsuchen aller Unterordner des transcripts Verzeichnisses nach xml-Dateien
     files = glob.glob('../Referat/xml/transcript/**/*.xml', recursive=True)
 
     result = []
@@ -338,7 +383,7 @@ if __name__ == '__main__':
         while elem is not done:
             # falls das aktuelle Element ein handShift-Element ist
             if elem.tag == str(tei_ns) + 'handShift':
-                # initialisiere eine die Liste content mit diesem Element
+                # initialisiert eine die Liste content mit diesem Element
                 content = [elem]
                 elem = next(doc_iterator, done)
                 # diese Schleife wird solange durchlaufen, wie das aktuelle Element kein handShift-Element ist
@@ -379,29 +424,41 @@ for handshift in result:
         else:
             # wenn keine variant_id exisitert, wurde die writer_id verwendet
             list_elem = p_elem.find('.//tei:li[@vID="{}"]'.format(handshift.writer_id), namespaces=namespaces)
-        
-        # Test ob ein Lustenelement gefunden wurde
+        # Test ob ein Listenelement gefunden wurde
         if list_elem is not None:
-
-            new_li = etree.Element(etree.QName(tei_ns.uri, 'li'), type='file')
-            new_li.text = handshift.source_doc
+            # Anhängen des Listeneintrags mit dem Dateipfad, falls ein solcher noch nicht existiert
             if not list_elem.xpath('.//tei:li[text()="{}"]'.format(handshift.source_doc), namespaces=namespaces):
+                new_li = etree.Element(etree.QName(tei_ns.uri, 'li'), type='file')
+                new_li.text = handshift.source_doc
                 list_elem.find('.//tei:ul', namespaces=namespaces).append(new_li)
 
 
     else:
         print('No entry with wID = {} was found.'.format(handshift.writer_id))
 
-writer_doc.write_c14n('result.xml')
-					</code>
-				</pr>
+# für xhtml, das vom Broswer verarbeitet werden kann muss die Ausgabe Datei als kanonisches XML geschrieben werden.
+writer_doc.write_c14n('Python_Tutorial_Result.html')
+				</code></pre>
 			</div>
 			</details>
-			<br>
+			<br/>
 			<div class="panel-footer">
-				<a href = "https://github.com/LennartKeller/faustedition_referat" target="_blank">Hier erhalten Sie den vollständigen Code</a>
-			</div><br>
+				<a href = "https://github.com/LennartKeller/faustedition_referat" target="_blank">Hier erhalten Sie die Datei mit dem vollständigen Code</a>
+			</div><br/>
 		</div>
-    
+		<div id="4" class="container">
+			<div class="page-header">
+				<h3><b>Links</b></h3>
+			</div>
+			<div class="container"> 
+			<p><a href="Platzhalter">XML-Dateien</a></p>
+			<p><a href="Platzhalter">Programmeinreichung</a></p>
+			<p><a href="https://www.python.org/downloads/">Python</a></p>
+			<p><a href="https://notepad-plus-plus.org/download/v7.5.6.html">Notepad++</a></p>
+			<p><a href="https://www.oxygenxml.com/xml_editor/download_oxygenxml_editor.html">Oxygen Trial</a></p>
+			<!-- <p><a href="">Weitere Links</a><p>-->
+			<br/>
+			</div>
+		</div>
     </body>
 </html>
