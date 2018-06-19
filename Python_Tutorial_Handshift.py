@@ -56,7 +56,7 @@ class Handshift:
             :param source_doc: Name des Quelldokuments in dem die handShift-Einheit gefunden wurde
             :param element_list: Liste aller Elemente der handShift-Einheit, das erste Element der Liste muss das handShift-Element sein, mit dem gestart wird
         """
-        # Namensräume der transcript/** Dokumente
+        # Namensräume der XML-Dokumente
         self.tei_ns = Namespace('tei', 'http://www.tei-c.org/ns/1.0')
         self.genetic_edition_ns = Namespace('geneticEdition', 'http://www.tei-c.org/ns/geneticEditions')
         self.faustedition_ns = Namespace('faustedition', 'http://www.faustedition.net/ns')
@@ -67,6 +67,9 @@ class Handshift:
         
         self.source_doc = source_doc
         self.handShift = element_list[0]
+
+        # der Wert des new-Attributs hat die Form '#<writerid>_<variantid>' oder '#<writerid>_<variantid>_<variantsuffix>'
+        # weshalb hier die Raute weggesch_<variantid>nitten wird und der String beim ersten Unterstrich geteilt wird
         self.new_attrib = self.handShift.attrib['new'][1:]
         if "_" in self.new_attrib:
             ids = self.new_attrib.split('_', 1)
@@ -163,7 +166,7 @@ if __name__ == '__main__':
         while elem is not done:
             # falls das aktuelle Element ein handShift-Element ist
             if elem.tag == str(tei_ns) + 'handShift':
-                # initialisiere eine die Liste content mit diesem Element
+                # initialisiert eine die Liste content mit diesem Element
                 content = [elem]
                 elem = next(doc_iterator, done)
                 # diese Schleife wird solange durchlaufen, wie das aktuelle Element kein handShift-Element ist
