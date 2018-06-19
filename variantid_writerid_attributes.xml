@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:TEI="http://www.tei-c.org/ns/1.0" xmlns="http://www.tei-c.org/ns/1.0">
+   <head>
+      <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+      <title>Variant - Writer</title>
+   </head>
+   <p>
+      <p type="variant" vID="bl">
+         <h4>pencil - Schrift</h4>
+         <ul>
+            <li type="writer" wID="ec">Eckermann</li>
+            <li type="writer" wID="g">Goethe</li>
+            <li type="writer" wID="g-o-ri">Goethe oder Riemer</li>
+            <li type="writer" wID="gh">Goechhausen</li>
+            <li type="writer" wID="go">Goettling</li>
+            <li type="writer" wID="gt">Geist</li>
+            <li type="writer" wID="kr">Kräuter</li>
+            <li type="writer" wID="m">Müller</li>
+            <li type="writer" wID="re">Reichel</li>
+            <li type="writer" wID="ri">Riemer</li>
+            <li type="writer" wID="sc">Schreiberhand</li>
+            <li type="writer" wID="st">Schuchardt</li>
+            <li type="writer" wID="sta">Stadelmann</li>
+            <li type="writer" wID="v">Helene Vulpius</li>
+            <li type="writer" wID="wo">Pius Alexander Wolff</li>
+            <li type="writer" wID="wvg">Wolfgang von Goethe</li>
+            <li type="writer" wID="xx">Fremde Hand #1</li>
+            <li type="writer" wID="xy">Fremde Hand #2</li>
+            <li type="writer" wID="xz">Fremde Hand #3</li>
+            <li type="writer" wID="zs">Zeitgenössische Schrift</li>
+         </ul>
+      </p>
+      <p type="variant" vID="bl_gr">
+         <h4>pencil - greek</h4>
+         <ul>
+            <li type="writer" wID="ec">Eckermann</li>
+            <li type="writer" wID="g">Goethe</li>
+            <li type="writer" wID="gh">Goechhausen</li>
+            <li type="writer" wID="go">Goettling</li>
+            <li type="writer" wID="gt">Geist</li>
+            <li type="writer" wID="kr">Kräuter</li>
+            <li type="writer" wID="m">Müller</li>
+            <li type="writer" wID="ri">Riemer</li>
+            <li type="writer" wID="st">Schuchardt</li>
+            <li type="writer" wID="sta">Stadelmann</li>
+            <li type="writer" wID="v">Helene Vulpius</li>
+            <li type="writer" wID="wo">Pius Alexander Wolff</li>
+            <li type="writer" wID="xx">Fremde Hand #1</li>
+            <li type="writer" wID="xy">Fremde Hand #2</li>
+            <li type="writer" wID="xz">Fremde Hand #3</li>
+            <li type="writer" wID="zs">Zeitgenössische Schrift</li>
+         </ul>
+      </p>
+      <p type="variant" vID="bl_lat">
+         <h4>pencil - latin</h4>
+         <ul>
+            <li type="writer" wID="ec">Eckermann</li>
+            <li type="writer" wID="g">Goethe</li>
+            <li type="writer" wID="g-o-ri">Goethe oder Riemer</li>
+            <li type="writer" wID="gh">Goechhausen</li>
+            <li type="writer" wID="go">Goettling</li>
+            <li type="writer" wID="gt">Geist</li>
+            <li type="writer" wID="kr">Kräuter</li>
+            <li type="writer" wID="m">Müller</li>
+            <li type="writer" wID="re">Reichel</li>
+            <li type="writer" wID="ri">Riemer</li>
+            <li type="writer" wID="sc">Schreiberhand</li>
+            <li type="writer" wID="st">Schuchardt</li>
+            <li type="writer" wID="sta">Stadelmann</li>
+            <li type="writer" wID="v">Helene Vulpius</li>
+            <li type="writer" wID="wo">Pius Alexander Wolff</li>
+            <li type="writer" wID="xx">Fremde Hand #1</li>
+            <li type="writer" wID="xy">Fremde Hand #2</li>
+            <li type="writer" wID="xz">Fremde Hand #3</li>
+            <li type="writer" wID="zs">Zeitgenössische Schrift</li>
+         </ul>
+      </p>
+      <p type="variant" vID="blau">
+         <h4>blue pencil - Schrift</h4>
+         <ul>
+            <li type="writer" wID="sc">Schreiberhand</li>
+            <li type="writer" wID="xx">Fremde Hand #1</li>
+            <li type="writer" wID="xy">Fremde Hand #2</li>
+            <li type="writer" wID="xz">Fremde Hand #3</li>
+            <li type="writer" wID="zs">Zeitgenössische Schrift</li>
+         </ul>
+      </p>
+      <p type="variant" vID="blau_gr">
+         <h4>blue pencil - greek</h4>
+         <ul>
+            <li type="writer" wID="xx">Fremde Hand #1</li>
+            <li type="writer" wID="xy">Fremde Hand #2</li>
+            <li type="writer" wID="xz">Fremde Hand #3</li>
+            <li type="writer" wID="zs">Zeitgenössische Schrift</li>
+         </ul>
+      </p>
+      <p type="variant" vID="blau_lat">
+         <h4>blue pencil - latin</h4>
+         <ul>
+            <li type="writer" wID="xx">Fremde Hand #1</li>
+            <li type="writer" wID="xy">Fremde Hand #2</li>
+            <li type="writer" wID="xz">Fremde Hand #3</li>
+            <li type="writer" wID="zs">Zeitgenössische Schrift</li>
+         </ul>
+      </p>
+      <p type="variant" vID="g">
+         <h4>ohne Schreibmaterial</h4>
+         <ul>
+            <li type="writer" wID="g">Goethe</li>
+         </ul>
+      </p>
+      <p type="variant" vID="jo">
+         <h4>ohne Schreibmaterial</h4>
+         <ul>
+            <li type="writer" wID="jo">John</li>
+         </ul>
+      </p>
+      <p type="variant" vID="ko">
+         <h4>charcoal - Schrift</h4>
+         <ul>
+            <li type="writer" wID="g">Goethe</li>
+         </ul>
+      </p>
+      <p type="variant" vID="ko_gr">
+         <h4>charcoal - greek</h4>
+         <ul>
+            <li type="writer" wID="g">Goethe</li>
+         </ul>
+      </p>
+      <p type="variant" vID="ko_lat">
+         <h4>charcoal - latin</h4>
+         <ul>
+            <li type="writer" wID="g">Goethe</li>
+         </ul>
+      </p>
+      <p type="variant" vID="ri">
+         <h4>ohne Schreibmaterial</h4>
+         <ul>
+            <li type="writer" wID="ri">Riemer</li>
+         </ul>
+      </p>
+      <p type="variant" vID="ro">
+         <h4>ruddle - Schrift</h4>
+         <ul>
+            <li type="writer" wID="g">Goethe</li>
+            <li type="writer" wID="re">Reichel</li>
+            <li type="writer" wID="ri">Riemer</li>
+            <li type="writer" wID="sc">Schreiberhand</li>
+            <li type="writer" wID="xx">Fremde Hand #1</li>
+            <li type="writer" wID="zs">Zeitgenössische Schrift</li>
+         </ul>
+      </p>
+      <p type="variant" vID="ro_gr">
+         <h4>ruddle - greek</h4>
+         <ul>
+            <li type="writer" wID="g">Goethe</li>
+         </ul>
+      </p>
+      <p type="variant" vID="ro_lat">
+         <h4>ruddle - latin</h4>
+         <ul>
+            <li type="writer" wID="g">Goethe</li>
+            <li type="writer" wID="re">Reichel</li>
+            <li type="writer" wID="ri">Riemer</li>
+            <li type="writer" wID="sc">Schreiberhand</li>
+            <li type="writer" wID="xx">Fremde Hand #1</li>
+         </ul>
+      </p>
+      <p type="variant" vID="sc">
+         <h4>ohne Schreibmaterial</h4>
+         <ul>
+            <li type="writer" wID="sc">Schreiberhand</li>
+         </ul>
+      </p>
+      <p type="variant" vID="t">
+         <h4>ink - Schrift</h4>
+         <ul>
+            <li type="writer" wID="aj">Anna Jameson</li>
+            <li type="writer" wID="avg">August von Goethe</li>
+            <li type="writer" wID="ec">Eckermann</li>
+            <li type="writer" wID="f">Färber</li>
+            <li type="writer" wID="g">Goethe</li>
+            <li type="writer" wID="gh">Goechhausen</li>
+            <li type="writer" wID="go">Goettling</li>
+            <li type="writer" wID="gt">Geist</li>
+            <li type="writer" wID="hd">Herder</li>
+            <li type="writer" wID="jo">John</li>
+            <li type="writer" wID="kr">Kräuter</li>
+            <li type="writer" wID="m">Müller</li>
+            <li type="writer" wID="ovg">Ottilie von Goethe</li>
+            <li type="writer" wID="re">Reichel</li>
+            <li type="writer" wID="ri">Riemer</li>
+            <li type="writer" wID="sc">Schreiberhand</li>
+            <li type="writer" wID="sd">Seidler</li>
+            <li type="writer" wID="so">Soret</li>
+            <li type="writer" wID="sp">Spiegel</li>
+            <li type="writer" wID="st">Schuchardt</li>
+            <li type="writer" wID="sta">Stadelmann</li>
+            <li type="writer" wID="sti">Stieler</li>
+            <li type="writer" wID="v">Helene Vulpius</li>
+            <li type="writer" wID="ve">Varnhagen von Ense</li>
+            <li type="writer" wID="w-o-wvg">Walther oder Wolfgang von Goethe</li>
+            <li type="writer" wID="we">Weller</li>
+            <li type="writer" wID="wi">Maria Anna Katharina Theresia Willemer, genannt Marianne</li>
+            <li type="writer" wID="wo">Pius Alexander Wolff</li>
+            <li type="writer" wID="wvg">Wolfgang von Goethe</li>
+            <li type="writer" wID="xx">Fremde Hand #1</li>
+            <li type="writer" wID="xy">Fremde Hand #2</li>
+            <li type="writer" wID="xz">Fremde Hand #3</li>
+            <li type="writer" wID="zs">Zeitgenössische Schrift</li>
+         </ul>
+      </p>
+      <p type="variant" vID="t_gr">
+         <h4>ink - greek</h4>
+         <ul>
+            <li type="writer" wID="ec">Eckermann</li>
+            <li type="writer" wID="g">Goethe</li>
+            <li type="writer" wID="gh">Goechhausen</li>
+            <li type="writer" wID="go">Goettling</li>
+            <li type="writer" wID="gt">Geist</li>
+            <li type="writer" wID="kr">Kräuter</li>
+            <li type="writer" wID="m">Müller</li>
+            <li type="writer" wID="ri">Riemer</li>
+            <li type="writer" wID="st">Schuchardt</li>
+            <li type="writer" wID="sta">Stadelmann</li>
+            <li type="writer" wID="v">Helene Vulpius</li>
+            <li type="writer" wID="wo">Pius Alexander Wolff</li>
+            <li type="writer" wID="xx">Fremde Hand #1</li>
+            <li type="writer" wID="xy">Fremde Hand #2</li>
+            <li type="writer" wID="xz">Fremde Hand #3</li>
+         </ul>
+      </p>
+      <p type="variant" vID="t_lat">
+         <h4>ink - latin</h4>
+         <ul>
+            <li type="writer" wID="aj">Anna Jameson</li>
+            <li type="writer" wID="avg">August von Goethe</li>
+            <li type="writer" wID="ec">Eckermann</li>
+            <li type="writer" wID="f">Färber</li>
+            <li type="writer" wID="g">Goethe</li>
+            <li type="writer" wID="gh">Goechhausen</li>
+            <li type="writer" wID="go">Goettling</li>
+            <li type="writer" wID="gt">Geist</li>
+            <li type="writer" wID="hd">Herder</li>
+            <li type="writer" wID="jo">John</li>
+            <li type="writer" wID="kr">Kräuter</li>
+            <li type="writer" wID="m">Müller</li>
+            <li type="writer" wID="ovg">Ottilie von Goethe</li>
+            <li type="writer" wID="re">Reichel</li>
+            <li type="writer" wID="ri">Riemer</li>
+            <li type="writer" wID="sc">Schreiberhand</li>
+            <li type="writer" wID="sd">Seidler</li>
+            <li type="writer" wID="so">Soret</li>
+            <li type="writer" wID="sp">Spiegel</li>
+            <li type="writer" wID="st">Schuchardt</li>
+            <li type="writer" wID="sta">Stadelmann</li>
+            <li type="writer" wID="sti">Stieler</li>
+            <li type="writer" wID="v">Helene Vulpius</li>
+            <li type="writer" wID="we">Weller</li>
+            <li type="writer" wID="wi">Maria Anna Katharina Theresia Willemer, genannt Marianne</li>
+            <li type="writer" wID="wo">Pius Alexander Wolff</li>
+            <li type="writer" wID="xx">Fremde Hand #1</li>
+            <li type="writer" wID="xy">Fremde Hand #2</li>
+            <li type="writer" wID="xz">Fremde Hand #3</li>
+            <li type="writer" wID="zs">Zeitgenössische Schrift</li>
+         </ul>
+      </p>
+      <p type="variant" vID="tr">
+         <h4>ink red/brown - Schrift</h4>
+         <ul>
+            <li type="writer" wID="ec">Eckermann</li>
+            <li type="writer" wID="g">Goethe</li>
+            <li type="writer" wID="gh">Goechhausen</li>
+            <li type="writer" wID="go">Goettling</li>
+            <li type="writer" wID="gt">Geist</li>
+            <li type="writer" wID="hd">Herder</li>
+            <li type="writer" wID="kr">Kräuter</li>
+            <li type="writer" wID="m">Müller</li>
+            <li type="writer" wID="ri">Riemer</li>
+            <li type="writer" wID="sc">Schreiberhand</li>
+            <li type="writer" wID="st">Schuchardt</li>
+            <li type="writer" wID="sta">Stadelmann</li>
+            <li type="writer" wID="v">Helene Vulpius</li>
+            <li type="writer" wID="wo">Pius Alexander Wolff</li>
+            <li type="writer" wID="xx">Fremde Hand #1</li>
+            <li type="writer" wID="xy">Fremde Hand #2</li>
+            <li type="writer" wID="xz">Fremde Hand #3</li>
+            <li type="writer" wID="zs">Zeitgenössische Schrift</li>
+         </ul>
+      </p>
+      <p type="variant" vID="tr_gr">
+         <h4>ink red/brown - greek</h4>
+         <ul>
+            <li type="writer" wID="ec">Eckermann</li>
+            <li type="writer" wID="g">Goethe</li>
+            <li type="writer" wID="gh">Goechhausen</li>
+            <li type="writer" wID="go">Goettling</li>
+            <li type="writer" wID="gt">Geist</li>
+            <li type="writer" wID="kr">Kräuter</li>
+            <li type="writer" wID="m">Müller</li>
+            <li type="writer" wID="ri">Riemer</li>
+            <li type="writer" wID="st">Schuchardt</li>
+            <li type="writer" wID="sta">Stadelmann</li>
+            <li type="writer" wID="v">Helene Vulpius</li>
+            <li type="writer" wID="wo">Pius Alexander Wolff</li>
+            <li type="writer" wID="xx">Fremde Hand #1</li>
+            <li type="writer" wID="xy">Fremde Hand #2</li>
+            <li type="writer" wID="xz">Fremde Hand #3</li>
+            <li type="writer" wID="zs">Zeitgenössische Schrift</li>
+         </ul>
+      </p>
+      <p type="variant" vID="tr_lat">
+         <h4>ink red/brown - latin</h4>
+         <ul>
+            <li type="writer" wID="ec">Eckermann</li>
+            <li type="writer" wID="g">Goethe</li>
+            <li type="writer" wID="gh">Goechhausen</li>
+            <li type="writer" wID="go">Goettling</li>
+            <li type="writer" wID="gt">Geist</li>
+            <li type="writer" wID="hd">Herder</li>
+            <li type="writer" wID="kr">Kräuter</li>
+            <li type="writer" wID="m">Müller</li>
+            <li type="writer" wID="ri">Riemer</li>
+            <li type="writer" wID="sc">Schreiberhand</li>
+            <li type="writer" wID="st">Schuchardt</li>
+            <li type="writer" wID="sta">Stadelmann</li>
+            <li type="writer" wID="v">Helene Vulpius</li>
+            <li type="writer" wID="wo">Pius Alexander Wolff</li>
+            <li type="writer" wID="xx">Fremde Hand #1</li>
+            <li type="writer" wID="xy">Fremde Hand #2</li>
+            <li type="writer" wID="xz">Fremde Hand #3</li>
+            <li type="writer" wID="zs">Zeitgenössische Schrift</li>
+         </ul>
+      </p>
+   </p>
+</html>

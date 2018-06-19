@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:TEI="http://www.tei-c.org/ns/1.0" xmlns="http://www.tei-c.org/ns/1.0">
+   <head>
+      <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+      <title>Writer - Variant</title>
+   </head>
+   <p>
+      <p type="writer" wID="aj">
+         <h4>Anna Jameson</h4>
+         <ul>
+            <li type="variant" vID="t">ink - Schrift</li>
+            <li type="variant" vID="t_lat">ink - latin</li>
+         </ul>
+      </p>
+      <p type="writer" wID="avg">
+         <h4>August von Goethe</h4>
+         <ul>
+            <li type="variant" vID="t">ink - Schrift</li>
+            <li type="variant" vID="t_lat">ink - latin</li>
+         </ul>
+      </p>
+      <p type="writer" wID="ec">
+         <h4>Eckermann</h4>
+         <ul>
+            <li type="variant" vID="bl">pencil - Schrift</li>
+            <li type="variant" vID="bl_gr">pencil - greek</li>
+            <li type="variant" vID="bl_lat">pencil - latin</li>
+            <li type="variant" vID="t">ink - Schrift</li>
+            <li type="variant" vID="t_gr">ink - greek</li>
+            <li type="variant" vID="t_lat">ink - latin</li>
+            <li type="variant" vID="tr">ink red/brown - Schrift</li>
+            <li type="variant" vID="tr_gr">ink red/brown - greek</li>
+            <li type="variant" vID="tr_lat">ink red/brown - latin</li>
+         </ul>
+      </p>
+      <p type="writer" wID="f">
+         <h4>Färber</h4>
+         <ul>
+            <li type="variant" vID="t">ink - Schrift</li>
+            <li type="variant" vID="t_lat">ink - latin</li>
+         </ul>
+      </p>
+      <p type="writer" wID="g">
+         <h4>Goethe</h4>
+         <ul>
+            <li type="variant" vID="bl">pencil - Schrift</li>
+            <li type="variant" vID="bl_gr">pencil - greek</li>
+            <li type="variant" vID="bl_lat">pencil - latin</li>
+            <li type="variant" vID="g">ohne Schreibmaterial</li>
+            <li type="variant" vID="ko">charcoal - Schrift</li>
+            <li type="variant" vID="ko_gr">charcoal - greek</li>
+            <li type="variant" vID="ko_lat">charcoal - latin</li>
+            <li type="variant" vID="ro">ruddle - Schrift</li>
+            <li type="variant" vID="ro_gr">ruddle - greek</li>
+            <li type="variant" vID="ro_lat">ruddle - latin</li>
+            <li type="variant" vID="t">ink - Schrift</li>
+            <li type="variant" vID="t_gr">ink - greek</li>
+            <li type="variant" vID="t_lat">ink - latin</li>
+            <li type="variant" vID="tr">ink red/brown - Schrift</li>
+            <li type="variant" vID="tr_gr">ink red/brown - greek</li>
+            <li type="variant" vID="tr_lat">ink red/brown - latin</li>
+         </ul>
+      </p>
+      <p type="writer" wID="g-o-ri">
+         <h4>Goethe oder Riemer</h4>
+         <ul>
+            <li type="variant" vID="bl">pencil - Schrift</li>
+            <li type="variant" vID="bl_lat">pencil - latin</li>
+         </ul>
+      </p>
+      <p type="writer" wID="gh">
+         <h4>Goechhausen</h4>
+         <ul>
+            <li type="variant" vID="bl">pencil - Schrift</li>
+            <li type="variant" vID="bl_gr">pencil - greek</li>
+            <li type="variant" vID="bl_lat">pencil - latin</li>
+            <li type="variant" vID="t">ink - Schrift</li>
+            <li type="variant" vID="t_gr">ink - greek</li>
+            <li type="variant" vID="t_lat">ink - latin</li>
+            <li type="variant" vID="tr">ink red/brown - Schrift</li>
+            <li type="variant" vID="tr_gr">ink red/brown - greek</li>
+            <li type="variant" vID="tr_lat">ink red/brown - latin</li>
+         </ul>
+      </p>
+      <p type="writer" wID="go">
+         <h4>Goettling</h4>
+         <ul>
+            <li type="variant" vID="bl">pencil - Schrift</li>
+            <li type="variant" vID="bl_gr">pencil - greek</li>
+            <li type="variant" vID="bl_lat">pencil - latin</li>
+            <li type="variant" vID="t">ink - Schrift</li>
+            <li type="variant" vID="t_gr">ink - greek</li>
+            <li type="variant" vID="t_lat">ink - latin</li>
+            <li type="variant" vID="tr">ink red/brown - Schrift</li>
+            <li type="variant" vID="tr_gr">ink red/brown - greek</li>
+            <li type="variant" vID="tr_lat">ink red/brown - latin</li>
+         </ul>
+      </p>
+      <p type="writer" wID="gt">
+         <h4>Geist</h4>
+         <ul>
+            <li type="variant" vID="bl">pencil - Schrift</li>
+            <li type="variant" vID="bl_gr">pencil - greek</li>
+            <li type="variant" vID="bl_lat">pencil - latin</li>
+            <li type="variant" vID="t">ink - Schrift</li>
+            <li type="variant" vID="t_gr">ink - greek</li>
+            <li type="variant" vID="t_lat">ink - latin</li>
+            <li type="variant" vID="tr">ink red/brown - Schrift</li>
+            <li type="variant" vID="tr_gr">ink red/brown - greek</li>
+            <li type="variant" vID="tr_lat">ink red/brown - latin</li>
+         </ul>
+      </p>
+      <p type="writer" wID="hd">
+         <h4>Herder</h4>
+         <ul>
+            <li type="variant" vID="t">ink - Schrift</li>
+            <li type="variant" vID="t_lat">ink - latin</li>
+            <li type="variant" vID="tr">ink red/brown - Schrift</li>
+            <li type="variant" vID="tr_lat">ink red/brown - latin</li>
+         </ul>
+      </p>
+      <p type="writer" wID="jo">
+         <h4>John</h4>
+         <ul>
+            <li type="variant" vID="jo">ohne Schreibmaterial</li>
+            <li type="variant" vID="t">ink - Schrift</li>
+            <li type="variant" vID="t_lat">ink - latin</li>
+         </ul>
+      </p>
+      <p type="writer" wID="kr">
+         <h4>Kräuter</h4>
+         <ul>
+            <li type="variant" vID="bl">pencil - Schrift</li>
+            <li type="variant" vID="bl_gr">pencil - greek</li>
+            <li type="variant" vID="bl_lat">pencil - latin</li>
+            <li type="variant" vID="t">ink - Schrift</li>
+            <li type="variant" vID="t_gr">ink - greek</li>
+            <li type="variant" vID="t_lat">ink - latin</li>
+            <li type="variant" vID="tr">ink red/brown - Schrift</li>
+            <li type="variant" vID="tr_gr">ink red/brown - greek</li>
+            <li type="variant" vID="tr_lat">ink red/brown - latin</li>
+         </ul>
+      </p>
+      <p type="writer" wID="m">
+         <h4>Müller</h4>
+         <ul>
+            <li type="variant" vID="bl">pencil - Schrift</li>
+            <li type="variant" vID="bl_gr">pencil - greek</li>
+            <li type="variant" vID="bl_lat">pencil - latin</li>
+            <li type="variant" vID="t">ink - Schrift</li>
+            <li type="variant" vID="t_gr">ink - greek</li>
+            <li type="variant" vID="t_lat">ink - latin</li>
+            <li type="variant" vID="tr">ink red/brown - Schrift</li>
+            <li type="variant" vID="tr_gr">ink red/brown - greek</li>
+            <li type="variant" vID="tr_lat">ink red/brown - latin</li>
+         </ul>
+      </p>
+      <p type="writer" wID="ovg">
+         <h4>Ottilie von Goethe</h4>
+         <ul>
+            <li type="variant" vID="t">ink - Schrift</li>
+            <li type="variant" vID="t_lat">ink - latin</li>
+         </ul>
+      </p>
+      <p type="writer" wID="re">
+         <h4>Reichel</h4>
+         <ul>
+            <li type="variant" vID="bl">pencil - Schrift</li>
+            <li type="variant" vID="bl_lat">pencil - latin</li>
+            <li type="variant" vID="ro">ruddle - Schrift</li>
+            <li type="variant" vID="ro_lat">ruddle - latin</li>
+            <li type="variant" vID="t">ink - Schrift</li>
+            <li type="variant" vID="t_lat">ink - latin</li>
+         </ul>
+      </p>
+      <p type="writer" wID="ri">
+         <h4>Riemer</h4>
+         <ul>
+            <li type="variant" vID="bl">pencil - Schrift</li>
+            <li type="variant" vID="bl_gr">pencil - greek</li>
+            <li type="variant" vID="bl_lat">pencil - latin</li>
+            <li type="variant" vID="ri">ohne Schreibmaterial</li>
+            <li type="variant" vID="ro">ruddle - Schrift</li>
+            <li type="variant" vID="ro_lat">ruddle - latin</li>
+            <li type="variant" vID="t">ink - Schrift</li>
+            <li type="variant" vID="t_gr">ink - greek</li>
+            <li type="variant" vID="t_lat">ink - latin</li>
+            <li type="variant" vID="tr">ink red/brown - Schrift</li>
+            <li type="variant" vID="tr_gr">ink red/brown - greek</li>
+            <li type="variant" vID="tr_lat">ink red/brown - latin</li>
+         </ul>
+      </p>
+      <p type="writer" wID="sc">
+         <h4>Schreiberhand</h4>
+         <ul>
+            <li type="variant" vID="bl">pencil - Schrift</li>
+            <li type="variant" vID="bl_lat">pencil - latin</li>
+            <li type="variant" vID="blau">blue pencil - Schrift</li>
+            <li type="variant" vID="ro">ruddle - Schrift</li>
+            <li type="variant" vID="ro_lat">ruddle - latin</li>
+            <li type="variant" vID="sc">ohne Schreibmaterial</li>
+            <li type="variant" vID="t">ink - Schrift</li>
+            <li type="variant" vID="t_lat">ink - latin</li>
+            <li type="variant" vID="tr">ink red/brown - Schrift</li>
+            <li type="variant" vID="tr_lat">ink red/brown - latin</li>
+         </ul>
+      </p>
+      <p type="writer" wID="sd">
+         <h4>Seidler</h4>
+         <ul>
+            <li type="variant" vID="t">ink - Schrift</li>
+            <li type="variant" vID="t_lat">ink - latin</li>
+         </ul>
+      </p>
+      <p type="writer" wID="so">
+         <h4>Soret</h4>
+         <ul>
+            <li type="variant" vID="t">ink - Schrift</li>
+            <li type="variant" vID="t_lat">ink - latin</li>
+         </ul>
+      </p>
+      <p type="writer" wID="sp">
+         <h4>Spiegel</h4>
+         <ul>
+            <li type="variant" vID="t">ink - Schrift</li>
+            <li type="variant" vID="t_lat">ink - latin</li>
+         </ul>
+      </p>
+      <p type="writer" wID="st">
+         <h4>Schuchardt</h4>
+         <ul>
+            <li type="variant" vID="bl">pencil - Schrift</li>
+            <li type="variant" vID="bl_gr">pencil - greek</li>
+            <li type="variant" vID="bl_lat">pencil - latin</li>
+            <li type="variant" vID="t">ink - Schrift</li>
+            <li type="variant" vID="t_gr">ink - greek</li>
+            <li type="variant" vID="t_lat">ink - latin</li>
+            <li type="variant" vID="tr">ink red/brown - Schrift</li>
+            <li type="variant" vID="tr_gr">ink red/brown - greek</li>
+            <li type="variant" vID="tr_lat">ink red/brown - latin</li>
+         </ul>
+      </p>
+      <p type="writer" wID="sta">
+         <h4>Stadelmann</h4>
+         <ul>
+            <li type="variant" vID="bl">pencil - Schrift</li>
+            <li type="variant" vID="bl_gr">pencil - greek</li>
+            <li type="variant" vID="bl_lat">pencil - latin</li>
+            <li type="variant" vID="t">ink - Schrift</li>
+            <li type="variant" vID="t_gr">ink - greek</li>
+            <li type="variant" vID="t_lat">ink - latin</li>
+            <li type="variant" vID="tr">ink red/brown - Schrift</li>
+            <li type="variant" vID="tr_gr">ink red/brown - greek</li>
+            <li type="variant" vID="tr_lat">ink red/brown - latin</li>
+         </ul>
+      </p>
+      <p type="writer" wID="sti">
+         <h4>Stieler</h4>
+         <ul>
+            <li type="variant" vID="t">ink - Schrift</li>
+            <li type="variant" vID="t_lat">ink - latin</li>
+         </ul>
+      </p>
+      <p type="writer" wID="v">
+         <h4>Helene Vulpius</h4>
+         <ul>
+            <li type="variant" vID="bl">pencil - Schrift</li>
+            <li type="variant" vID="bl_gr">pencil - greek</li>
+            <li type="variant" vID="bl_lat">pencil - latin</li>
+            <li type="variant" vID="t">ink - Schrift</li>
+            <li type="variant" vID="t_gr">ink - greek</li>
+            <li type="variant" vID="t_lat">ink - latin</li>
+            <li type="variant" vID="tr">ink red/brown - Schrift</li>
+            <li type="variant" vID="tr_gr">ink red/brown - greek</li>
+            <li type="variant" vID="tr_lat">ink red/brown - latin</li>
+         </ul>
+      </p>
+      <p type="writer" wID="ve">
+         <h4>Varnhagen von Ense</h4>
+         <ul>
+            <li type="variant" vID="t">ink - Schrift</li>
+         </ul>
+      </p>
+      <p type="writer" wID="w-o-wvg">
+         <h4>Walther oder Wolfgang von Goethe</h4>
+         <ul>
+            <li type="variant" vID="t">ink - Schrift</li>
+         </ul>
+      </p>
+      <p type="writer" wID="we">
+         <h4>Weller</h4>
+         <ul>
+            <li type="variant" vID="t">ink - Schrift</li>
+            <li type="variant" vID="t_lat">ink - latin</li>
+         </ul>
+      </p>
+      <p type="writer" wID="wi">
+         <h4>Maria Anna Katharina Theresia Willemer, genannt Marianne</h4>
+         <ul>
+            <li type="variant" vID="t">ink - Schrift</li>
+            <li type="variant" vID="t_lat">ink - latin</li>
+         </ul>
+      </p>
+      <p type="writer" wID="wo">
+         <h4>Pius Alexander Wolff</h4>
+         <ul>
+            <li type="variant" vID="bl">pencil - Schrift</li>
+            <li type="variant" vID="bl_gr">pencil - greek</li>
+            <li type="variant" vID="bl_lat">pencil - latin</li>
+            <li type="variant" vID="t">ink - Schrift</li>
+            <li type="variant" vID="t_gr">ink - greek</li>
+            <li type="variant" vID="t_lat">ink - latin</li>
+            <li type="variant" vID="tr">ink red/brown - Schrift</li>
+            <li type="variant" vID="tr_gr">ink red/brown - greek</li>
+            <li type="variant" vID="tr_lat">ink red/brown - latin</li>
+         </ul>
+      </p>
+      <p type="writer" wID="wvg">
+         <h4>Wolfgang von Goethe</h4>
+         <ul>
+            <li type="variant" vID="bl">pencil - Schrift</li>
+            <li type="variant" vID="t">ink - Schrift</li>
+         </ul>
+      </p>
+      <p type="writer" wID="xx">
+         <h4>Fremde Hand #1</h4>
+         <ul>
+            <li type="variant" vID="bl">pencil - Schrift</li>
+            <li type="variant" vID="bl_gr">pencil - greek</li>
+            <li type="variant" vID="bl_lat">pencil - latin</li>
+            <li type="variant" vID="blau">blue pencil - Schrift</li>
+            <li type="variant" vID="blau_gr">blue pencil - greek</li>
+            <li type="variant" vID="blau_lat">blue pencil - latin</li>
+            <li type="variant" vID="ro">ruddle - Schrift</li>
+            <li type="variant" vID="ro_lat">ruddle - latin</li>
+            <li type="variant" vID="t">ink - Schrift</li>
+            <li type="variant" vID="t_gr">ink - greek</li>
+            <li type="variant" vID="t_lat">ink - latin</li>
+            <li type="variant" vID="tr">ink red/brown - Schrift</li>
+            <li type="variant" vID="tr_gr">ink red/brown - greek</li>
+            <li type="variant" vID="tr_lat">ink red/brown - latin</li>
+         </ul>
+      </p>
+      <p type="writer" wID="xy">
+         <h4>Fremde Hand #2</h4>
+         <ul>
+            <li type="variant" vID="bl">pencil - Schrift</li>
+            <li type="variant" vID="bl_gr">pencil - greek</li>
+            <li type="variant" vID="bl_lat">pencil - latin</li>
+            <li type="variant" vID="blau">blue pencil - Schrift</li>
+            <li type="variant" vID="blau_gr">blue pencil - greek</li>
+            <li type="variant" vID="blau_lat">blue pencil - latin</li>
+            <li type="variant" vID="t">ink - Schrift</li>
+            <li type="variant" vID="t_gr">ink - greek</li>
+            <li type="variant" vID="t_lat">ink - latin</li>
+            <li type="variant" vID="tr">ink red/brown - Schrift</li>
+            <li type="variant" vID="tr_gr">ink red/brown - greek</li>
+            <li type="variant" vID="tr_lat">ink red/brown - latin</li>
+         </ul>
+      </p>
+      <p type="writer" wID="xz">
+         <h4>Fremde Hand #3</h4>
+         <ul>
+            <li type="variant" vID="bl">pencil - Schrift</li>
+            <li type="variant" vID="bl_gr">pencil - greek</li>
+            <li type="variant" vID="bl_lat">pencil - latin</li>
+            <li type="variant" vID="blau">blue pencil - Schrift</li>
+            <li type="variant" vID="blau_gr">blue pencil - greek</li>
+            <li type="variant" vID="blau_lat">blue pencil - latin</li>
+            <li type="variant" vID="t">ink - Schrift</li>
+            <li type="variant" vID="t_gr">ink - greek</li>
+            <li type="variant" vID="t_lat">ink - latin</li>
+            <li type="variant" vID="tr">ink red/brown - Schrift</li>
+            <li type="variant" vID="tr_gr">ink red/brown - greek</li>
+            <li type="variant" vID="tr_lat">ink red/brown - latin</li>
+         </ul>
+      </p>
+      <p type="writer" wID="zs">
+         <h4>Zeitgenössische Schrift</h4>
+         <ul>
+            <li type="variant" vID="bl">pencil - Schrift</li>
+            <li type="variant" vID="bl_gr">pencil - greek</li>
+            <li type="variant" vID="bl_lat">pencil - latin</li>
+            <li type="variant" vID="blau">blue pencil - Schrift</li>
+            <li type="variant" vID="blau_gr">blue pencil - greek</li>
+            <li type="variant" vID="blau_lat">blue pencil - latin</li>
+            <li type="variant" vID="ro">ruddle - Schrift</li>
+            <li type="variant" vID="t">ink - Schrift</li>
+            <li type="variant" vID="t_lat">ink - latin</li>
+            <li type="variant" vID="tr">ink red/brown - Schrift</li>
+            <li type="variant" vID="tr_gr">ink red/brown - greek</li>
+            <li type="variant" vID="tr_lat">ink red/brown - latin</li>
+         </ul>
+      </p>
+   </p>
+</html>
