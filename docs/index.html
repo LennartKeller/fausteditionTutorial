@@ -1,6 +1,7 @@
 <!doctype html>
 <html>
     <head>
+        <meta charset="UTF-8">
 		<title>Faustedition Tutorial</title>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -47,7 +48,7 @@ details[open] summary:after {
 				<h3><b>Grundlegendes</b></h3>
 			</div>
 		<div>
-			<p>Im Folgenden wird Ihnen erklärt, wie Sie außerhalb der Faustedition selbständig mit den zur Verfügung stehenden XML-Dateien der Handschriften arbeiten können und somit tiefer gehende Forschungsfragen klären können. Momentan stehen Ihnen die Codes zu den Varianten der Schreiber und ein Python-Programm zu Verfügung. Weitere Codes folgen. Dieses Tutorial richtet sich sowohl an Programmierlaien als auch an Leute mit Programmiervorkenntnissen. 
+			<r>Im Folgenden wird Ihnen erklärt, wie Sie außerhalb der Faustedition selbständig mit den zur Verfügung stehenden XML-Dateien der Handschriften arbeiten können und somit tiefer gehende Forschungsfragen klären können. Momentan stehen Ihnen die Codes zu den Varianten der Schreiber und ein Python-Programm zu Verfügung. Weitere Codes folgen. Dieses Tutorial richtet sich sowohl an Programmierlaien als auch an Leute mit Programmiervorkenntnissen. 
 			<p>Wählen Sie <a href="platzhalter" target="_blank">hier</a> eine Handschrift aus und laden Sie die XML-Dateien herunter.</p>
 			<p>Um mit den Dateien zu arbeiten brauchen einen Text-Editor. Wir empfehlen Ihnen Notepad++. Sie können es <a href="https://notepad-plus-plus.org/download/v7.5.6.html">hier</a> herunterladen.</p>
 			<p>Für XQuery brauchen Sie Folgendes</p>
@@ -169,8 +170,8 @@ return </pre>
 			</div>
 		</div>
 		<div class="container"> <!-- style="width: 80%; <!-- background: lavender;"-->
-			<div class="panel-heading">Anderes</div>
-			 Innerhalb der Transkripte sind die einzelnen handschriftlichen Abschnitte durch das TEI-Element handShift gekennzeichnet.
+			<div class="panel-heading">Auslesen der Handshift-Daten</div>
+ Innerhalb der Transkripte sind die einzelnen handschriftlichen Abschnitte durch das TEI-Element handShift gekennzeichnet.
  Dieses zeigt an,  dass ab hier der Text bis zum nächsten Auftreten eines handShift-Elements aus der Feder
  des im @new-Attribut spezifizierten Schreibers ist. Der Wert dieses Attributes ist konform der xml:id aus den handNote-Elemente im Header,
  so dass eine eindeutige Zuordnung der Abschnitte zu Schreiber und Schreibvariante möglich ist.
@@ -199,31 +200,6 @@ return </pre>
 			Teilcode:
 				<pre>
 					<code class="language-python">
-						# VORWORT:
-# Innerhalb der Transkripte sind die einzelnen handschriftlichten Abschnitte durch das TEI-Element handShift gekennzeichnet.
-# Dieses zeigt an das ab hier bis zum nächsten Auftreten eines handShift-Elements der Text aus der Feder
-# des im @new-Attribut spezifierten Schreibers sind. Der Wert dieses Attribut ist konform der xml:id aus den <handNote-Elemente> im Header,
-# so dass eine eindeutige Zuordnung der Abschnitte zu Schreiber und Schreibvariante möglich ist.
-# 
-# Nicht nur aus philologischer Sicht ist ein Auslesen dieser Daten interessant, sondern auch auch aus weil die Datenstruktur eine 
-# kleine Herausforderung darstellt, denn die <handShift>-Elemente sind leer, enhalten also keine Kinder. 
-# Die eigentlichen Daten der handShift-Einheit, bilden also keinen Subtree des handShifts-Elements
-# den man einfach per XPath addressieren und auslesen könnte.
-# Im folgenden Beispiel werden diese Daten ausgelesen und in einer sehr einfachen Art verarbeitet und mit bereits bestehenden Daten aggregiert.
-#
-# Das folgende Skript kann grob in 3 Abschnitte gegliedert werden, die eigene Teilaufgaben darstellen:
-
-# 1. Definition von einfachen Klassen, in denen die Daten später gespeichert werden.
-# => Dies hat den Vorteil, dass im weiteren Programmablauf nicht mehr mit Listen hantiert werden muss, bei denen man auf die Daten nur
-# über einen "nicht sprechenden" Index zugreifen kann.
-
-# 2. Auslesen der gesuchten Daten aus mehreren xml-Dateien mithilfe der der Bibliotheken glob und lxml
-# ACHTUNG: lxml gehört nicht zum Standardumfang einer Python-Installation, kann aber einfach mit : '$ pip install lxml' nachinstalliert werden.
-#  
-# 3. Im letzten Schritte werden die Daten dann in die Ergebnis-Datei aus dem ersten Beispiel integriert.
-# => Dies führt jedoch dazu, dass diese relativ groß und unübersichtlich wird. Jedoch kann man so gut zeigen,
-# wie einfach sich mit Hilfe von lxml xml-Dateien modifizieren lassen.
-
 from lxml import etree
 import glob
 
@@ -418,7 +394,7 @@ for handshift in result:
 
 writer_doc.write_c14n('result.xml')
 					</code>
-				</pre>
+				</pr>
 			</div>
 			</details>
 			<br>
