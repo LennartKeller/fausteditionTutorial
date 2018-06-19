@@ -1,0 +1,696 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <title>Faustedition [alpha]</title>
+
+    <script type="text/javascript" src="js/require.js"></script>
+    <script type="text/javascript" src="js/faust_config.js"></script>
+
+    <link rel="stylesheet" href="css/webfonts.css">
+    <link rel="stylesheet" href="css/pure-min.css">
+    <link rel="stylesheet" href="css/pure-custom.css">
+    <link rel="stylesheet" href="css/basic_layout.css">
+    <link rel="stylesheet" href="css/overlay.css">
+    <link rel="stylesheet" href="css/chocolat.css">
+    <link rel="stylesheet" href="css/chocolat-custom.css">
+                <link rel="stylesheet" href="css/slick.css">
+    <link rel="stylesheet" href="css/slick-custom.css">
+        
+    <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32">
+    
+    <!-- Eigene Imports-->
+    <link href="js/prism.css" rel="stylesheet" />
+    <script src="js/prism.js"></script>
+  </head>
+  <body class="">
+    <header>
+        <div class="logo">
+          <a href="/"><img src="img/faustlogo.svg" alt="Faustedition"></a>
+          <sup class="pure-fade-50"><mark>alpha</mark></sup>
+        </div>
+        <div class="breadcrumbs pure-right pure-nowrap pure-noprint pure-fade-50">
+          <small id="breadcrumbs"></small>
+        </div>
+        <div id="current" class="pure-nowrap"></div>
+        <nav id="nav_all" class="pure-menu pure-menu-open pure-menu-horizontal pure-right pure-nowrap pure-noprint">
+          <ul>
+          <li><a href="/help" title="Hilfe"><i class="fa fa-help-circled fa-lg"></i></a></li>
+          <li><a href="#quotation" title="Zitieremfehlung"><i class="fa fa-bookmark fa-lg"></i></a></li>
+          <li><form class="pure-form" action="/search" method="GET"><input id="quick-search" name="q" type="text" onblur="this.value=''" /><button type="submit" class="pure-fade-30"><i class="fa fa-search fa-lg"></i></button></form></li>
+          <li><a href="#navigation" title="Seitennavigation"><i class="fa fa-menu fa-lg"></i> Menü</a></li>
+          </ul>
+        </nav>
+    </header>
+    <main>
+
+<section class="pure-noprint">
+  <div class="slider">
+    <div class="slide-left" style="background-image:url(img/slider/mephisto.png);">
+      <div class="center">
+        <div class="text">
+          <h2>Johann Wolfgang Goethe: Faust</h2>
+          <h3>Historisch-kritische Edition</h3>
+                <p>
+                  Herausgegeben von Anne Bohnenkamp, Silke Henke und Fotis Jannidis<br>
+                  unter Mitarbeit von Gerrit Brüning, Katrin Henzel,
+                  Christoph Leijser, Gregor Middell, Dietmar Pravida,
+                  Thorsten Vitt und Moritz Wissenbach<br>
+                  Frankfurt am Main, Weimar, Würzburg 2017
+                </p>
+                <a class="pure-button pure-button-primary" href="/archive">Archiv</a>
+                <a class="pure-button pure-button-primary" href="/genesis">Genese</a>
+                <a class="pure-button pure-button-primary" href="/text">Text</a>
+              </p>
+              <p>
+                <a class="pure-button" href="/intro">Über die Ausgabe</a>
+                <a class="pure-button" href="/project">Mitwirkende</a>
+              </p>
+
+              <p><a class="undecorated" href="http://www.dfg.de" target="_blank"><img alt="DFG - Deutsche Forschungsgesellschaft" src="img/DFG-Logo.svg" width="175"></a></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-right" style="background-color:#b7b18f; background-image:url(img/slider/2-II-H.1.png), url(img/slider/2-II-H.1-bg.png);">
+      <div class="center">
+        <div class="text">
+          <h2>Archiv</h2>
+              <p>Zum Faust ist <a href="/archive_locations?view=archives">weltweit</a>
+                  ein umfangreicher Bestand an <a
+                      href="/archive_manuscripts?view=manuscript-concordance"
+                      >Handschriften</a> und <a
+                      href="/archive_manuscripts?view=print-concordance">Drucken</a> aus
+                  der Zeit von von etwa 1774 bis 1831 erhalten. Das <a href="/archive"
+                      >Archiv</a> macht die gesamte Überlieferung in Abbildungen,
+                  Transkriptionen und Zeugenbeschreibungen zugänglich.</p>
+              <p>
+                <a class="pure-button pure-button-primary" href="/archive">Archiv</a>
+              </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-left" style="background-color:#d8d5ca; background-image:url(img/slider/H-P123.5.png), url(img/slider/H-P123.5-hg.png);">
+      <div class="center">
+        <div class="text">
+          <h2>Genese</h2>
+              <p>Goethe hat beinahe in jeder Phase seines Lebens an dem Werkprojekt Faust
+                  gearbeitet. Verschiedene Grafiken stellen die <a
+                      href="/genesis">Genese</a> von Goethes Faust
+                  retrospektiv, d.h. vom abgeschlossenen Werk ausgehend dar.</p>
+              <p>
+                <a class="pure-button pure-button-primary" href="/genesis">Genese</a>
+              </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-right" style="background-color:#cdc6ac; background-image:url(img/slider/2-H.png), url(img/slider/2-H-hg.png);">
+      <div class="center">
+        <div class="text">
+          <h2>Text</h2>
+              <p>Der Text des <a href="/print/faust#part1">Faust I</a> beruht auf dem
+                  Erstdruck von 1808, der des <a href="/print/faust#part2">Faust II</a> auf
+                  der großen Reinschrift, die heute im Goethe- und Schiller-Archiv liegt. Vom
+                  Text aus sind alle übrigen handschriftlichen und gedruckten Fassungen
+                  erreichbar.</p>
+              <p>
+                <a class="pure-button pure-button-primary" href="/text">Text</a>
+              </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script type="text/javascript">
+      requirejs(['faust_common', 'jquery', 'jquery.slick'], function (Faust, $, slick) {
+          $(function () {
+              $(window).resize(function (event) {
+                  $('.slider .center').css('height', $('body').height() - $('footer').outerHeight()); // adjust slider height
+              });
+
+              $(window).trigger('resize');
+              /* onload */
+              var slideshow = $('.slider').slick({
+                  adaptiveHeight: true,
+                  dots: true,
+                  autoplaySpeed: 8000,
+                  pauseOnHover: true,
+                  responsive: [
+                      {
+                          breakpoint: 1125,
+                          settings: {
+                              arrows: false
+                          }
+                      }
+                  ]
+              });
+              slideshow.slick('slickPlay'); // autoplay
+              $('.slider *').click(function () {
+                  slideshow.slick('slickPause'); // stop on click
+              });
+          });
+      });
+</script>
+    <div style="margin-left: 10em;">
+    <h1 class="container"><center><b>XML-Tutorial</b></center></h1>
+		<div class="container">
+			<div class="page-header">
+			<h3><b>Inhaltsverzeichnis</b></h3>
+			<nav>
+			<ul>
+			  <li><a href="#1">Grundlegendes</a></li>
+			  <li><a href="#2">XQuery</a></li>
+			  <li><a href="#3">Python</a></li>
+			  <li><a href="#4">Links</a></li>
+			</ul>
+			</nav>
+			</div>
+		<div>
+<!-- GRUNDLEGENDES ab hier-->
+		<div id="1" class="container">
+			<div class="page-header">
+				<h3><b>Grundlegendes</b></h3>
+			</div>
+		<div>
+			<p>Im Folgenden wird Ihnen anhand von zwei Beispielen erklärt, wie Sie außerhalb der Faustedition selbständig mit den zur Verfügung stehenden XML-Dateien der Handschriften arbeiten können und somit tiefer gehende Forschungsfragen klären können. Momentan stehen Ihnen die Codes zu einer XQuery- und einer Python-Variante zur Verfügung. Weitere Codes werden folgen. Dieses Tutorial richtet sich sowohl an Programmierlaien als auch an Leute mit Programmiervorkenntnissen. </p>
+			<p>Sie können auch selbst Codes einreichen, um anderen die Forschung zu erleichtern: <a href="Platzhalter" target="_blank">Formular zur Einreichung von selbsterstellten Programmen</a></p>
+			<p>Wählen Sie <a href="platzhalter" target="_blank">hier</a> eine Handschrift aus und laden Sie die XML-Dateien herunter.</p>
+			<p>Für XQuery--Beispiel brauchen Sie Folgendes: xQuery Editor (z.B. <a href="https://www.oxygenxml.com/xml_editor/download_oxygenxml_editor.html">oXygen</a>), Transformationsprozessor (z.B. Saxon; in Oxygen implementiert)</p>
+			<p>Für Python-Beispiel brauchen Sie Folgendes: <a href="https://www.python.org/downloads/" target="_blank">Python</a>, lxml-Bibliothek (pip install lxml)
+		</div>
+		</div>
+		
+		
+<!-- XQUERY-BEISPIEL ab hier-->
+		<div id="2" class="container">
+			<div class="page-header">
+				<h3><b>XQuery-Beispiel</b></h3>
+			</div>
+		</div>
+		<div class="container">
+		<div class="panel-heading"><h4>Schreiber und ihre Varianten</h4></div>
+		Mit diesem Programm können Sie auf einen Blick in den jeweiligen Handschriften herausfinden, welche Schreiber es gibt und welche Varianten ihnen zugeordnet werden. Dies wird mit der Abfragesprache XQuery erreicht.
+		<br/>
+		<div class="panel-heading">Tutorial für Anfänger:</div>
+			<ol>
+				<li><p>Laden Sie die XML-Dateien <a href="platzhalter" target="_blank">hier</a> herunter und verschieben Sie sie in einen leeren Ordner.</p></li>
+				<li><p>Laden Sie die Datei mit dem XQuery-Code <a href="platzhalter" target="_blank">hier</a> herunter.</p></li>
+				<li><p>Öffnen Sie das XQuery-Dokument mit Oxygen.</p></li>
+				<li><p>Drücken Sie in Oxygen Strg+Umschalt+C, um ein Transformations-Szenario zu konfigurieren.</p></li>
+				<li><p>Erstellen Sie eine neue XQuery-Transformation.</p></li>
+				<li><p>Im Feld XML URL: suchen Sie ihre gewünschte Handschriften-Datei aus.</p></li>
+				<li><p>Unter dem Reiter Ausgangsdatei: entfernen Sie den Haken bei „Als Sequenz darstellen“ und geben Sie den Speicherort der HTML-Datei mit „.html“-Endung ein.</p></li>
+				<li><p>Drücken Sie auf „OK“ und dann auf „Speichern und schließen“.</p></li>
+				<li><p>Drücken Sie Strg+Umschalt+T, um das Transformations-Szenario auszuwenden. Nun ist eine fertige HTML-Datei im von Ihnen ausgewählten Ordner verfügbar. Diese kann mit einem beliebigen Browser geöffnet werden.</p></li>
+				
+			</ol>
+		
+		<br/>
+
+<!-- XQUERY-CODE --> 
+		<details><summary><b>Erläuterung des Quellcodes für Fortgeschrittene</b></summary>
+			<div class="panel-body">
+			Die Funktionen im Prolog sind von der angegebenen URL übernommen:
+				<pre><code class=„language-xquery“>declare namespace functx = "http://www.functx.com";</code></pre>
+			</div>
+			<div class="panel-body">Schneidet den Anfang eines strings aus, bis der übergebene regex matched:
+			<pre><code class=„language-xquery“>declare function functx:substring-before-match
+( $arg as xs:string? ,
+    $regex as xs:string )  as xs:string {
+
+   tokenize($arg,$regex)[1]
+ } ;</code></pre></div>
+		<!--copypaste-element:
+			<div class="panel-body">
+			Erklärung
+				<pre>Code</pre>
+			</div> -->
+			<div class="panel-body">
+			Schneidet das Ende eines strings aus, ab dem match mit dem übergebenem regex:
+				<pre><code class=„language-xquery“>declare function functx:substring-after-match
+  ( $arg as xs:string? ,
+    $regex as xs:string )  as xs:string? {
+
+   replace($arg,concat('^.*?',$regex),'')
+ } ;</code></pre>
+			</div>
+			<div class="panel-body">
+			Liste mit allen handNote-Elementen wird in $list gespeichert:
+				<pre><code class=„language-xquery“>let $liste := //handNote</pre>
+			</code></div>
+			<div class="panel-body">
+			Sammelt alle vorkommenden IDs der Schreiber aus den Elementen:
+				<pre><code class=„language-xquery“>let $wIDcollection := for $i in $list/functx:substring-before-match(data(@xml:id), '_') return $i</code></pre>
+			</div>
+			<div class="panel-body">
+			Eliminiert Dopplungen:
+				<pre><code class=„language-xquery“>let $wIDlist := for $i in fn:distinct-values($wIDcollection) return $i</code></pre>
+			</div>
+			<div class="panel-body">
+			Iteriert über Liste der Schreiber-IDs:
+				<pre><code class=„language-xquery“>for $currentWID in $wIDlist </code></pre>
+			</div>
+			<div class="panel-body">
+			Generiert einen &lt;p/>-Block für jeden Schreiber mit Attributen Typ und Schreiber-ID:
+				<pre><code class=„language-xquery“>&lt;p type="writer" xml:id="{$currentWID}"></code></pre>
+			</div>
+			<div class="panel-body">
+			Liste mit allen Elementen, die sich auf den aktuellen Schreiber beziehen:
+				<pre><code class=„language-xquery“>let $writerList := for $i in $list where /functx:substring-before-match($i/data(@xml:id), '_')=$currentWID return $i </code></pre>
+			</div>
+			<div class="panel-body">
+			Liste mit den Schreibernamen aus allen relevanten Elementen:
+				<pre><code class=„language-xquery“>let $currentWriter := for $i in $writerList/functx:substring-before-match(text(), '\s\(') return $i</code></pre>
+			</div>
+			<div class="panel-body">
+			Eliminiert Dopplungen:
+				<pre><code class=„language-xquery“>let $writer := for $i in fn:distinct-values($currentWriter) return $i</code></pre>
+			</div>
+			<div class="panel-body">
+			Sammelt alle vorkommenden IDs der Varianten aus den aktuell relevanten Elementen:
+				<pre><code class=„language-xquery“>let $vIDcollection := for $i in $writerList/functx:substring-after-match(data(@xml:id), '_') return $i</code></pre>
+			</div>
+			<div class="panel-body">
+			Iteriert über Liste der Varianten-IDs:
+				<pre><code class=„language-xquery“>for $currentVID in $vIDcollection</code></pre>
+			</div>
+			<div class="panel-body">
+			Generiert einen Listeneintrag für jede Variante mit Attributen Typ und Varianten-ID:
+				<pre><code class=„language-xquery“>&lt;li type="variant" xml:id="{$currentVID}"></code></pre>
+			</div>
+			<div class="panel-body">
+			Ordnet Elemente der aktuellen Varianten ID zu:
+				<pre><code class=„language-xquery“>let $variantList := for $i in $list where /functx:substring-after-match($i/data(@xml:id), '_')=$currentVID return $i</code></pre>
+			</div>
+			<div class="panel-body">
+			Liest die Variantenbezeichnung aus Element aus:
+				<pre><code class=„language-xquery“>let $currentVariant := for $i in $variantList/functx:substring-before-match(functx:substring-after-match(text(), '\s+\('), '\)') return $i</code></pre>
+			</div>
+			<div class="panel-body">
+			Eliminiert Dopplungen:
+				<pre><code class=„language-xquery“>let $variant := fn:distinct-values($currentVariant)</code></pre>
+			</div>
+			<div class="panel-body">
+			Schreibt diese in den Listeneintrag:
+				<pre><code class=„language-xquery“>return $variant</code></pre>
+			</div>
+			</details>
+			<br/>
+			<div class="panel-footer">
+				<a href = "https://github.com/LennartKeller/faustedition_referat" target="_blank">Hier erhalten Sie die Datei mit dem vollständigen Code</a>
+			</div>
+		</div>
+		
+		
+		
+<!-- PYTHON-BEISPIEL ab hier-->
+		<div id="3" class="container">
+			<div class="page-header">
+				<h3><b>Python-Beispiel</b></h3>
+			</div>
+		</div>
+		<div class="container">
+			<div class="panel-heading"><h4>Auslesen der Handshift-Daten</h4></div>
+				<p>Innerhalb der Transkripte sind die einzelnen handschriftlichen Abschnitte durch das TEI-Element handShift gekennzeichnet.
+				 Dieses zeigt an,  dass ab hier der Text bis zum nächsten Auftreten eines handShift-Elements aus der Feder
+				 des im @new-Attribut spezifizierten Schreibers ist. Der Wert dieses Attributes ist konform der xml:id aus den handNote-Elemente im Header,
+				 so dass eine eindeutige Zuordnung der Abschnitte zu Schreiber und Schreibvariante möglich ist.</p>
+				 <p>Nicht nur aus philologischer Sicht ist ein Auslesen dieser Daten interessant, sondern auch da die Datenstruktur eine 
+				 kleine Herausforderung darstellt  - die handShift-Elemente sind leer, enthalten also keine Kindelemente. 
+				 Die eigentlichen Daten der handShift-Einheit bilden also keinen Teilbaum des handShifts-Elements, 
+				 den man einfach per XPath adressieren und auslesen könnte.
+				 Im folgenden Beispiel werden diese Daten ausgelesen und in einer sehr einfachen Art verarbeitet und mit bereits bestehenden Daten aggregiert.</p>
+				 <p>Das folgende Skript kann grob in 3 Abschnitte gegliedert werden, die eigene Teilaufgaben darstellen:</p>
+				<ol>
+					 <li>Definition von einfachen Hilfsklassen, in denen die Daten später gespeichert werden.
+					 => Dies hat den Vorteil, dass im weiteren Programmablauf nicht mehr mit Listen hantiert werden muss, bei denen man auf die Daten nur
+					 über einen "nicht sprechenden" Index zugreifen kann.
+					 </li>
+					 <li>Auslesen der gesuchten Daten aus mehreren XML-Dateien mithilfe der beiden Bibliotheken glob und lxml. 
+					 ACHTUNG: lxml gehört nicht zum Standardumfang einer Python-Installation, kann aber einfach mit : 'pip install lxml' nachinstalliert werden.
+					 </li>
+					 <li>Im letzten Schritt werden die Daten dann in die Ergebnis-Datei aus dem XQuery-Beispiel integriert.
+					 => Dies führt jedoch dazu, dass diese Datei relativ groß und unübersichtlich wird. Jedoch kann damit gut zeigen,
+					 wie einfach sich mithilfe von lxml XML-Dateien modifizieren lassen.</li>
+				 </ol>
+			<br/>
+			<details><summary><b>Quellcode</b></summary>
+			<div class="panel-body">
+				<pre><code class="language-python">
+#   Innerhalb der Transkripte sind die einzelnen handschriftlichen Abschnitte durch das TEI-Element handShift gekennzeichnet.
+#   Dieses zeigt an,  dass ab hier der Text bis zum nächsten Auftreten eines handShift-Elements aus der Feder
+#   des im @new-Attribut spezifizierten Schreibers ist. Der Wert dieses Attributes ist konform der xml:id aus den handNote-Elemente im Header,
+#   so dass eine eindeutige Zuordnung der Abschnitte zu Schreiber und Schreibvariante möglich ist.
+  
+#   Nicht nur aus philologischer Sicht ist ein Auslesen dieser Daten interessant, sondern auch da die Datenstruktur eine 
+#   kleine Herausforderung darstellt  - die handShift-Elemente sind leer, enthalten also keine Kindelemente. 
+#   Die eigentlichen Daten der handShift-Einheit bilden also keinen Teilbaum des handShifts-Elements, 
+#   den man einfach per XPath adressieren und auslesen könnte.
+#   Im folgenden Beispiel werden diese Daten ausgelesen und in einer sehr einfachen Art verarbeitet und mit bereits bestehenden Daten aggregiert.
+
+#   Das folgende Skript kann grob in 3 Abschnitte gegliedert werden, die eigene Teilaufgaben darstellen:
+
+#   1. Definition von einfachen Hilfsklassen, in denen die Daten später gespeichert werden.
+#   => Dies hat den Vorteil, dass im weiteren Programmablauf nicht mehr mit Listen hantiert werden muss, bei denen man auf die Daten nur
+#   über einen "nicht sprechenden" Index zugreifen kann.
+
+#   2. Auslesen der gesuchten Daten aus mehreren XML-Dateien mithilfe der beiden Bibliotheken glob und lxml. 
+#   ACHTUNG: lxml gehört nicht zum Standardumfang einer Python-Installation, kann aber einfach mit : 'pip install lxml' nachinstalliert werden.
+   
+#   3. Im letzten Schritt werden die Daten dann in die Ergebnis-Datei aus dem XQuery-Beispiel integriert.
+#   => Dies führt jedoch dazu, dass diese Datei relativ groß und unübersichtlich wird. Jedoch kann damit gut zeigen,
+#   wie einfach sich mithilfe von lxml XML-Dateien modifizieren lassen.
+
+from lxml import etree
+import glob
+
+# Datenklassen
+
+class Namespace:
+    """
+        Klasse um alle den Namen eines Namensraum zu kapseln
+    """
+    def __init__(self, name, uri):  
+        """
+        Konstruktor
+            :param name: Bezeichnung des Namesraum (wird später im namespace-dict von lxml als key verwendet)
+            :param uri: URI des Namenraum
+        """   
+        self.name = name
+        self.uri = uri
+    
+    def __str__(self):
+        """
+            Stringausgabe nach der Konvention für Namensraumprefixe von lxml.Element-Strings
+        """
+        return '{' + self.uri + '}'
+
+class Handshift:
+    """
+        Klasse um alle Daten einer handShift-Einheit zu kapseln und zu verarbeiten.
+    """
+    def __init__(self, source_doc, element_list):
+        """
+        Konstruktor
+            :param source_doc: Name des Quelldokuments in dem die handShift-Einheit gefunden wurde
+            :param element_list: Liste aller Elemente der handShift-Einheit, das erste Element der Liste muss das handShift-Element sein, mit dem gestart wird
+        """
+        # benötigte Namensräume der XML-Dokumente
+        self.tei_ns = Namespace('tei', 'http://www.tei-c.org/ns/1.0')
+        self.genetic_edition_ns = Namespace('geneticEdition', 'http://www.tei-c.org/ns/geneticEditions')
+        self.faustedition_ns = Namespace('faustedition', 'http://www.faustedition.net/ns')
+        
+        # Falls das erste Element der übergebenen Elementenliste kein handShift-Element ist wird ein Fehler geworfen
+        if element_list[0].tag != str(self.tei_ns) + 'handShift':
+            raise Exception('First element has to be tei:handShift')
+        
+        self.source_doc = source_doc
+        self.handShift = element_list[0]
+        self.new_attrib = self.handShift.attrib['new'][1:]
+        # die new-Werte haben die Form "writer_id_variantid" oder "writer_id_variantid_variantid"
+        # deshalb wird bei dem ersten Unterstrich geteilt
+        # wenn keine variantid vergeben wurde, enthalten sie nur die writer_id
+        if "_" in self.new_attrib:
+            ids = self.new_attrib.split('_', 1)
+            self.writer_id = ids[0]
+            self.variant_id = ids[1] 
+        else:
+            self.writer_id = self.new_attrib
+            self.variant_id = ''        
+        self.content = element_list[1:]
+        
+
+    def get_text(self, text_elements=[]):
+        """
+        Gibt den Text, des handShifts Abschnitts zurück, dafür werden die ge:line Elemente ausgewertet
+            :param text_elements=[]: optional, zusätliche Elemente, deren Text auch ausgewertet werden soll
+        """   
+        string = ''
+        # Sonderfall:
+        # Falls  sich das handShift-Element in einem Element befindet, das Text enhält muss dieses auch noch ausgelesen werden,
+        # da das lxml-Datenmodel keine Textknoten kennt, sondern den Text als Attribut interpretiert
+        try:
+            handShift_parent = next(self.handShift.iterancestors())
+            if handShift_parent:
+                text = handShift_parent.xpath('text()')
+                if len(text) > 0:
+                    string += text[0]
+        except StopIteration:
+            pass
+        text_elements.append(str(self.genetic_edition_ns) + 'line')
+
+        # Iteration über alle Element des handShifts-Abschnitts
+        for i in self.content:
+            # falls das Element für den Text berücksichtigt wird und auch tatsächlich Text enthält, wird dieser an den Ergebnisstring angehängt
+            if i.tag in text_elements and i.text:              
+                string += i.text + '\n'
+        return string
+    
+    def __repr__(self):
+        """
+        Eindeutige Stringrepräsentation der Objektinstanz
+        """   
+        return super().__repr__() + '\n' + self.source_doc + '\n' + self.writer_id + '\n' + str(self.content)
+
+# Begin des eigentlichen Programmablaufs
+if __name__ == '__main__':
+    
+    # Definition der Namensräume
+    tei_ns = Namespace('tei', 'http://www.tei-c.org/ns/1.0')
+    genetic_edition_ns = Namespace('geneticEdition', 'http://www.tei-c.org/ns/geneticEditions')
+    faustedition_ns = Namespace('faustedition', 'http://www.faustedition.net/ns')
+
+    # lxml-methoden benötigen die Namensräume als dictionary
+    namespaces = {
+        # falls der TEI-Namespace, der default-namespace sein soll:
+        # None: tei_ns.uri,
+        tei_ns.name: tei_ns.uri,
+        genetic_edition_ns.name: genetic_edition_ns.uri,
+        faustedition_ns.name: faustedition_ns.uri
+    }
+    
+    # rekurisves Durchsuchen aller Unterordner des transcripts Verzeichnisses nach xml-Dateien
+    files = glob.glob('../Referat/xml/transcript/**/*.xml', recursive=True)
+
+    result = []
+
+    for f in files:
+
+        # einige Dokumente enthalten fehlerhafte xml:id Attribute und können nicht geparst werden
+        # in diesem Fall wird eine Fehlermeldung ausgegeben
+        try:
+            doc = etree.parse(f)
+        except etree.XMLSyntaxError as e:
+            print('WARNING: Could not parse file {}.\n{}\n'.format(f, str(e)))
+            continue
+        
+        # überspringe den aktuellen Schleifendurchlauf, falls das Dokument kein handShift Element enthält
+        if not doc.xpath('//tei:handShift', namespaces=namespaces):
+            continue
+
+        # der doc_iterator enthält alle Elemente des Dokuments in der Textreihenfolge
+        doc_iterator = doc.iter()
+        
+        # das Done-Objekt wird der next-Funktion übergeben, damit diese keinen StopIteration Fehler wirft, wenn der Iterator "leer" ist
+        # dies hat den Vorteil, dass man keine Fehlerbehandlung implementieren muss
+        done = object()
+        
+        # das erste Element des Iteratorsa
+        elem = next(doc_iterator, done)
+        
+        # leere Liste wird später die handShift-Abschnitte als sublists enhalten
+        total = []
+
+        # in dieser Schleife wird durch das Element iteriert
+        while elem is not done:
+            # falls das aktuelle Element ein handShift-Element ist
+            if elem.tag == str(tei_ns) + 'handShift':
+                # initialisiert eine die Liste content mit diesem Element
+                content = [elem]
+                elem = next(doc_iterator, done)
+                # diese Schleife wird solange durchlaufen, wie das aktuelle Element kein handShift-Element ist
+                # dabei wird das aktuelle Element an die content-Liste angehängt
+                while elem is not done and elem.tag != str(tei_ns) + 'handShift':
+                    content.append(elem)
+                    elem = next(doc_iterator, done)
+                # handShift-Abschnitt wird dem Gesamtergebniss angehänt
+                total.append(content) 
+            else:
+                elem = next(doc_iterator, done)
+
+        for sublist in total:
+            result.append(Handshift(f, sublist))
+
+# Verknüpfen der mit den Daten der Schreibvarianten nach Autor
+
+# Einlesen der Ergebnisses aus Tutorial 1
+writer_doc = etree.parse('writerid_variantid_attributes.xml')
+
+# Vorverarbeitungsschritt, jedes li-Element wird ein leeres ul-Element anghängt,
+# in das später die Dateinamen geschrieben werden
+for li in writer_doc.xpath('//tei:li', namespaces=namespaces):
+    li.append(etree.Element(etree.QName(tei_ns.uri, 'ul'), type='file_list'))
+
+# Iteration über alle handShift Objekte aus dem ersten Programmteil
+for handshift in result:
+    # Suchen des p-Elements im html das writer_id Attribut des aktuellen Handshift Objekt ist
+    p_elem = writer_doc.find('//tei:p[@wID="{}"]'.format(handshift.writer_id), namespaces=namespaces)
+    
+    # falls ein solches gefunden wurde
+    if p_elem is not None:
+        
+        # Suchen des Listenelement mit der akutellen varianten_id
+        if handshift.variant_id:
+            list_elem = p_elem.find('.//tei:li[@vID="{}"]'.format(handshift.variant_id), namespaces=namespaces)
+        
+        else:
+            # wenn keine variant_id exisitert, wurde die writer_id verwendet
+            list_elem = p_elem.find('.//tei:li[@vID="{}"]'.format(handshift.writer_id), namespaces=namespaces)
+        # Test ob ein Listenelement gefunden wurde
+        if list_elem is not None:
+            # Anhängen des Listeneintrags mit dem Dateipfad, falls ein solcher noch nicht existiert
+            if not list_elem.xpath('.//tei:li[text()="{}"]'.format(handshift.source_doc), namespaces=namespaces):
+                new_li = etree.Element(etree.QName(tei_ns.uri, 'li'), type='file')
+                new_li.text = handshift.source_doc
+                list_elem.find('.//tei:ul', namespaces=namespaces).append(new_li)
+
+
+    else:
+        print('No entry with wID = {} was found.'.format(handshift.writer_id))
+
+# für xhtml, das vom Broswer verarbeitet werden kann muss die Ausgabe Datei als kanonisches XML geschrieben werden.
+writer_doc.write_c14n('Python_Tutorial_Result.html')
+				</code></pre>
+			</div>
+			</details>
+			<br/>
+			<div class="panel-footer">
+				<a href = "https://github.com/LennartKeller/faustedition_referat" target="_blank">Hier erhalten Sie die Datei mit dem vollständigen Code</a>
+			</div><br/>
+		</div>
+		<div id="4" class="container">
+			<div class="page-header">
+				<h3><b>Links</b></h3>
+			</div>
+			<div class="container"> 
+			<p><a href="Platzhalter">XML-Dateien</a></p>
+			<p><a href="Platzhalter">Programmeinreichung</a></p>
+			<p><a href="https://www.python.org/downloads/">Python</a></p>
+			<p><a href="https://notepad-plus-plus.org/download/v7.5.6.html">Notepad++</a></p>
+			<p><a href="https://www.oxygenxml.com/xml_editor/download_oxygenxml_editor.html">Oxygen Trial</a></p>
+			<!-- <p><a href="">Weitere Links</a><p>-->
+			<br/>
+			</div>
+		</div>
+    </div>
+    </main>
+
+    <noscript>
+        <div class="pure-alert pure-alert-warning">
+            <h3>JavaScript erforderlich</h3>
+            <p>Die Faustedition bietet ein interaktives Userinterface, für das JavaScript erforderlich ist.</p>
+            <p>Bitte deaktivieren Sie ggf. vorhandene Skriptblocker für diese Seite.</p>
+        </div>
+    </noscript>
+
+
+    <footer>
+      <div class="center pure-g-r">
+        <div class="pure-u-1-2 pure-fade-50">
+          <a class="undecorated" rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Lizenzvertrag" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" align="middle"></a>
+        </div>
+        <div class="pure-u-1-2 pure-right pure-fade-50 pure-noprint">
+          <a href="project">Projekt</a>
+          &middot;
+          <a href="intro">Ausgabe</a>
+          &middot;
+          <a href="contact">Kontakt</a>
+          &middot;
+          <a href="imprint">Impressum</a>
+          &middot;
+          <a href="intro#sitemap">Sitemap</a>
+        </div>
+      </div>
+    </footer>
+
+    <script type="text/template" id="navigation">
+        <div class="center pure-g-r navigation">
+          <div class="pure-u-1-4 pure-gap">
+            <a href="/archive"><big>Archiv</big></a>
+            <a href="/archive_locations">Aufbewahrungsorte</a>
+            <a href="/archive_manuscripts">Handschriften</a>
+            <a href="/archive_prints">Drucke</a>
+            <a href="/archive_testimonies">Dokumente zur Entstehungsgeschichte</a>
+          </div>
+          <div class="pure-u-1-4 pure-gap">
+            <a><big>Genese</big></a>
+            <a href="/genesis">Werkgenese</a>
+            <a href="/genesis_faust_i">Genese Faust I</a>
+            <a href="/genesis_faust_ii">Genese Faust II</a>
+          </div>
+          <div class="pure-u-1-4 pure-gap">
+            <a href="/text"><big>Text</big></a>
+            <a href="/print/faust#part_1.1">Faust I</a>
+            <a href="/print/faust#part_2">Faust II</a>
+            <a href="/paralipomena">Paralipomena</a>
+          </div>
+          <div class="pure-u-1-4 pure-gap pure-fade-50">
+            <a><big>Informationen</big></a>
+            <a href="/intro">Über die Ausgabe</a>
+            <a href="/project">Über das Projekt</a>
+            <a href="/contact">Kontakt</a>
+            <a href="/imprint">Impressum</a>
+            <a href="/intro#sitemap">Sitemap</a>
+            <a class="undecorated" rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Lizenzvertrag" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" align="middle"></a>
+          </div>
+        </div>
+    </script>
+
+
+    <script type="text/template" id="quotation">
+        <div class="center pure-g-r quotation">
+          <div class="pure-u-1">
+            <h3>Zitierempfehlung</h3>
+            <p class="quotation-content">
+              Historisch-kritische Faustedition.
+              Herausgegeben von Anne Bohnenkamp, Silke Henke und Fotis Jannidis.
+              Unter Mitarbeit von Gerrit Brüning, Katrin Henzel, Christoph Leijser, Gregor Middell, Dietmar Pravida, Thorsten Vitt und Moritz Wissenbach.
+              Version 1. Frankfurt am Main / Weimar / Würzburg 2016,
+              <span>Startseite</span>,
+              <span>URL: dev.faustedition.net</span>,
+              abgerufen am 19.06.2018.
+            </p>
+            <p><i class="fa fa-paste pure-fade-50"></i> <a href="#" data-target=".quotation-content">kopieren</a></p>
+          </div>
+        </div>
+    </script>
+
+<script>
+requirejs(['jquery', 'jquery.chocolat', 'jquery.overlays', 'jquery.clipboard'], function ($, $chocolat, $overlays, $clipboard) {
+    $('main').Chocolat({className:'faustedition', loop:true});
+    $('header nav').menuOverlays({highlightClass:'pure-menu-selected', onAfterShow: function() {
+        $('[data-target]').copyToClipboard();
+    }});
+});
+</script>
+
+<!-- Piwik -->
+<script type="text/javascript">
+  var _paq = _paq || [];
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//analytics.faustedition.net/";
+    _paq.push(['setTrackerUrl', u+'piwik.php']);
+    _paq.push(['setSiteId', 1]);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<noscript><p><img src="//analytics.faustedition.net/piwik.php?idsite=1" style="border:0;" alt="" /></p></noscript>
+<!-- End Piwik Code -->
+  </body>
+</html>

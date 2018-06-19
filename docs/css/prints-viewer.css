@@ -1,0 +1,26 @@
+/* ********************** */
+/* Prints Viewer
+/* ********************** */
+
+/* styling of prints and texts in synoptic view */
+.line { margin: 0; } /* unused? */
+p.head { margin: 1em 0; font-weight: bold; font-size: 123.1%; }
+p.para-start { margin-top: 1em; } /* unused? */
+
+.print {
+  font-size: 14px;
+  max-width: 960px;
+}
+
+.print span.docTitle span {
+  font-size: 18pt;
+  font-weight: normal;
+  line-height: 1.125em;
+  margin: .83em 0;
+}
+
+.print span.docTitle span:first-of-type {
+  font-size: 24pt;
+  margin: .67em 0;
+}
+

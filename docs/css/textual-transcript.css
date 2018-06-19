@@ -1,0 +1,543 @@
+/* Die richtige Schrift auch auf der Testinstanz ... */
+/* @import url(//fonts.googleapis.com/css?family=Ubuntu:400,300,300italic,400italic,500,500italic,700,700italic); */
+
+
+
+.text {
+  margin-bottom: 1.5em;
+  text-indent: 0.25em;
+}
+
+/*
+ * Überschriften
+ */
+
+h5.head, .type-subscene > .head {
+	padding-bottom: 0.5ex;
+	padding-top: 1ex;
+	font-size: inherit;
+	font-weight: normal;
+}
+
+
+h4.head, .type-scene > .head, .body > .head {
+	padding-bottom: 1ex;
+	padding-top: 1ex;
+	font-weight: bold;
+}
+
+/* Zueignung, Vorspiel, ... */
+h3.head, .body > .div > .head {
+    margin-top: 4ex;
+	padding-bottom: 2ex;
+	padding-top: 2ex;
+	font-weight: bold;
+	font-size: 16px;
+}
+
+.trailer {
+  padding-top: 2ex;
+  padding-bottom: 4ex;
+  text-align: center;
+}
+
+.titlePart {
+	display: block;
+	font-weight: bold;
+	padding: 0.5ex 0ex;
+}
+
+.print a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Versnummern */
+.print a.lineno {
+  margin-left: -5em;
+  width: 4.5em;
+  float: left;
+  position: relative;
+  text-align: right;
+  text-indent: 0pt;
+  border: none;
+  color: #aaa;
+  font-size: 80%;
+}
+.lineno {
+    color: #aaa;
+    font-size: 80%;
+}
+
+.print a.lineno.technical-lineno {
+  margin-left: -10em !important;
+}
+
+a.lineno.invisible {
+  opacity:0;
+}
+
+div:hover > a.lineno, a.lineno:hover {
+  opacity: 1 !important;  
+}
+
+:target > a.lineno, .target > a.lineno {
+  opacity:1;
+  color: rgb(220,160,0);  /* someone a better idea? */
+}
+
+
+/* Seitenzahlen */
+.pb {
+	clear: right;
+}
+
+a.pageno, a.paralipomenon {
+    float: right;
+    margin-right: 2em;
+    font-size: smaller;
+    color:  #aaa;
+    text-indent: 0;
+    position: relative;
+    z-index: 1;
+    border:none;
+}
+
+.appnote .pb {
+    float: none;
+    margin-right: 0.25em;
+}
+
+.speaker {    
+	padding-top: 1.5ex;
+	/* 
+	Alternative 1: 
+	font-weight: 500;
+	color: #666 !important;
+	
+	Alternative 2: 
+	*/
+	color: inherit !important;
+	text-transform: uppercase;
+	font-size: 90%;
+    text-indent: 0.25em;
+}
+
+br.swelledRule, br.line {
+	display: none;
+}
+
+
+ul.toc {
+	list-style: none;
+}
+.toc a {
+	color: #444;
+	font-weight: 500;
+}
+.toc a:hover {
+	color: black;
+}
+
+.hi.nohighlight {
+	font-variant: inherit;	/* statt small-caps */
+	font-style: inherit;	/* statt italic */
+	margin: 0em;	/* statt kursivausgleich */
+}
+
+a.sigil {
+	float: none !important;	/* rm from basic_layout.css */
+}
+.sigils {
+	float: right;
+	/* do we need a max-width here? */
+
+	/* override style from others ... */
+	text-transform: none;
+	font-size: inherit;
+	font-style: normal;
+  font-weight: normal;
+}
+.variants:after {
+    display: table;
+    clear: right;
+    content: "";
+}
+
+.lg, .p, .head {
+    margin-bottom: 0 !important;
+}
+.lg > *:last-child {
+    padding-bottom: 2ex;
+}
+
+/*
+ * Kursivausgleich
+ * 
+ */
+ 
+.stage { font-style: italic; }
+.stage > .hi { 
+	margin-left: 0.1em;
+}
+
+/* 
+ * Briefe gibt's auch, z.B. 2 III H.75a
+ */
+.closer {
+	text-align: right;
+	margin-top: 6pt;
+}
+.dateline {
+	display: block;
+	text-align: left;
+}
+
+/*
+ * Tabellen für das tei:table-Element
+ * z.B. (/Germanen/) http://beta.faustedition.net/documentViewer?faustUri=faust://xml/document/faust/2.3/gsa_389850.xml&page=1&view=text&section=389850.html
+ */
+table.table {
+	font-size: inherit;
+	border-spacing: 1.5ex 0;
+	border-collapse:  separate;
+}
+
+
+.note { text-align: right; }
+.subhit .note { float: none; display: block; }
+
+/* print.html */
+dt {
+	margin-top: 1ex; 
+}
+
+.hasvars {
+  position: relative;
+  border-right-style: solid;
+  border-right-width: 12pt;
+  cursor: pointer;
+}
+
+.hasvars:hover::before {
+  font:normal normal normal 14px/1 FontAwesome;
+  content:'\e824';   /* (+) */
+  position: absolute;
+  top:50%;
+  right:0.5em;
+  margin-top:-0.5em;
+  color:#aaa;
+  text-indent: 0;
+  text-shadow: 0px 0px 3px white;
+}
+
+a.pageno + .hasvars:hover::before {
+	right:2.5em;
+}
+
+.hasvars.show:hover::before {
+  content:'\e828';  /* (-) */
+}
+
+
+
+/* # Witnesses */
+.varcount-0  { border-color:  rgb(255,255,255); } /* error, though */
+.varcount-1  { border-color:  rgba(250,190,0,0.20); }
+.varcount-2  { border-color:  rgba(250,190,0,0.25); }
+.varcount-3  { border-color:  rgba(250,190,0,0.30); }
+.varcount-4  { border-color:  rgba(250,190,0,0.35); }
+.varcount-5  { border-color:  rgba(250,190,0,0.40); }
+.varcount-6  { border-color:  rgba(250,190,0,0.45); }
+.varcount-7  { border-color:  rgba(250,190,0,0.50); }
+.varcount-8  { border-color:  rgba(250,190,0,0.55); }
+.varcount-9  { border-color:  rgba(250,190,0,0.60); }
+.varcount-10 { border-color:  rgba(250,190,0,0.65); }
+.varcount-11 { border-color:  rgba(250,190,0,0.70); }
+.varcount-12 { border-color:  rgba(250,190,0,0.75); }
+.varcount-13 { border-color:  rgba(250,190,0,0.80); }
+.varcount-14 { border-color:  rgba(250,190,0,0.85); }
+.varcount-15 { border-color:  rgba(250,190,0,0.90); }
+.varcount-16 { border-color:  rgba(250,190,0,1.00); }
+
+/* # Variants – ie different from current */
+.variants-0 { background-color: rgb(255,255,255); }
+.variants-1 { background-color: rgb(245,245,240); }
+.variants-2 { background-color: rgb(235,235,230); }
+.variants-3 { background-color: rgb(225,225,220); }
+.variants-4 { background-color: rgb(215,215,210); }
+.variants-5 { background-color: rgb(205,205,200); }
+.variants-6 { background-color: rgb(195,195,190); }
+.variants-7 { background-color: rgb(185,185,180); }
+.variants-8 { background-color: rgb(175,175,170); }
+.variants-9 { background-color: rgb(165,165,160); }
+.variants-10 { background-color: rgb(160,160,155);}
+.variants-11 { background-color: rgb(155,155,150);}
+.variants-12 { background-color: rgb(150,150,145);}
+
+
+
+/* ------------------------------------------ */
+/* Einblendungsapparat. TODO auslagern */
+
+/* Everything that is not in the original text should be grey: */
+.generated-text, a[href].generated-text, .type-textcrit .note {
+	color: #aaa;
+}
+
+/* Editorial notes */
+.app {
+	font-style: italic;
+}
+abbr.app {
+	border-bottom: none;
+}
+
+/* Affected text in the base level is underlined. It has both the .affected and 
+   either a .restored or .deleted class */
+.deleted, .questioned {
+	border-bottom: #aaa solid;
+}
+.restored {
+    border-bottom: #aaa dashed;
+}
+.alt {
+    border-bottom: black dotted;
+    margin-left: 0.1em;
+    margin-right: 0.1em;
+}
+
+
+.affected {
+	border-bottom-width: 1px;
+}
+.affected .affected {
+        border-bottom-width: 2px;
+}
+.delted .affected .affected {
+	border-bottom-width: 3px;
+}
+
+
+.appnote {
+	cursor: help;
+	transition: all 0.5s ease-out;
+}
+.appnote > * {
+	transition: all 0.5s ease-out;
+}
+
+.current {
+	background-color: #FCE5A6;
+	transition: all 0.5s ease-out;
+} 
+.current > * {
+	border-color: blue;
+	transition: all 0.5s ease-out;
+}
+.current > .generated-text {
+	color: blue;
+	transition: all 0.5s ease-out;
+}
+
+
+/* Navigationsbalken Textbereich */
+
+.print nav .fa-li {
+    top: .35em;
+}
+
+.print nav {
+  white-space: normal;
+  height: initial; 
+}
+
+.print nav.print-navigation a {  
+  border: none;
+  color: black;
+}
+
+nav.print-navigation {
+  position: fixed;
+  background: rgba(255,255,255,0.8); /* might cover sidenotes */
+}
+nav.print-navigation.placeholder {
+    position: relative;
+}
+
+.print .icons-ul {
+  margin: 1em 1em 1em 2em;
+  padding: 0px;
+}
+
+.fw {
+  color: #ddd;
+}
+
+.centered {
+  text-align: center;
+}
+
+.letter-spaced {
+  letter-spacing: 1pt;
+}
+
+a.sigil {
+  float: right;
+  color: #777;
+  whitespace: nowrap;
+}
+
+div:hover > a.sigil {
+  color: black;
+}
+
+.variants {
+  border: 1px solid #aaa;
+  padding: .25em 1em .25em 0;
+  position: relative;
+}
+
+.variants::before {
+  font:normal normal normal 14px/1 FontAwesome;
+  content:'\e8c7';
+  position: absolute;
+  left:50%;
+  top:-.5em;
+  color:#aaa;
+  margin-left:-0.5em;
+  text-indent: 0;
+  background:white;
+  border-radius:100%;
+}
+
+.variants > * {
+  clear: right;
+  padding: 0;
+}
+
+.sp {
+    text-indent: 1.5em;
+}
+
+.sp .hasvars:first-child { padding-top: 1.5ex; }
+
+.l.rend-indented {
+    text-indent: 3em;
+}
+.lg.rend-indented {
+    text-indent: 3em;
+}
+.lg.rend-indented > .l.rend-indented {
+    text-indent: 4.5em;
+}
+
+.lg, .p, .head {
+  margin-bottom: 0.75em;
+}
+
+.l .emph {
+	font-style: italic;
+}
+
+.stage .hi, .stage .emph {
+	font-variant: small-caps;
+	font-style: normal;
+}
+
+.testimony .text {
+  text-indent: 0;
+}
+
+.testimony a.testimony {
+  margin: 0;
+  margin-right: -7.5em;
+}
+a.testimony {
+  float: right;
+  margin: 6px;
+  margin-right: 0;
+  position: relative;
+}
+.testimony .pageno {
+  margin-right: 0;
+  margin-left: .25em;
+}
+
+.testimony .rend-italic, .testimony .rend-letter-spaced, .testimony .rend-antiqua {
+  font-style: italic;
+  margin-right: 0.1em;
+}
+.testimony .rend-small {
+  font-size: .83em; 
+}
+.testimony .rend-indentchar-m8n12, .testimony .rend-indentchar-m8n8, .testimony .rend-indented, .testimony .rend-indentchar-m4n8 {
+  text-indent: 3em;
+}
+.testimony .rend-right {
+  text-align: right;
+}
+.testimony .rend-centered {
+  text-align: center; 
+}
+.testimony .rend-underline {
+  text-decoration: underline;
+}
+.testimony .rend-bold {
+  font-weight: bold;
+}
+.testimony .rend-strikethrough {
+  text-decoration: line-through;
+}
+.div:first-child > .head {
+  margin-top: 0;
+}
+
+div.variants {
+    column-count: 1; /* creates a new float context */
+}
+
+.type-textcrit {
+    float: right;
+    clear: right;
+    margin-right: -53%;   /* FIXME */
+    width: 50%;           /* FIXME */
+    display: block;
+    text-indent: 0;
+    text-align: left;
+    font-style: normal;
+    font-variant: normal;
+    font-size: 14px;
+    font-weight: normal;
+    text-transform: none;
+}
+
+.placeholder {
+    visibility: hidden;
+}
+
+.type-textcrit a, .type-textcrit .note, .type-textcrit .reading-type {
+  color: #aaa;
+  font-style: italic;
+}
+
+.type-textcrit .note {
+    display: inline;
+    float: none;
+}
+
+.type-textcrit .rdg:before { white-space: pre; content: "\A"; }
+.type-textcrit .ref ~ .rdg:before, .type-textcrit .ref + .rdg:before { content: ""; white-space: normal; }
+.type-textcrit {
+    padding-left: 2.5em;
+    text-indent: -2.5em;
+}
+
+.seg.type-lem {
+    border-bottom: 1px dotted grey;
+}
+
+.quote {
+  font-style: normal;
+  color: initial;
+}
