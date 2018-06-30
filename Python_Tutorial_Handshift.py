@@ -131,7 +131,7 @@ if __name__ == '__main__':
     }
     
     # rekurisves Durchsuchen aller Unterordner des transcripts Verzeichnisses nach xml-Dateien
-    files = glob.glob('../Referat/xml/transcript/**/*.xml', recursive=True)
+    files = glob.glob('./xml/transcript/**/*.xml', recursive=True)
 
     result = []
 
