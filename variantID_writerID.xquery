@@ -2,7 +2,7 @@ declare namespace functx = "http://www.functx.com";
 declare function functx:substring-before-match
 ( $arg as xs:string? ,
     $regex as xs:string )  as xs:string {
-
+    (:test:)
    tokenize($arg,$regex)[1]
  } ;
  declare function functx:substring-after-match
