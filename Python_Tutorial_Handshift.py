@@ -188,7 +188,7 @@ if __name__ == '__main__':
 # Verknüpfen der mit den Daten der Schreibstilen nach Autor
 
 # Einlesen der Ergebnisses aus Tutorial 1
-writer_doc = etree.parse('writerid_styleid_attributes.xml')
+writer_doc = etree.parse('writerid_variantid_attributes.xml')
 
 # Vorverarbeitungsschritt, jedes li-Element wird ein leeres ul-Element angehängt,
 # in das später die Dateinamen geschrieben werden
