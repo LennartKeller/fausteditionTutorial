@@ -240,6 +240,7 @@
 
 			<!-- PYTHON-BEISPIEL ab hier-->
 			<div id="3" class="container">
+				<meta name="Author" content="Jan Keller">
 				<div class="page-header">
 					<h3>
 						<b>Python-Beispiel</b>
@@ -256,39 +257,50 @@
 					durch Einrückungen zu strukturieren, wird die Lesbarkeit des Codes automatisch verbessert. Aufgrund dieser Eigenschaften
 					und der knappen und einfach zu erlernenden Syntax ist Python auch für Quereinsteiger interessant, da die Einstiegshürden
 					im Vergleich zu anderen Programmiersprachen sehr niedrig sind. Aufgrund ihrer Popularität existieren heute für beinahe
-					jeden Anwendungsfall (meist kostenlose) Bibliotheken, die den Funktionsumfang der Sprache beliebig erweitern. Diese
-					lassen sich über den integrierten Packetmanager pip sehr einfach installieren. In den folgenden Beispielen wird die
-					Bibliothek lxml verwendet, um die XML-Daten der Edition zu verarbeiten. Da lxml nicht zum Standardumfang einer Python-Installation
-					gehört muss sie mit dem Kommandozeilenbefehl
-					<code class="language-bash">$ pip install lxml</code> installiert werden.
+					jeden Anwendungsfall (fast immer kostenlose) Bibliotheken, die den Funktionsumfang der Sprache beinahe beliebig erweitern. Diese
+					lassen sich meist sehr einfach über den integrierten Packetmanager pip installieren.
+			
 				</p>
 				<div class="panel-heading">
 					<h5>Python und XML</h5>
 				</div>
 				<p>XML ist nicht nur im Umfeld der Digitalen Editionen ein etabliertes Format zum Datenaustausch. Deshalb bietet Python
-					verschiedene Wege XML-Daten auszulesen und zu schreiben. Zuerst zu erwähnen wären die DOM bzw. SAX APIS, die Python
+					verschiedene Wege XML-Daten auszulesen und zu schreiben. Zuerst zu erwähnen wären die DOM-, SAX- oder ElementTree-API, die Python
 					standardmäßig mitbringt.
 				</p>
+	
 				<p>Die DOM-API ermöglicht es ein XML-Dokument als Document-Object-Model abzubilden und zu verabeiten. Hierfür wird das gesamte
 					Dokument als Baum in den Hauptspeicher geladen. Dies hat den Vorteil, dass man zu jedem Zeitpunkt auf alle Daten zugreifen
 					kann. Der Speicherbedarf dieser Methode kann aber bei großen Datenmengen recht schnell wachsen. Der DOM-Standard ist
-					in verschiedenen Versionen vom W3C spezifiziert und diese Python Implementation unterstützt die Level 1 und 2 Spezifikationen.
+					in verschiedenen Versionen vom W3C spezifiziert und diese Python Implementation unterstützt die Level 1 und 2 Spezifikationen.<br/>
 					Für weitere Informationen besuchen Sie die
 					<a href="https://docs.python.org/3.7/library/xml.dom.html">offizielle Python-Dokumentation</a>.
 				</p>
 				<p>In Fällen in denen der Speicherbedarf eine Rolle spielt kann es sinnvoller sein die SAX-API zu verwenden. SAX steht für
 					Simple API for XML und behandelt behandelt XML als einen Datenstrom der sequentiell eingelesen wird. Man kann nun bestimmte
 					Events definieren zum Beispiel beim Auftreten eines bestimmten Elements während des Einlesens ausgelöst werden. Innerhalb
-					dieser Events findet dann die Verarbeitung statt. Ein Nachteil dieser Methode ist aber, dass man so den Kontext der Daten nur eingeschränkt überblicken kann.
-					Dafür ist der Speicherbedarf geringer als beim DOM.
+					dieser Events findet dann die Verarbeitung statt. Ein Nachteil dieser Methode ist aber, dass man so den Kontext der Daten nur eingeschränkt, das bedeutet nur innerhalb des Events überblicken kann.
+					Dafür ist der Speicherbedarf geringer als beim DOM.<br/>
 					Für weitere Informationen besuchen Sie die <a href="https://docs.python.org/3.7/library/xml.sax.html">offizielle Python-Dokumentation</a>.
 				</p>
+				<p>Die ElementTree-API verfolgt das Ziel möglichst einfach und effizient  in der Benutzung zu sein. Die Grundlage bilden zwei Datentypen: ElemenTree und Element.
+					Der ElementTree repräsentiert die Daten - ähnlich dem DOM - in einer Baumstruktur und stellt Methoden bereit durch diesen zu navigieren.
+					Konzeptuell ist dieser Datentyp und seine Funktionen an der Listen-Implementation von Python angelehnt.
+					Der Datentyp Element repräsentiert logischerweise die einzelnen Elemente des ElementTree. Hier versucht man sich an den Konventionen von der Dictionaries von Python zu orientieren.
+					Des weiteren bietet die ElementTree-API eine funktionell stark eingeschränkte XPath-Implementation an, die eine Teilmenge der Syntax unterstützt.
+					Um die Performance zu verbessern sind Teile der API in C geschrieben.<br/>
+					Für weitere Informationen besuchen Sie die <a href="https://docs.python.org/3.7/library/xml.etree.elementtree.html">offizielle Python-Dokumentation</a>.
+
+				</p>
 				<p>
-					Nachteile beider Ansätze sind neben der Tatsache, dass in beiden Fällen viel "Handarbeit" nötig ist, um Ergebnisse zu erzielen, die eher schlechte Verarbeitungsgeschwindigkeit <!-- Performance-->,
-					sowie das Fehlen XML spezifischer Features XPath und XSLT.<br/>
-					Hier kommt nun die lxml-Bibliothek ins Spiel. Diese verbindet die Geschwindigkeit der in C geschriebenen Bibliotheken libxml2 und lixslt, die intern verwendet werden
-					dem Komfort der ElementTree-API, die komfortable Datentypen bereitstellt, um die Daten zu benutzen.
-					
+					Nachteile  der ersten beiden Ansätze sind neben der Tatsache, dass in beiden Fällen viel "Handarbeit" nötig ist, um Ergebnisse zu erzielen, die eher schlechte Verarbeitungsgeschwindigkeit <!-- Performance-->,
+					sowie das Fehlen XML spezifischer Features XPath und XSLT. Die ElementTree-API hingegen ist zwar schnell zu erlernen und man erzielt aufgrund der komfortablen Methoden schnell zu Ergebnissen
+					aber die eingeschränkte XPath-Unterstützung und das Fehlen weiterer XML-spezifischer Technologien wie XSLT lassen auch hier noch Spielraum zum Wünschen übrig.<br/>
+					Die Bibliothek lxml versucht hier Abhilfe zu schaffen. Sie verbindet die Performance der in C geschriebenen Bibliotheken libxml2 und libxslt, die intern verwendet werden, mit einer weitesgehenden
+					Kompatibilität zur benutzerfreundlichen ElementTree-API bei den bereitgestellten Methoden. Daneben unterstützt sie XSLT und XPath in Version 1.0.<br/>
+					In den folgenden Beispielen wird lxml verwendet, um die XML-Daten der Edition zu verarbeiten. Da sie nicht zum Standardumfang einer Python-Installation
+					gehört muss sie, falls nicht bereits vorhanden, über Kommandozeile mit <code class="language-bash">$ pip install lxml</code> installiert werden.
+
 
 				</p>
 				<div class="panel-heading">
@@ -305,15 +317,15 @@
 					und mit bereits bestehenden Daten aggregiert.</p>
 				<p>Das folgende Skript kann grob in 3 Abschnitte gegliedert werden, die eigene Teilaufgaben darstellen:</p>
 				<ol>
-					<li>Definition von einfachen Hilfsklassen, in denen die Daten später gespeichert werden. => Dies hat den Vorteil, dass im
+					<li>Definition von einfachen Hilfsklassen, in denen die Daten später gespeichert werden.<br/> 
+						⇒ Dies hat den Vorteil, dass im
 						weiteren Programmablauf nicht mehr mit Listen hantiert werden muss, bei denen man auf die Daten nur über einen "nicht
 						sprechenden" Index zugreifen kann.
 					</li>
-					<li>Auslesen der gesuchten Daten aus mehreren XML-Dateien mithilfe der beiden Bibliotheken glob und lxml. ACHTUNG: lxml
-						gehört nicht zum Standardumfang einer Python-Installation, kann aber einfach mit : 'pip install lxml' nachinstalliert
-						werden.
+					<li>Auslesen der gesuchten Daten aus mehreren XML-Dateien mithilfe der beiden Bibliotheken glob und lxml.
 					</li>
-					<li>Im letzten Schritt werden die Daten dann in die Ergebnis-Datei aus dem XQuery-Beispiel integriert. => Dies führt jedoch
+					<li>Im letzten Schritt werden die Daten dann in die Ergebnis-Datei aus dem XQuery-Beispiel integriert.<br/>
+						⇒ Dies führt jedoch
 						dazu, dass diese Datei relativ groß und unübersichtlich wird. Jedoch kann damit gut zeigen, wie einfach sich mithilfe
 						von lxml XML-Dateien modifizieren lassen.</li>
 				</ol>
