@@ -302,13 +302,12 @@
 					gehört muss sie, falls nicht bereits vorhanden, über Kommandozeile mit <code class="language-bash">$ pip install lxml</code> installiert werden.
 				</p>
 				<div class="panel-heading"><h6>Exkurs: Besonderheiten des Datenmodel von lxml</h6></div>
-				<p>Da es im folgenden Beispiel um das Auslesen von der eigentlichen Texte der handShift Abschnitte geht, ist es an dieser Stelle nötig den Eigenheiten des lxml-Datenmodels 
+				<>Da es im folgenden Beispiel um das Auslesen von der eigentlichen Texte der handShift Abschnitte geht, ist es an dieser Stelle nötig den Eigenheiten des lxml-Datenmodels 
 					in Bezug auf Textdaten einige Worte zu widmen. Die XML-Spezifikation sieht eigentlich
 					vor Text als Kindelemente (oder Blätter um in der Baumterminolgie zu bleiben) der Elemente die ihn enthalten zu behandeln.<br/>
 					Angenommmen wir haben dieses simple XML-Dokuement:
 					<pre><code class="language-xml">
 <textarea>
-<?xml version="1.0" encoding="UTF-8"?>
 <dokument>
 	<zeile>Hallo <unklar>daf<vielleicht>s</vielleicht></unklar> ist ein Satz.</zeile>
 </dokument>
@@ -327,8 +326,30 @@
 "ist ein Satz."
 </code>
 </pre>
+					Während man nach dem Ausführen dieses Python-Codes:
+<pre>
+<code class="language-python">
+<textarea>
+from lxml import etree
 
+doc = etree.fromstring("""
+<dokument>
+	<zeile>Hallo <unklar>daf<vielleicht>s</vielleicht></unklar> ist ein Satz.</zeile>
+</dokument>
+""")
+elem = doc.find("zeile")
+print(elem.text)
+</textarea>
+</code>
+</pre>
 
+					lediglich dieses Resultat bekommt.
+<pre>
+<code class="language-python">
+"Hallo"
+</code>
+</pre>
+					Aber wo ist das Ende des Satzes geblieben?
 				</p>
 				<div class="panel-heading">
 					<h4>Auslesen der Handshift-Daten</h4>
