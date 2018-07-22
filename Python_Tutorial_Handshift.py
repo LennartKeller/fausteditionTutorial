@@ -1,7 +1,7 @@
 #   Innerhalb der Transkripte sind die einzelnen handschriftlichen Abschnitte durch das TEI-Element handShift gekennzeichnet.
 #   Dieses zeigt an,  dass ab hier der Text bis zum nächsten Auftreten eines handShift-Elements aus der Feder
 #   des im @new-Attribut spezifizierten Schreibers ist. Der Wert dieses Attributes ist konform der xml:id aus den handNote-Elemente im Header,
-#   so dass eine eindeutige Zuordnung der Abschnitte zu Schreiber und Schreibvariante möglich ist.
+#   so dass eine eindeutige Zuordnung der Abschnitte zu Schreiber und Schreibstile möglich ist.
   
 #   Nicht nur aus philologischer Sicht ist ein Auslesen dieser Daten interessant, sondern auch da die Datenstruktur eine 
 #   kleine Herausforderung darstellt  - die handShift-Elemente sind leer, enthalten also keine Kindelemente. 
@@ -68,23 +68,23 @@ class Handshift:
         self.source_doc = source_doc
         self.handShift = element_list[0]
 
-        # der Wert des new-Attributs hat die Form '#<writerid>_<variantid>' oder '#<writerid>_<variantid>_<variantsuffix>'
-        # weshalb hier die Raute weggesch_<variantid>nitten wird und der String beim ersten Unterstrich geteilt wird
+        # der Wert des new-Attributs hat die Form '#<writerid>_<styleid>' oder '#<writerid>_<styleid>_<stylesuffix>'
+        # weshalb hier die Raute weggesch_<styleid>nitten wird und der String beim ersten Unterstrich geteilt wird
         self.new_attrib = self.handShift.attrib['new'][1:]
         if "_" in self.new_attrib:
             ids = self.new_attrib.split('_', 1)
             self.writer_id = ids[0]
-            self.variant_id = ids[1] 
+            self.style_id = ids[1] 
         else:
             self.writer_id = self.new_attrib
-            self.variant_id = ''        
+            self.style_id = ''        
         self.content = element_list[1:]
         
 
     def get_text(self, text_elements=[]):
         """
         Gibt den Text, des handShifts Abschnitts zurück, dafür werden die ge:line Elemente ausgewertet
-            :param text_elements=[]: optional, zusätliche Elemente, deren Text auch ausgewertet werden soll
+            :param text_elements=[]: optional, zusätzliche Elemente, deren Text auch ausgewertet werden soll
         """   
         string = ''
         # Sonderfall:
@@ -131,14 +131,17 @@ if __name__ == '__main__':
     }
     
     # rekurisves Durchsuchen aller Unterordner des transcripts Verzeichnisses nach xml-Dateien
-    files = glob.glob('../Referat/xml/transcript/**/*.xml', recursive=True)
+    # ACHTUNG: Der Pfad muss unter Umständen angepasst werden.
+    files = glob.glob('./xml/transcript/**/*.xml', recursive=True)
+    
+    if not files:
+        raise FileNotFoundError("Could not find any XML-Files")
 
     result = []
 
     for f in files:
 
-        # einige Dokumente enthalten fehlerhafte xml:id Attribute und können nicht geparst werden
-        # in diesem Fall wird eine Fehlermeldung ausgegeben
+        # Im Falle von Fehlern bei Parsen der Dokumente wird eine Fehlermeldung ausgegeben und diese Datei wird übersprungen.
         try:
             doc = etree.parse(f)
         except etree.XMLSyntaxError as e:
@@ -174,7 +177,7 @@ if __name__ == '__main__':
                 while elem is not done and elem.tag != str(tei_ns) + 'handShift':
                     content.append(elem)
                     elem = next(doc_iterator, done)
-                # handShift-Abschnitt wird dem Gesamtergebniss angehänt
+                # handShift-Abschnitt wird dem Gesamtergebnis angehängt
                 total.append(content) 
             else:
                 elem = next(doc_iterator, done)
@@ -182,12 +185,12 @@ if __name__ == '__main__':
         for sublist in total:
             result.append(Handshift(f, sublist))
 
-# Verknüpfen der mit den Daten der Schreibvarianten nach Autor
+# Verknüpfen der mit den Daten der Schreibstilen nach Autor
 
 # Einlesen der Ergebnisses aus Tutorial 1
-writer_doc = etree.parse('writerid_variantid_attributes.xml')
+writer_doc = etree.parse('writerid_styleid_attributes.xml')
 
-# Vorverarbeitungsschritt, jedes li-Element wird ein leeres ul-Element anghängt,
+# Vorverarbeitungsschritt, jedes li-Element wird ein leeres ul-Element angehängt,
 # in das später die Dateinamen geschrieben werden
 for li in writer_doc.xpath('//tei:li', namespaces=namespaces):
     li.append(etree.Element(etree.QName(tei_ns.uri, 'ul'), type='file_list'))
@@ -200,12 +203,12 @@ for handshift in result:
     # falls ein solches gefunden wurde
     if p_elem is not None:
         
-        # Suchen des Listenelement mit der akutellen varianten_id
-        if handshift.variant_id:
-            list_elem = p_elem.find('.//tei:li[@vID="{}"]'.format(handshift.variant_id), namespaces=namespaces)
+        # Suchen des Listenelement mit der akutellen style_id
+        if handshift.style_id:
+            list_elem = p_elem.find('.//tei:li[@vID="{}"]'.format(handshift.style_id), namespaces=namespaces)
         
         else:
-            # wenn keine variant_id exisitert, wurde die writer_id verwendet
+            # wenn keine style_id existiert, wurde die writer_id verwendet
             list_elem = p_elem.find('.//tei:li[@vID="{}"]'.format(handshift.writer_id), namespaces=namespaces)
         # Test ob ein Listenelement gefunden wurde
         if list_elem is not None:
@@ -219,5 +222,5 @@ for handshift in result:
     else:
         print('No entry with wID = {} was found.'.format(handshift.writer_id))
 
-# für xhtml das vom Broswer verarbeitet werden kann muss die Ausgabe Datei als kanonisches XML geschrieben werden.
+# für xhtml das vom Browser verarbeitet werden kann muss die Ausgabe Datei als kanonisches XML geschrieben werden.
 writer_doc.write_c14n('Python_Tutorial_Result.html')
