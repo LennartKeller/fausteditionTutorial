@@ -300,6 +300,33 @@
 					Kompatibilität zur benutzerfreundlichen ElementTree-API bei den bereitgestellten Methoden. Daneben unterstützt sie XSLT und XPath in Version 1.0.<br/>
 					In den folgenden Beispielen wird lxml verwendet, um die XML-Daten der Edition zu verarbeiten. Da sie nicht zum Standardumfang einer Python-Installation
 					gehört muss sie, falls nicht bereits vorhanden, über Kommandozeile mit <code class="language-bash">$ pip install lxml</code> installiert werden.
+				</p>
+				<div class="panel-heading"><h6>Exkurs: Besonderheiten des Datenmodel von lxml</h6></div>
+				<p>Da es im folgenden Beispiel um das Auslesen von der eigentlichen Texte der handShift Abschnitte geht, ist es an dieser Stelle nötig den Eigenheiten des lxml-Datenmodels 
+					in Bezug auf Textdaten einige Worte zu widmen. Die XML-Spezifikation sieht eigentlich
+					vor Text als Kindelemente (oder Blätter um in der Baumterminolgie zu bleiben) der Elemente die ihn enthalten zu behandeln.<br/>
+					Angenommmen wir haben dieses simple XML-Dokuement:
+					<pre><code class="language-xml">
+<textarea>
+<?xml version="1.0" encoding="UTF-8"?>
+<dokument>
+	<zeile>Hallo <unklar>daf<vielleicht>s</vielleicht></unklar> ist ein Satz.</zeile>
+</dokument>
+</textarea>
+</code></pre>
+				Wenden wir nun folgenden XPath-Ausdruck:
+<pre>
+	<code class="language-xquery">
+//linie/text()
+	</code>
+</pre>
+					auf das Dokument an so erhalten wir eine Sequenz mit den Strings:
+<pre>
+<code class="language-xquery">
+"Hallo",
+"ist ein Satz."
+</code>
+</pre>
 
 
 				</p>
