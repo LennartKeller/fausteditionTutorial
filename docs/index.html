@@ -245,7 +245,7 @@
 				</div>
 				<p>Python ist eine frei verfügbare, flexible Programmiersprache, die relativ leicht zu erlernen ist. Obwohl sie als Skriptsprache
 					konzipiert wurde, unterstützt sie verschiedene Programierparadigmen, wie Objektorientierung oder funktioanle Elemente.
-					Da es auch möglich ist diese Stile zu mischen wird ein hohes Maß ein Freiheit garantiert. Durch den Zwang sein Programm
+					Da es auch möglich ist diese Stile zu mischen, wird ein hohes Maß ein Freiheit garantiert. Durch den Zwang sein Programm
 					durch Einrückungen zu strukturieren, wird die Lesbarkeit des Codes automatisch verbessert. Aufgrund dieser Eigenschaften
 					und der knappen und einfach zu erlernenden Syntax ist Python auch für Quereinsteiger interessant, da die Einstiegshürden
 					im Vergleich zu anderen Programmiersprachen sehr niedrig sind. Aufgrund ihrer Popularität existieren heute für beinahe
@@ -534,21 +534,13 @@ writer_doc.write_c14n('Python_Tutorial_Result.html')
 						<code class="language-xpath">handShift</code>-Abschnitte ausgelesen und verarbeitet. Dies wird mit Hilfe des Target-Paser-Interfaces realisiert.
 						Dieses ermöglicht es, einen eigenen Parser zu implementieren, der die gewünschte Verarbeitungslogik enthält.</p>
 				</div>
-				<div class="panel-footer">
-					<a href="https://github.com/LennartKeller/faustedition_referat" target="_blank">Hier erhalten Sie die Datei mit dem vollständigen Code</a>
-				</div>
+	
 				<br/>
 			</div>
 
-			<div class="panel-heading">
-				<h4>Extraktion der Textdaten der handShift-Abschnitte</h4>
-			</div>
-			<details>
-				<summary>
-					<b>Exkurs: Textmodell von lxml</b>
-				</summary>
-				<v class="panel-body">
-					<div class="panel-heading"><h6>Exkurs: Besonderheiten des Datenmodel von lxml</h6></div>
+
+				<div class="panel-body">
+					<div class="panel-heading"><h5>Exkurs: Besonderheiten des Datenmodel von lxml</h5></div>
 			Da es im Folgenden Abschnitt die Textdaten der handShift Abschnitte ausgelesen werden, ist es an dieser Stelle nötig den Eigenheiten des lxml-Datenmodels 
 			in Bezug auf Textdaten einige Worte zu widmen. Die XML-Spezifikation sieht eigentlich
 			vor Text als Kindelemente (oder Blätter um in der Baumterminolgie zu bleiben) der Elemente die ihn enthalten zu behandeln.<br/>
@@ -601,7 +593,7 @@ Ich
 			Liegt dieser an erster Stelle, das bedeutet er tritt direkt nach dem Öffnen des Elements auf. wird er dem Element als Attribut <code>text</code> zu geordnet.
 			Enthält das Elternelement dieses Texts auch noch andere Elemente hinter denen weiterer Text liegt, wird dieser den Kindelementen zugordnet und ist als Attribut <code>tail</code>
 			gespeichert.<br/>
-			Um an den ganzen Text zu kommen muss man also alle Geschwisterelemente des Textes bzw. alle Kinder des Element das ihn enthält, auswerten.<br/>
+			Um an den ganzen Text zu kommen muss man also alle Geschwisterelemente des Textes bzw. alle Kinder des Element, das ihn enthält, auswerten.<br/>
 			In unserem Fall zum Beispiel so:
 <pre>
 <code class="language-python">
@@ -623,14 +615,28 @@ print(elem2.tail)
 			Nun erhalten wir den gesamten Text.
 <pre>
 <code class="language-python">
-Hallo
+Ich
 einen Satz.
 </code>
 </pre>
 			
 		</p>
+		<div class="panel-heading">
+				<h4>Extraktion der Textdaten der handShift-Abschnitte</h4>
+		</div>
+		<p>
+			Im folgenden Beispiel werden die Textdaten der handShift-Abschnitte ausglesen und in Dateien geschrieben.
+			Dafür wird die Handshift-Klasse aus dem ersten Beispiel um eine Klasse zur Extraktion der Texte erweitert.
+			Des weiteren wird eine zweite Klasse HandShiftWriter implementiert mit der die zu verarbeitenden XML-Daten ausgewählt werden können
+			und die Textdaten geschrieben werden.<br/>
+			Einige Besonderheiten bei der Extraktion der Daten ergeben sich aus den Implikationen des im voherigen Abschnitts besprochenenn lxml-Datenmodell,
+			sowie der Tatsache der nicht hierachischen Gliederung der handShift-Daten.
+		</p>
 				</div>
-			</details>
+		<div class="panel-footer">
+			<a href="https://github.com/LennartKeller/faustedition_referat" target="_blank">Hier erhalten Sie die Datei mit dem vollständigen Code</a>
+		</div>
+			
 
 
 
