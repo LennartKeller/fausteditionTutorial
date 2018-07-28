@@ -289,59 +289,9 @@
 					sowie das Fehlen XML spezifischer Features XPath und XSLT. Die ElementTree-API hingegen ist zwar schnell zu erlernen und man erzielt aufgrund der komfortablen Methoden schnell zu Ergebnissen
 					aber die eingeschränkte XPath-Unterstützung und das Fehlen weiterer XML-spezifischer Technologien wie XSLT lassen auch hier noch Spielraum zum Wünschen übrig.<br/>
 					Die Bibliothek lxml versucht hier Abhilfe zu schaffen. Sie verbindet die Performance der in C geschriebenen Bibliotheken libxml2 und libxslt, die intern verwendet werden, mit einer weitesgehenden
-					Kompatibilität zur benutzerfreundlichen ElementTree-API bei den bereitgestellten Methoden. Daneben unterstützt sie XSLT und XPath in Version 1.0.<br/>
+					//change	Kompatibilität zur benutzerfreundlichen ElementTree-API bei den bereitgestellten Methoden. Daneben unterstützt sie XSLT und XPath in Version 1.0.<br/>
 					In den folgenden Beispielen wird lxml verwendet, um die XML-Daten der Edition zu verarbeiten. Da sie nicht zum Standardumfang einer Python-Installation
 					gehört muss sie, falls nicht bereits vorhanden, über Kommandozeile mit <code class="language-bash">$ pip install lxml</code> installiert werden.
-				</p>
-				<div class="panel-heading"><h6>Exkurs: Besonderheiten des Datenmodel von lxml</h6></div>
-				<>Da es im folgenden Beispiel um das Auslesen von der eigentlichen Texte der handShift Abschnitte geht, ist es an dieser Stelle nötig den Eigenheiten des lxml-Datenmodels 
-					in Bezug auf Textdaten einige Worte zu widmen. Die XML-Spezifikation sieht eigentlich
-					vor Text als Kindelemente (oder Blätter um in der Baumterminolgie zu bleiben) der Elemente die ihn enthalten zu behandeln.<br/>
-					Angenommmen wir haben dieses simple XML-Dokuement:
-					<pre><code class="language-xml">
-<textarea>
-<dokument>
-	<zeile>Hallo <unklar>daf<vielleicht>s</vielleicht></unklar> ist ein Satz.</zeile>
-</dokument>
-</textarea>
-</code></pre>
-				Wenden wir nun folgenden XPath-Ausdruck:
-<pre>
-	<code class="language-xquery">
-//zeile/text()
-	</code>
-</pre>
-					auf das Dokument an so erhalten wir eine Sequenz mit den Strings:
-<pre>
-<code class="language-xquery">
-"Hallo",
-"ist ein Satz."
-</code>
-</pre>
-					Während man nach dem Ausführen dieses Python-Codes:
-<pre>
-<code class="language-python">
-<textarea>
-from lxml import etree
-
-doc = etree.fromstring("""
-<dokument>
-	<zeile>Hallo <unklar>daf<vielleicht>s</vielleicht></unklar> ist ein Satz.</zeile>
-</dokument>
-""")
-elem = doc.find("zeile")
-print(elem.text)
-</textarea>
-</code>
-</pre>
-
-					lediglich dieses Resultat bekommt.
-<pre>
-<code class="language-python">
-"Hallo"
-</code>
-</pre>
-					Aber wo ist das Ende des Satzes geblieben?
 				</p>
 				<div class="panel-heading">
 					<h4>Auslesen der Handshift-Daten</h4>
@@ -510,7 +460,7 @@ if __name__ == '__main__':
         # dies hat den Vorteil, dass man keine Fehlerbehandlung implementieren muss
         done = object()
         
-        # das erste Element des Iteratorsa
+        # das erste Element des Iterators
         elem = next(doc_iterator, done)
         
         # leere Liste wird später die handShift-Abschnitte als sublists enhalten
@@ -589,6 +539,70 @@ writer_doc.write_c14n('Python_Tutorial_Result.html')
 				</div>
 				<br/>
 			</div>
+
+
+			<details>
+				<summary>
+					<b>Exkurs: Textmodell von lxml</b>
+				</summary>
+				<div class="panel-body">
+					<div class="panel-heading"><h6>Exkurs: Besonderheiten des Datenmodel von lxml</h6></div>
+			Da es im folgenden Beispiel um das Auslesen von der eigentlichen Texte der handShift Abschnitte geht, ist es an dieser Stelle nötig den Eigenheiten des lxml-Datenmodels 
+			in Bezug auf Textdaten einige Worte zu widmen. Die XML-Spezifikation sieht eigentlich
+			vor Text als Kindelemente (oder Blätter um in der Baumterminolgie zu bleiben) der Elemente die ihn enthalten zu behandeln.<br/>
+			Angenommmen wir haben dieses simple XML-Dokuement:
+			<pre><code class="language-xml">
+<textarea>
+<dokument>
+<zeile>Hallo <unklar>daf<vielleicht>s</vielleicht></unklar> ist ein Satz.</zeile>
+</dokument>
+</textarea>
+</code></pre>
+		Wenden wir nun folgenden XPath-Ausdruck:
+<pre>
+<code class="language-xquery">
+//zeile/text()
+</code>
+</pre>
+			auf das Dokument an so erhalten wir eine Sequenz mit den Strings:
+<pre>
+<code class="language-xquery">
+"Hallo",
+"ist ein Satz."
+</code>
+</pre>
+			Während man nach dem Ausführen dieses Python-Codes:
+<pre>
+<code class="language-python">
+<textarea>
+from lxml import etree
+
+doc = etree.fromstring("""
+<dokument>
+<zeile>Hallo <unklar>daf<vielleicht>s</vielleicht></unklar> ist ein Satz.</zeile>
+</dokument>
+""")
+elem = doc.find("zeile")
+print(elem.text)
+</textarea>
+</code>
+</pre>
+
+			lediglich dieses Resultat bekommt.
+<pre>
+<code class="language-python">
+"Hallo"
+</code>
+</pre>
+			Aber wo ist das Ende des Satzes geblieben?
+		</p>
+				</div>
+			</details>
+
+
+
+
+			
 			<div id="4" class="container">
 				<div class="page-header">
 					<h3>
