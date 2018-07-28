@@ -71,7 +71,7 @@
 				<p>Um Forschungsfragen selbständig zu klären, werden die zu erforschenden Objekte benötigt. Diese Handschriftendaten finden Sie <a href="platzhalter" target="_blank">hier</a>. Dort sind sowohl die textuellen als auch die dokumentarischen Transkripte aufgeführt. Die Dateien können einzeln oder zusammen heruntergeladen werden. Um mit den Handschriften arbeiten zu können, braucht es ein Verständnis für die Datenstruktur.</p>
 				<p>Ausgehend vom dokumentarischen Transkript kann eine grobe Übersicht zur ersten Orientierung gegeben werden. Es finden sich im TEI-Header allgemeine Informationen über Titel (titleStmt), Veröffentlichung (publicationStmt), Quellennachweis (sourceDesc) und die Handschriften mit ihren IDs im "handNotes"-Element. Das "xml:id"-Attribut innerhalb der "handNote"-Tags stellt die abgekürzte Form der Varianten dar. Beispielsweise steht "g_tr_lat" für den Schreiber (g/Goethe), das verwendete Schreibmittel (t/Tinte), die Schriftfarbe (r/rotbraun) und die Schriftart (lat/Latein). Auf diese handNotes wird weiter unten, wo der Text steht, mithilfe des handShift-Elements refereiert. Nach Varianten werden die Änderungen, Änderungszeiten und die Zuständigen dafür aufgeführt. Zwischen TEI-Header und dem Dokument wird das Faksimile mit der entsprechenden URL angezeigt. Im "ge:document"-Element wird der Text dargestellt, unterteilt in vier Zonen. Die "zone"-Elemente beinhalten Attribute, die die Lage des Textes grob bestimmen. Diese Attribute folgen dem Schema "f:Richtung1-Richtung2", wobei "Richtung2" die auschlaggebende Richtung ist. Steht in einer "zone" also das Attribut "f:bottom-top", so liegt der Text innerhalb dieser Zone oben. Der Haupttext wird durch das Attribut "type="main"" definiert. "ge:line" zeigt Zeilen an. Innerhalb dieses Elementes stellt das "rend"-Attribut die Ausrichtung dar. Zum vertieften Verständnis der Datenstruktur dient die Dokumentation. Da diese sehr umfangreich ist, kann sie hier nicht in voller Gänze dargestellt werden. Die vollständige Dokumentation der XML-Datenstruktur kann <a href="platzhalter" target="_blank">hier</a> nachgelesen werden.</p>
 				<p>Für das XQuery-Beispiel brauchen Sie Folgendes: xQuery Editor (z.B. <a href="https://www.oxygenxml.com/xml_editor/download_oxygenxml_editor.html">oXygen</a>), Transformationsprozessor (z.B. Saxon; in Oxygen implementiert)</p>
-				<p>Für das Python-Beispiel brauchen Sie Folgendes: <a href="https://www.python.org/downloads/" target="_blank">Python</a>, lxml-Bibliothek (pip install lxml)
+				<>Für das Python-Beispiel brauchen Sie Folgendes: <a href="https://www.python.org/downloads/" target="_blank">Python</a>, lxml-Bibliothek (pip install lxml)
 			</div>
 			</div>
 
@@ -289,7 +289,7 @@
 					sowie das Fehlen XML spezifischer Features XPath und XSLT. Die ElementTree-API hingegen ist zwar schnell zu erlernen und man erzielt aufgrund der komfortablen Methoden schnell zu Ergebnissen
 					aber die eingeschränkte XPath-Unterstützung und das Fehlen weiterer XML-spezifischer Technologien wie XSLT lassen auch hier noch Spielraum zum Wünschen übrig.<br/>
 					Die Bibliothek lxml versucht hier Abhilfe zu schaffen. Sie verbindet die Performance der in C geschriebenen Bibliotheken libxml2 und libxslt, die intern verwendet werden, mit einer weitesgehenden
-					//change	Kompatibilität zur benutzerfreundlichen ElementTree-API bei den bereitgestellten Methoden. Daneben unterstützt sie XSLT und XPath in Version 1.0.<br/>
+					Kompatibilität zur benutzerfreundlichen ElementTree-API bei den bereitgestellten Methoden. Daneben unterstützt sie XSLT und XPath in Version 1.0.<br/>
 					In den folgenden Beispielen wird lxml verwendet, um die XML-Daten der Edition zu verarbeiten. Da sie nicht zum Standardumfang einer Python-Installation
 					gehört muss sie, falls nicht bereits vorhanden, über Kommandozeile mit <code class="language-bash">$ pip install lxml</code> installiert werden.
 				</p>
@@ -540,21 +540,23 @@ writer_doc.write_c14n('Python_Tutorial_Result.html')
 				<br/>
 			</div>
 
-
+			<div class="panel-heading">
+				<h4>Extraktion der Textdaten der handShift-Abschnitte</h4>
+			</div>
 			<details>
 				<summary>
 					<b>Exkurs: Textmodell von lxml</b>
 				</summary>
-				<div class="panel-body">
+				<v class="panel-body">
 					<div class="panel-heading"><h6>Exkurs: Besonderheiten des Datenmodel von lxml</h6></div>
-			Da es im folgenden Beispiel um das Auslesen von der eigentlichen Texte der handShift Abschnitte geht, ist es an dieser Stelle nötig den Eigenheiten des lxml-Datenmodels 
+			Da es im Folgenden Abschnitt die Textdaten der handShift Abschnitte ausgelesen werden, ist es an dieser Stelle nötig den Eigenheiten des lxml-Datenmodels 
 			in Bezug auf Textdaten einige Worte zu widmen. Die XML-Spezifikation sieht eigentlich
 			vor Text als Kindelemente (oder Blätter um in der Baumterminolgie zu bleiben) der Elemente die ihn enthalten zu behandeln.<br/>
 			Angenommmen wir haben dieses simple XML-Dokuement:
 			<pre><code class="language-xml">
 <textarea>
 <dokument>
-<zeile>Hallo <unklar>daf<vielleicht>s</vielleicht></unklar> ist ein Satz.</zeile>
+	<zeile>Ich <verwischt/>einen Satz.</zeile>
 </dokument>
 </textarea>
 </code></pre>
@@ -567,8 +569,8 @@ writer_doc.write_c14n('Python_Tutorial_Result.html')
 			auf das Dokument an so erhalten wir eine Sequenz mit den Strings:
 <pre>
 <code class="language-xquery">
-"Hallo",
-"ist ein Satz."
+"Ich",
+"einen Satz."
 </code>
 </pre>
 			Während man nach dem Ausführen dieses Python-Codes:
@@ -579,7 +581,7 @@ from lxml import etree
 
 doc = etree.fromstring("""
 <dokument>
-<zeile>Hallo <unklar>daf<vielleicht>s</vielleicht></unklar> ist ein Satz.</zeile>
+	<zeile>Ich <verwischt/>einen Satz.</zeile>
 </dokument>
 """)
 elem = doc.find("zeile")
@@ -591,10 +593,41 @@ print(elem.text)
 			lediglich dieses Resultat bekommt.
 <pre>
 <code class="language-python">
-"Hallo"
+Ich
 </code>
 </pre>
 			Aber wo ist das Ende des Satzes geblieben?
+			lxml unterscheidet hier anhand der Position des Textes. 
+			Liegt dieser an erster Stelle, das bedeutet er tritt direkt nach dem Öffnen des Elements auf. wird er dem Element als Attribut <code>text</code> zu geordnet.
+			Enthält das Elternelement dieses Texts auch noch andere Elemente hinter denen weiterer Text liegt, wird dieser den Kindelementen zugordnet und ist als Attribut <code>tail</code>
+			gespeichert.<br/>
+			Um an den ganzen Text zu kommen muss man also alle Geschwisterelemente des Textes bzw. alle Kinder des Element das ihn enthält, auswerten.<br/>
+			In unserem Fall zum Beispiel so:
+<pre>
+<code class="language-python">
+<textarea>
+from lxml import etree
+
+doc = etree.fromstring("""
+<dokument>
+	<zeile>Ich <verwischt/>einen Satz.</zeile>
+</dokument>
+""")
+elem = doc.find("zeile")
+elem2 = elem.find("verwischt")
+print(elem.text)
+print(elem2.tail)
+</textarea>
+</code>
+</pre>
+			Nun erhalten wir den gesamten Text.
+<pre>
+<code class="language-python">
+Hallo
+einen Satz.
+</code>
+</pre>
+			
 		</p>
 				</div>
 			</details>
