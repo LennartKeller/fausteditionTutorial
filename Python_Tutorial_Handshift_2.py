@@ -1,5 +1,33 @@
 from lxml import etree
-from Python_Tutorial_Handshift import Namespace
+import glob
+
+class Namespace:
+    """
+        Klasse um alle den Namen eines Namensraum zu kapseln
+    """
+    def __init__(self, name, uri):  
+        """
+        Konstruktor
+            :param name: Bezeichnung des Namesraum (wird später im namespace-dict von lxml als key verwendet)
+            :param uri: URI des Namenraum
+        """   
+        self.name = name
+        self.uri = uri
+    
+    def __str__(self):
+        """
+        Stringausgabe nach der Konvention für Namensraumprefixe von lxml.Element-Strings
+        """
+        return '{' + self.uri + '}'
+    
+    def __add__(self, other):
+        """
+        Verkettet den Namensraumprefix mit einem beliebigen String
+            :param other: String der mit dem Namesraumprefix verkettet werden soll.
+        """
+        if not isinstance(other, str):
+            raise TypeError("Other has to be of type str")
+        return self.__str__() + other
 
 class Handshift:
     """
@@ -34,31 +62,172 @@ class Handshift:
             self.writer_id = self.new_attrib
             self.style_id = ''        
         self.content = element_list[1:]
+                    
+    def _get_line_text(self, node: etree.Element, exclude: list):
         
+    
+        def recursive_walk_down(node: etree.Element, exclude):
+
+            if node.tag in exclude or node.tag == self.tei_ns + 'handShift':
+                return
+            # check if node has text
+            if node.text:
+                yield node.text
+            # check if node has children
+            children = list(node.iterchildren())
+            for child in children:
+                yield from recursive_walk_down(child, exclude)
+            # check if node has tail
+            if node.tail:
+                yield node.tail
+
+        if not node.tag == self.genetic_edition_ns + 'line':
+            raise Exception("node has to be elemen ge:line")
+
+        string = ''
+
+        for i in recursive_walk_down(node, exclude):
+            string += i
+
+        return string
+    
     def get_text(self, exclude=[]):
         """
         Gibt den Text, des handShifts Abschnitts zurück, dafür werden die ge:line Elemente ausgewertet
-            :param exclude=[]: optional, zusätzliche Elemente, deren Text nicht ausgewertet werden soll
+            :param exclude=[]: optional, zusätzliche Elemente, deren Text und der Text deren Kinder nicht ausgewertet werden soll
         """   
-        handshift_parent = next(self.handShift.iterancestor())
-        if handshift_parent:
-            if handshift_parent.tag = self.genetic_edition_ns +  line
+        # suche nach dem ge:line Elternelement des Handshifts-Element
+        handshift_parent = None
+        for elem in self.handShift.iterancestors():
+            if elem.tag == self.genetic_edition_ns + 'line':
+                handshift_parent = elem
+        
+        string = ''
+        if handshift_parent is not None:
+            string += self._get_line_text(handshift_parent, exclude)
+        
+        for elem in self.content:
+            if elem.tag == self.genetic_edition_ns +  'line':
+                string += self._get_line_text(elem, exclude)
+        
+        return string
 
+        
+    
     def __repr__(self):
         """
         Eindeutige Stringrepräsentation der Objektinstanz
         """   
         return super().__repr__() + '\n' + self.source_doc + '\n' + self.writer_id + '\n' + str(self.content)
 
+# Begin des eigentlichen Programmablaufs
+if __name__ == '__main__':
 
-class HandshiftWriter:
+    # Definition der Namensräume
+    tei_ns = Namespace('tei', 'http://www.tei-c.org/ns/1.0')
+    genetic_edition_ns = Namespace('geneticEdition', 'http://www.tei-c.org/ns/geneticEditions')
+    faustedition_ns = Namespace('faustedition', 'http://www.faustedition.net/ns')
+
+    # lxml-methoden benötigen die Namensräume als dictionary
+    namespaces = {
+        # falls der TEI-Namespace, der default-namespace sein soll:
+        # None: tei_ns.uri,
+        tei_ns.name: tei_ns.uri,
+        genetic_edition_ns.name: genetic_edition_ns.uri,
+        faustedition_ns.name: faustedition_ns.uri
+    }
     
-    def write(self, handshifts, path: str):
-
-        if isinstance(handshifts, list):
+    # rekurisves Durchsuchen aller Unterordner des transcripts Verzeichnisses nach xml-Dateien
+    # ACHTUNG: Der Pfad muss unter Umständen angepasst werden.
+    files = glob.glob('./xml/transcript/**/*.xml', recursive=True)
+    files = glob.glob('./xml/transcript/agad_warszawa/**/*.xml')
     
-    def _get_text(self, handshift)
+    if not files:
+        raise FileNotFoundError("Could not find any XML-Files")
 
+    result = []
 
+    for f in files:
 
+        # Im Falle von Fehlern bei Parsen der Dokumente wird eine Fehlermeldung ausgegeben und diese Datei wird übersprungen.
+        try:
+            doc = etree.parse(f)
+        except etree.XMLSyntaxError as e:
+            print('WARNING: Could not parse file {}.\n{}\n'.format(f, str(e)))
+            continue
+        
+        # überspringe den aktuellen Schleifendurchlauf, falls das Dokument kein handShift Element enthält
+        if not doc.xpath('//tei:handShift', namespaces=namespaces):
+            continue
+
+        # der doc_iterator enthält alle Elemente des Dokuments in der Textreihenfolge
+        doc_iterator = doc.iter()
+        
+        # das Done-Objekt wird der next-Funktion übergeben, damit diese keinen StopIteration Fehler wirft, wenn der Iterator "leer" ist
+        # dies hat den Vorteil, dass man keine Fehlerbehandlung implementieren muss
+        done = object()
+        
+        # das erste Element des Iteratorsa
+        elem = next(doc_iterator, done)
+        
+        # leere Liste wird später die handShift-Abschnitte als sublists enhalten
+        total = []
+
+        # in dieser Schleife wird durch das Element iteriert
+        while elem is not done:
+            # falls das aktuelle Element ein handShift-Element ist
+            if elem.tag == str(tei_ns) + 'handShift':
+                # initialisiert eine die Liste content mit diesem Element
+                content = [elem]
+                elem = next(doc_iterator, done)
+                # diese Schleife wird solange durchlaufen, wie das aktuelle Element kein handShift-Element ist
+                # dabei wird das aktuelle Element an die content-Liste angehängt
+                while elem is not done and elem.tag != tei_ns + 'handShift':
+                    content.append(elem)
+                    elem = next(doc_iterator, done)
+                # handShift-Abschnitt wird dem Gesamtergebnis angehängt
+                total.append(content) 
+            else:
+                elem = next(doc_iterator, done)
+
+        for sublist in total:
+            result.append(Handshift(f, sublist))
+
+# Verknüpfen der mit den Daten der Schreibstilen nach Autor
+
+# Einlesen der Ergebnisses aus Tutorial 1
+writer_doc = etree.parse('writerid_variantid_attributes.xml')
+
+# Vorverarbeitungsschritt, jedes li-Element wird ein leeres ul-Element angehängt,
+# in das später die Dateinamen geschrieben werden
+for li in writer_doc.xpath('//tei:li', namespaces=namespaces):
+    li.append(etree.Element(etree.QName(tei_ns.uri, 'ul'), type='file_list'))
+
+# Iteration über alle handShift Objekte aus dem ersten Programmteil
+for handshift in result:
+    # Suchen des p-Elements im html das writer_id Attribut des aktuellen Handshift Objekt ist
+    p_elem = writer_doc.find('//tei:p[@wID="{}"]'.format(handshift.writer_id), namespaces=namespaces)
     
+    # falls ein solches gefunden wurde
+    if p_elem is not None:
+        
+        # Suchen des Listenelement mit der akutellen style_id
+        if handshift.style_id:
+            list_elem = p_elem.find('.//tei:li[@vID="{}"]'.format(handshift.style_id), namespaces=namespaces)
+        
+        else:
+            # wenn keine style_id existiert, wurde die writer_id verwendet
+            list_elem = p_elem.find('.//tei:li[@vID="{}"]'.format(handshift.writer_id), namespaces=namespaces)
+        # Test ob ein Listenelement gefunden wurde
+        if list_elem is not None:
+            # Anhängen des Listeneintrags mit dem Dateipfad, falls ein solcher noch nicht existiert
+            if not list_elem.xpath('.//tei:li[text()="{}"]'.format(handshift.source_doc), namespaces=namespaces):
+                new_li = etree.Element(etree.QName(tei_ns.uri, 'li'), type='file')
+                new_li.text = handshift.source_doc
+                list_elem.find('.//tei:ul', namespaces=namespaces).append(new_li)
+
+
+    else:
+        print('No entry with wID = {} was found.'.format(handshift.writer_id))
+
+    print(result[22].get_text(exclude=[r"{http://www.tei-c.org/ns/1.0}hi"]))
