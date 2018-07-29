@@ -2,8 +2,10 @@ from lxml import etree
 
 doc = etree.fromstring("""
 <dokument>
-    <zeile>Hallo <unklar>daf<vielleicht>s</vielleicht></unklar> ist ein Satz.</zeile>
+    <zeile>Ich <verwischt/>einen Satz.</zeile>
 </dokument>
 """)
 elem = doc.find("zeile")
+elem2 = elem.find("verwischt")
 print(elem.text)
+print(elem2.tail)
