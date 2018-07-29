@@ -143,7 +143,6 @@ if __name__ == '__main__':
     # rekurisves Durchsuchen aller Unterordner des transcripts Verzeichnisses nach xml-Dateien
     # ACHTUNG: Der Pfad muss unter Umständen angepasst werden.
     files = glob.glob('./xml/transcript/**/*.xml', recursive=True)
-    files = glob.glob('./xml/transcript/agad_warszawa/**/*.xml')
     
     if not files:
         raise FileNotFoundError("Could not find any XML-Files")
