@@ -151,7 +151,7 @@ if __name__ == '__main__':
 
     for f in files:
 
-        # Im Falle von Fehlern bei Parsen der Dokumente wird eine Fehlermeldung ausgegeben und diese Datei wird übersprungen.
+        # Im Falle von Fehlern bei dem Parsen der Dokumente wird eine Fehlermeldung ausgegeben und diese Datei wird übersprungen.
         try:
             doc = etree.parse(f)
         except etree.XMLSyntaxError as e:
