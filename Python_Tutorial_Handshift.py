@@ -49,7 +49,7 @@ class Namespace:
     def __add__(self, other):
         """
             Verkettet den Namensraumprefix mit einem beliebigen String
-            :param other String der mit dem Namesraumprefix verkettet werden soll.
+            :param other: String der mit dem Namesraumprefix verkettet werden soll.
         """
         if not isinstance(other, str):
             raise TypeError("Other has to be of type str")
