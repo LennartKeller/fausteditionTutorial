@@ -42,13 +42,13 @@ class Namespace:
     
     def __str__(self):
         """
-            Stringausgabe nach der Konvention für Namensraumprefixe von lxml.Element-Strings
+        Stringausgabe nach der Konvention für Namensraumprefixe von lxml.Element-Strings
         """
         return '{' + self.uri + '}'
     
     def __add__(self, other):
         """
-            Verkettet den Namensraumprefix mit einem beliebigen String
+        Verkettet den Namensraumprefix mit einem beliebigen String
             :param other: String der mit dem Namesraumprefix verkettet werden soll.
         """
         if not isinstance(other, str):
