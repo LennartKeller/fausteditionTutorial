@@ -45,6 +45,11 @@ class Namespace:
             Stringausgabe nach der Konvention für Namensraumprefixe von lxml.Element-Strings
         """
         return '{' + self.uri + '}'
+    
+    def __add__(self, other):
+        if not isinstance(other, str):
+            raise TypeError("Other has to be of type str")
+        return self.__str__() + other
 
 class Handshift:
     """
@@ -80,7 +85,6 @@ class Handshift:
             self.style_id = ''        
         self.content = element_list[1:]
         
-
     def get_text(self, text_elements=[]):
         """
         Gibt den Text, des handShifts Abschnitts zurück, dafür werden die ge:line Elemente ausgewertet
@@ -89,15 +93,17 @@ class Handshift:
         string = ''
         # Sonderfall:
         # Falls  sich das handShift-Element in einem Element befindet, das Text enhält muss dieses auch noch ausgelesen werden,
-        # da das lxml-Datenmodel keine Textknoten kennt, sondern den Text als Attribut interpretiert
+        # da vereinfacht gesagt das lxml-Datenmodel keine Textknoten kennt, sondern den Text als Attribut interpretiert
         try:
             handShift_parent = next(self.handShift.iterancestors())
-            if handShift_parent:
+            if handShift_parent is not None:
                 text = handShift_parent.xpath('text()')
                 if len(text) > 0:
-                    string += text[0]
+                    for i in text:
+                        string += i
         except StopIteration:
             pass
+        
         text_elements.append(str(self.genetic_edition_ns) + 'line')
 
         # Iteration über alle Element des handShifts-Abschnitts
@@ -133,6 +139,7 @@ if __name__ == '__main__':
     # rekurisves Durchsuchen aller Unterordner des transcripts Verzeichnisses nach xml-Dateien
     # ACHTUNG: Der Pfad muss unter Umständen angepasst werden.
     files = glob.glob('./xml/transcript/**/*.xml', recursive=True)
+    files = glob.glob('./xml/transcript/agad_warszawa/**/*.xml')
     
     if not files:
         raise FileNotFoundError("Could not find any XML-Files")
