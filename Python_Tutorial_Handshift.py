@@ -195,42 +195,42 @@ if __name__ == '__main__':
         for sublist in total:
             result.append(Handshift(f, sublist))
 
-# Verknüpfen der mit den Daten der Schreibstilen nach Autor
+    # Verknüpfen der mit den Daten der Schreibstilen nach Autor
 
-# Einlesen der Ergebnisses aus Tutorial 1
-writer_doc = etree.parse('writerid_variantid_attributes.xml')
+    # Einlesen der Ergebnisses aus Tutorial 1
+    writer_doc = etree.parse('writerid_variantid_attributes.xml')
 
-# Vorverarbeitungsschritt, jedes li-Element wird ein leeres ul-Element angehängt,
-# in das später die Dateinamen geschrieben werden
-for li in writer_doc.xpath('//tei:li', namespaces=namespaces):
-    li.append(etree.Element(etree.QName(tei_ns.uri, 'ul'), type='file_list'))
+    # Vorverarbeitungsschritt, jedes li-Element wird ein leeres ul-Element angehängt,
+    # in das später die Dateinamen geschrieben werden
+    for li in writer_doc.xpath('//tei:li', namespaces=namespaces):
+        li.append(etree.Element(etree.QName(tei_ns.uri, 'ul'), type='file_list'))
 
-# Iteration über alle handShift Objekte aus dem ersten Programmteil
-for handshift in result:
-    # Suchen des p-Elements im html das writer_id Attribut des aktuellen Handshift Objekt ist
-    p_elem = writer_doc.find('//tei:p[@wID="{}"]'.format(handshift.writer_id), namespaces=namespaces)
-    
-    # falls ein solches gefunden wurde
-    if p_elem is not None:
+    # Iteration über alle handShift Objekte aus dem ersten Programmteil
+    for handshift in result:
+        # Suchen des p-Elements im html das writer_id Attribut des aktuellen Handshift Objekt ist
+        p_elem = writer_doc.find('//tei:p[@wID="{}"]'.format(handshift.writer_id), namespaces=namespaces)
         
-        # Suchen des Listenelement mit der akutellen style_id
-        if handshift.style_id:
-            list_elem = p_elem.find('.//tei:li[@vID="{}"]'.format(handshift.style_id), namespaces=namespaces)
-        
+        # falls ein solches gefunden wurde
+        if p_elem is not None:
+            
+            # Suchen des Listenelement mit der akutellen style_id
+            if handshift.style_id:
+                list_elem = p_elem.find('.//tei:li[@vID="{}"]'.format(handshift.style_id), namespaces=namespaces)
+            
+            else:
+                # wenn keine style_id existiert, wurde die writer_id verwendet
+                list_elem = p_elem.find('.//tei:li[@vID="{}"]'.format(handshift.writer_id), namespaces=namespaces)
+            # Test ob ein Listenelement gefunden wurde
+            if list_elem is not None:
+                # Anhängen des Listeneintrags mit dem Dateipfad, falls ein solcher noch nicht existiert
+                if not list_elem.xpath('.//tei:li[text()="{}"]'.format(handshift.source_doc), namespaces=namespaces):
+                    new_li = etree.Element(etree.QName(tei_ns.uri, 'li'), type='file')
+                    new_li.text = handshift.source_doc
+                    list_elem.find('.//tei:ul', namespaces=namespaces).append(new_li)
+
+
         else:
-            # wenn keine style_id existiert, wurde die writer_id verwendet
-            list_elem = p_elem.find('.//tei:li[@vID="{}"]'.format(handshift.writer_id), namespaces=namespaces)
-        # Test ob ein Listenelement gefunden wurde
-        if list_elem is not None:
-            # Anhängen des Listeneintrags mit dem Dateipfad, falls ein solcher noch nicht existiert
-            if not list_elem.xpath('.//tei:li[text()="{}"]'.format(handshift.source_doc), namespaces=namespaces):
-                new_li = etree.Element(etree.QName(tei_ns.uri, 'li'), type='file')
-                new_li.text = handshift.source_doc
-                list_elem.find('.//tei:ul', namespaces=namespaces).append(new_li)
+            print('No entry with wID = {} was found.'.format(handshift.writer_id))
 
-
-    else:
-        print('No entry with wID = {} was found.'.format(handshift.writer_id))
-
-# für xhtml das vom Browser verarbeitet werden kann muss die Ausgabe Datei als kanonisches XML geschrieben werden.
-writer_doc.write_c14n('Python_Tutorial_Result.html')
+    # für xhtml das vom Browser verarbeitet werden kann muss die Ausgabe Datei als kanonisches XML geschrieben werden.
+    writer_doc.write_c14n('Python_Tutorial_Result.html')
