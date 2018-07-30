@@ -293,6 +293,15 @@
 					In den folgenden Beispielen wird lxml verwendet, um die XML-Daten der Edition zu verarbeiten. Da sie nicht zum Standardumfang einer Python-Installation
 					gehört muss sie, falls nicht bereits vorhanden, über Kommandozeile mit <code class="language-bash">$ pip install lxml</code> installiert werden.
 				</p>
+				<br/>
+				<br/>
+				<div class="pangel-heading">
+					<h6>Vorbemerkung</h6>
+					<p>
+						In diesem Abschnitt ist ein Großteil der Erläuterungen in den mit # gekennzeichnteten Kommentaren direkt im Quellcode zu finden.<br/>
+						Dieser muss so nicht unterteilt werden, was dazu führt, dass die Einrückungen besser ersichtlich sind.
+					</p>
+				</div>
 				<div class="panel-heading">
 					<h5>Auslesen der Handshift-Daten</h5>
 				</div>
@@ -541,20 +550,12 @@ if __name__ == '__main__':
 				</code></pre>
 					</div>
 				</details>
-				<br/>
-				<div class="container">
-					<p>Im nächsten Beispiel werden die Inhalte der
-						<code class="language-xpath">handShift</code>-Abschnitte ausgelesen und verarbeitet. Dies wird mit Hilfe des Target-Paser-Interfaces realisiert.
-						Dieses ermöglicht es, einen eigenen Parser zu implementieren, der die gewünschte Verarbeitungslogik enthält.</p>
-				</div>
-	
-				<br/>
 			</div>
 
 
 				<div class="panel-body">
 					<div class="panel-heading"><h5>Exkurs: Besonderheiten des Datenmodel von lxml</h5></div>
-			Da es im Folgenden Abschnitt die Textdaten der handShift Abschnitte ausgelesen werden, ist es an dieser Stelle nötig den Eigenheiten des lxml-Datenmodels 
+			Da im folgenden Abschnitt die Textdaten der handShift Abschnitte ausgelesen werden, ist es an dieser Stelle nötig den Eigenheiten des lxml-Datenmodels 
 			in Bezug auf Textdaten einige Worte zu widmen. Die XML-Spezifikation sieht eigentlich
 			vor Text als Kindelemente (oder Blätter um in der Baumterminolgie zu bleiben) der Elemente die ihn enthalten zu behandeln.<br/>
 			Angenommmen wir haben dieses simple XML-Dokuement:
@@ -632,19 +633,336 @@ Ich
 einen Satz.
 </code>
 </pre>
-			
+			Wird XML als Markup verwendet ist es eine vonnöten den Text eines Elements und all seiner Nachkommen in der richtigen Reihenfolge zu durchlaufen.
+			Eine Möglichkeit dies mit lxml zu bewerkstelligen ohne XPath zu verwenden, wäre die Verwendung eines rekursiven Algorithmus:
+<pre>
+<code class="language-python">
+def get_text(node):
+	if node.text:
+		yield node.text
+	for child in node.iterchildren():
+		yield from get_text(child)
+	if node.tail:
+		yield node.tail
+</code>
+</pre>
+		Diese Funktion gibt ein Generator-Objekt zurück, dass den Text dann in der korrekten Reihenfolge ausgibt.
+		Dafür wird der Teilbaum des übergebenen Elements und all seiner Nachfahren ähnlich der <a href="https://de.wikipedia.org/wiki/Tiefensuche">Tiefensuche</a> durchlaufen.
+		Falls vorhanden wird der Inhalt des Text-Attributs des gerade betrachteten Elements ausgegeben, dann werden alle Nachfahren betrachtet. Erst wenn diese alle abgearbeitet
+		wurden, werden die tail-Attribute in aufsteigender Reihenfolge betrachtet und deren Inhalt ausgegeben. So wird die richtige Reihenfolge des Textes beibehalten.
+		In unserem Fall erhalten wir nach dem Ausführen von:
+<pre>
+<code class="language-python">
+<textarea>
+from lxml import etree
+
+doc = etree.fromstring("""
+<dokument>
+	<zeile>Ich <verwischt/>einen Satz.</zeile>
+</dokument>
+		""")
+
+def get_text(node):
+	if node.text:
+		yield node.text
+	for child in node.iterchildren():
+		yield from get_text(child)
+	if node.tail:
+		yield node.tail
+
+print(list(get_text(doc)))
+</textarea>
+</code>
+</pre>
+		Den gesamten Text des XML-Dokuments, nebst der Zeilenumbrüche und Whitespaces, die wir vorher einfach ignoriert haben.
+<pre>
+<code class="language-python">
+['\n    ', 'Ich ', 'einen Satz.', '\n']
+</code>
+</pre>
+		Dieser Algorithmus wird auch in abgewandelter Form im folgenden Beispiel eingesetzt.<br/> Zu beachten ist hier noch die Rekursionstiefe,
+		die die zulässige Anzahl von Selbstaufrufen einer Funktion beschränkt. Bei großen Datenmengen könnte dies zu Abbrüchen führen.
+		Dieser Fall trat aber bei einem Test mit allen Daten der Faustedition nicht auf. Da Elemente im TEI-Markup nicht über allzu viele 
+		Ebenen verschachtelt sind, sollte dies auch für andere Fälle kein Problem darstellen.
 		</p>
 		<div class="panel-heading">
 				<h4>Extraktion der Textdaten der handShift-Abschnitte</h4>
 		</div>
 		<p>
 			Im folgenden Beispiel werden die Textdaten der handShift-Abschnitte ausglesen und in Textdateien geschrieben.
-			Dafür wird die Handshift-Klasse aus dem ersten Beispiel um eine Klasse zur Extraktion der Texte erweitert.
-			Des weiteren wird eine zweite Klasse HandShiftWriter implementiert mit der die zu verarbeitenden XML-Daten ausgewählt werden können
+			Dafür wird die Handshift-Klasse aus dem ersten Beispiel um eine Methode <code class="language-python">get_text</code> zur Extraktion der Texte erweitert.
+			Diese greift auf eine Hilfsmethode <code class="language-python">recursive_dfs</code> zurück.
+			Des weiteren wird eine zweite Klasse HandshiftWriter implementiert mit der die zu verarbeitenden XML-Daten ausgewählt werden können
 			und die Textdaten geschrieben werden.<br/>
+			Zusätzlich wird der Code zum Auslesen der XML-Dateien und dem Erstellen der Handshift-Objekte in einer weiteren Klasse HandshiftFactory ausgelagert.
 			Einige Besonderheiten bei der Extraktion der Daten ergeben sich aus den Implikationen des im voherigen Abschnitts besprochenenn lxml-Datenmodell,
-			sowie der Tatsache der nicht hierachischen Gliederung der handShift-Daten.
+			sowie der Tatsache der nicht hierachischen Gliederung der handShift-Daten.</br>
+			Um die Text auszulesen werden die line-Elemente aus dem content-Attribut der Handshift-Objekte betrachtet und deren Text ausgewertet. Hierbei wird auf die Verwendung von XPath verzichtet,
+			um die weiteren Möglichkeiten von lxml zu demonstrieren. Auch wird eine Funktionalität implementiert, die es ernmöglicht bestimmte Elemente bei diesem Schritt zu 
+			ignorieren, das heißt deren Text nicht zu extrahieren.<br/>
+			
+		
+
+
+
 		</p>
+		<details>
+			<summary>
+				<b>Quellcode</b>
+			</summary>
+			<div class="panel-body">
+		<pre><code class="language-python">
+from lxml import etree
+import glob
+
+class Namespace:
+	"""
+		Klasse um alle den Namen eines Namensraum zu kapseln
+	"""
+	def __init__(self, name, uri):  
+		"""
+		Konstruktor
+			:param name: Bezeichnung des Namesraum (wird später im namespace-dict von lxml als key verwendet)
+			:param uri: URI des Namenraum
+		"""   
+		self.name = name
+		self.uri = uri
+	
+	def __str__(self):
+		"""
+		Stringausgabe nach der Konvention für Namensraumprefixe von lxml.Element-Strings
+		"""
+		return '{' + self.uri + '}'
+	
+	def __add__(self, other):
+		"""
+		Verkettet den Namensraumprefix mit einem beliebigen String
+			:param other: String der mit dem Namesraumprefix verkettet werden soll.
+		"""
+		if not isinstance(other, str):
+			raise TypeError("Other has to be of type str")
+		return self.__str__() + other
+
+class Handshift:
+	"""
+		Klasse um alle Daten einer handShift-Einheit zu kapseln und zu verarbeiten.
+	"""
+	def __init__(self, source_doc, element_list):
+		"""
+		Konstruktor
+			:param source_doc: Name des Quelldokuments in dem die handShift-Einheit gefunden wurde
+			:param element_list: Liste aller Elemente der handShift-Einheit, das erste Element der Liste muss das handShift-Element sein, mit dem gestart wird
+		"""
+		# Namensräume der XML-Dokumente
+		self.tei_ns = Namespace('tei', 'http://www.tei-c.org/ns/1.0')
+		self.genetic_edition_ns = Namespace('geneticEdition', 'http://www.tei-c.org/ns/geneticEditions')
+		self.faustedition_ns = Namespace('faustedition', 'http://www.faustedition.net/ns')
+		
+		# Falls das erste Element der übergebenen Elementenliste kein handShift-Element ist wird ein Fehler geworfen
+		if element_list[0].tag != str(self.tei_ns) + 'handShift':
+			raise Exception('First element has to be tei:handShift')
+		
+		self.source_doc = source_doc
+		self.handShift = element_list[0]
+
+		# der Wert des new-Attributs hat die Form '#<writerid>_<styleid>' oder '#<writerid>_<styleid>_<stylesuffix>'
+		# weshalb hier die Raute weggesch_<styleid>nitten wird und der String beim ersten Unterstrich geteilt wird
+		self.new_attrib = self.handShift.attrib['new'][1:]
+		if "_" in self.new_attrib:
+			ids = self.new_attrib.split('_', 1)
+			self.writer_id = ids[0]
+			self.style_id = ids[1] 
+		else:
+			self.writer_id = self.new_attrib
+			self.style_id = ''        
+		self.content = element_list[1:]
+
+	def _recursive_dfs(self, node: etree.Element, exclude):
+
+		"""
+		Hilfsmethode:
+		Rekursive Generator-Funktion, durchläuft alle Nachkommen des (->Unterbaum) übergebenenen Elements und gibt den gefunden Text zurück.
+			:param node: Knoten der der ausgewertet werden soll
+			:param exclude: Liste mit tag Strings von Elementen deren Text nicht zurückgegeben werden soll    
+		"""
+		# falls das betrachtete Element in exclude enthalten ist wird der akutelle Funktionsaufruf abgebrochen.
+		# Dies führt dazu, dass auch alle Nachfahren des ignorierten Element nicht betrachtet werden.
+		# Dies kann gerade bei Element, wie choice sehr hilfreich sein 
+		if node.tag in exclude:
+			return
+
+		# Überprüfe, ob das betrachtete Element text enthält (vgl. Exkurs lxml-Textmodel)
+		if node.text:
+			yield node.text
+
+		# Überprüfe, ob das betrachtete Element Kindeelemente hat
+		children = list(node.iterchildren())
+		for child in children:
+			# falls ein Handshift-Elemtn betrachtet wird, kann dies nur das Ende des Abschnitts bedeuten,
+			# deshalb wird die Funktion beendet
+			if child.tag == self.tei_ns + 'handShift':
+				return
+			yield from self._recursive_dfs(child, exclude)
+
+		# Überprüfe, ob der Node text im Tail Attribut enthält (s.o.)
+		if node.tail:
+			yield node.tail
+
+	def get_text(self, exclude=[])->str:
+		"""
+		Gibt den Text, des handShifts Abschnitts zurück gibt. Dafür werden die ge:line Elemente ausgewertet
+			:param exclude=[]: optional, zusätzliche Elemente, deren Text und der Text deren Kinder nicht ausgewertet werden soll
+		"""
+		string = ''
+		# das handShift-Element, welches den Start des Abschnitts markiert wird gesondert behandelt,
+		# denn hier möchte man nicht den ganzen Text der Zeile in der es vorkommt bekommt sondern nur den Text der nach dem Auftreten des Elements kommt
+		# -> dieser findet im tail-Attribut des Elements und dem gesamten Text aller following-siblings
+		if self.handShift.tail:
+			string += self.handShift.tail
+		siblings = list(self.handShift.itersiblings())
+		# Iteration über alle following-siblings
+		for i in siblings:
+			# Auswerten der following-siblings
+			text = self._recursive_dfs(i, exclude)
+			string += ''.join(text)
+			# äquivalent zu:
+			# for s in text:
+			#     string += s
+			
+		# der restliche Inhalt des Abschnitts wird ausgewertet
+		for i in self.content:
+			if i.tag == self.genetic_edition_ns + 'line':
+				text = self._recursive_dfs(i, exclude)
+				string += ''.join(text)
+		return string         
+
+	
+	def __repr__(self):
+		"""
+		Eindeutige Stringrepräsentation der Objektinstanz
+		"""   
+		return super().__repr__() + '\n' + self.source_doc + '\n' + self.writer_id + '\n' + str(self.content)
+
+class HandshiftFactory:
+
+	def __init__(self):
+		# Definition der Namensräume
+		self.tei_ns = Namespace('tei', 'http://www.tei-c.org/ns/1.0')
+		self.genetic_edition_ns = Namespace('geneticEdition', 'http://www.tei-c.org/ns/geneticEditions')
+		self.faustedition_ns = Namespace('faustedition', 'http://www.faustedition.net/ns')
+		self.namespaces = {
+			self.tei_ns.name: self.tei_ns.uri,
+			self.genetic_edition_ns.name: self.genetic_edition_ns.uri,
+			self.faustedition_ns.name: self.faustedition_ns.uri
+		}
+	
+	def _search_xml_files(self, path:str)-> list:
+		import glob
+		
+		if path.endswith('/'):
+			path = path[:-1]
+
+		files = glob.glob(path + '/**/*.xml', recursive=True)
+		if not files:
+			raise Warning('No XML Files were found.')
+		return files
+
+	def run(self, path:str)->list:
+
+		"""
+		Dursucht alle xml-Dateien im angegebenen Pfad oder eine Einzeldatei nach Handshift Abschnitten und gibt als Liste diese zurück.
+			:param path: Pfad zum Ordner oder zu einer Datei
+		"""
+
+		if path.endswith('.xml'):
+			files = [path]
+		else:
+			files = self._search_xml_files(path)
+
+		result = []
+		for f in files:
+
+			# Im Falle von Fehlern bei Parsen der Dokumente wird eine Fehlermeldung ausgegeben und diese Datei wird übersprungen.
+			try:
+				doc = etree.parse(f)
+			except etree.XMLSyntaxError as e:
+				print('WARNING: Could not parse file {}.\n{}\n'.format(f, str(e)))
+				continue
+			
+			# überspringe den aktuellen Schleifendurchlauf, falls das Dokument kein handShift Element enthält
+			if not doc.xpath('//tei:handShift', namespaces=self.namespaces):
+				continue
+
+			# der doc_iterator enthält alle Elemente des Dokuments in der Textreihenfolge
+			doc_iterator = doc.iter()
+			
+			# das Done-Objekt wird der next-Funktion übergeben, damit diese keinen StopIteration Fehler wirft, wenn der Iterator "leer" ist
+			# dies hat den Vorteil, dass man keine Fehlerbehandlung implementieren muss
+			done = object()
+			
+			# das erste Element des Iteratorsa
+			elem = next(doc_iterator, done)
+			
+			# leere Liste wird später die handShift-Abschnitte als sublists enhalten
+			total = []
+
+			# in dieser Schleife wird durch das Element iteriert
+			while elem is not done:
+				# falls das aktuelle Element ein handShift-Element ist
+				if elem.tag == self.tei_ns + 'handShift':
+					# initialisiert eine die Liste content mit diesem Element
+					content = [elem]
+					elem = next(doc_iterator, done)
+					# diese Schleife wird solange durchlaufen, wie das aktuelle Element kein handShift-Element ist
+					# dabei wird das aktuelle Element an die content-Liste angehängt
+					while elem is not done and elem.tag != self.tei_ns + 'handShift':
+						content.append(elem)
+						elem = next(doc_iterator, done)
+					# handShift-Abschnitt wird dem Gesamtergebnis angehängt
+					total.append(content) 
+				else:
+					elem = next(doc_iterator, done)
+
+			for sublist in total:
+				result.append(Handshift(f, sublist))
+
+		return result
+	
+class HandshiftWriter:
+
+	@staticmethod
+	def write_txt(handshifts:list, destination:str, exclude=[]):
+		"""
+		Methode um den Text der Handshiftabschnitte als Txt-Datein zu speichern.
+		Muster der Dateinamen der Txtdatein ist: <dateiname des Quelldokuements>_<Writer_ID>_<Style_ID>.txt
+			:param handshifts: Liste mit den Hanshift-ELementen
+			:param destination: Pfad zum Ordner in den, die Txt-Dateiein geschrieben werden sollen
+		"""
+		import os
+		import re
+		if not os.path.isdir(destination):
+			os.mkdir(destination)
+		# dieser regulärer Ausdruck ermöglicht es Pfadangaben zu Datein in den Pfad, dem Dateinamen und die Dateiendung zu zerlegen.
+		# eine genaue Erklärung kann unter https://techtavern.wordpress.com/2009/04/06/regex-that-matches-path-filename-and-extension/ gefunden werden
+		regex = re.compile(r'^(.*/)?(?:$|(.+?)(?:(\.[^.]*$)|$))')
+		for handshift in handshifts:
+			source_doc_splitted = re.match(regex, handshift.source_doc)
+			source_doc_filename = source_doc_splitted.group(2)
+			filename = destination + '/' + '_'.join((source_doc_filename, handshift.writer_id, handshift.style_id)) + '.txt'
+			with open(filename, 'w', encoding='UTF-8') as f:
+				f.write(handshift.get_text(exclude))
+			
+			
+
+# Begin des eigentlichen Programmablaufs
+if __name__ == '__main__':
+
+	factory = HandshiftFactory()
+	result = factory.run('xml/transcript/agad_warszawa')
+	HandshiftWriter.write_txt(result, 'firstTest')
+				</code></pre>
+			</div>
+		</details>
 				</div>
 		<div class="panel-footer">
 			<a href="https://github.com/LennartKeller/faustedition_referat" target="_blank">Hier erhalten Sie die Datei mit dem vollständigen Code</a>

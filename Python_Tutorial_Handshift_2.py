@@ -63,14 +63,17 @@ class Handshift:
             self.style_id = ''        
         self.content = element_list[1:]
 
-    def recursive_dfs(self, node: etree.Element, exclude):
+    def _recursive_dfs(self, node: etree.Element, exclude):
 
         """
-        Generator-Funktion, durchläuft alle Nachkommen des (->Unterbaum) übergebenenen Elements und gibt den gefunden Text zurück.
+        Hilfsmethode:
+        Rekursive Generator-Funktion, durchläuft alle Nachkommen des (->Unterbaum) übergebenenen Elements und gibt den gefunden Text zurück.
             :param node: Knoten der der ausgewertet werden soll
             :param exclude: Liste mit tag Strings von Elementen deren Text nicht zurückgegeben werden soll    
         """
-
+        # falls das betrachtete Element in exclude enthalten ist wird der akutelle Funktionsaufruf abgebrochen.
+        # Dies führt dazu, dass auch alle Nachfahren des ignorierten Element nicht betrachtet werden.
+        # Dies kann gerade bei Element, wie choice sehr hilfreich sein 
         if node.tag in exclude:
             return
 
@@ -81,9 +84,11 @@ class Handshift:
         # Überprüfe, ob das betrachtete Element Kindeelemente hat
         children = list(node.iterchildren())
         for child in children:
+            # falls ein Handshift-Elemtn betrachtet wird, kann dies nur das Ende des Abschnitts bedeuten,
+            # deshalb wird die Funktion beendet
             if child.tag == self.tei_ns + 'handShift':
                 return
-            yield from self.recursive_dfs(child, exclude)
+            yield from self._recursive_dfs(child, exclude)
 
         # Überprüfe, ob der Node text im Tail Attribut enthält (s.o.)
         if node.tail:
@@ -95,15 +100,25 @@ class Handshift:
             :param exclude=[]: optional, zusätzliche Elemente, deren Text und der Text deren Kinder nicht ausgewertet werden soll
         """
         string = ''
+        # das handShift-Element, welches den Start des Abschnitts markiert wird gesondert behandelt,
+        # denn hier möchte man nicht den ganzen Text der Zeile in der es vorkommt bekommt sondern nur den Text der nach dem Auftreten des Elements kommt
+        # -> dieser findet im tail-Attribut des Elements und dem gesamten Text aller following-siblings
         if self.handShift.tail:
             string += self.handShift.tail
         siblings = list(self.handShift.itersiblings())
+        # Iteration über alle following-siblings
         for i in siblings:
-            text = self.recursive_dfs(i, exclude)
+            # Auswerten der following-siblings
+            text = self._recursive_dfs(i, exclude)
             string += ''.join(text)
+            # äquivalent zu:
+            # for s in text:
+            #     string += s
+            
+        # der restliche Inhalt des Abschnitts wird ausgewertet
         for i in self.content:
             if i.tag == self.genetic_edition_ns + 'line':
-                text = self.recursive_dfs(i, exclude)
+                text = self._recursive_dfs(i, exclude)
                 string += ''.join(text)
         return string         
 
@@ -139,6 +154,11 @@ class HandshiftFactory:
         return files
 
     def run(self, path:str)->list:
+
+        """
+        Dursucht alle xml-Dateien im angegebenen Pfad oder eine Einzeldatei nach Handshift Abschnitten und gibt als Liste diese zurück.
+            :param path: Pfad zum Ordner oder zu einer Datei
+        """
 
         if path.endswith('.xml'):
             files = [path]
@@ -198,6 +218,12 @@ class HandshiftWriter:
 
     @staticmethod
     def write_txt(handshifts:list, destination:str, exclude=[]):
+        """
+        Methode um den Text der Handshiftabschnitte als Txt-Datein zu speichern.
+        Muster der Dateinamen der Txtdatein ist: <dateiname des Quelldokuements>_<Writer_ID>_<Style_ID>.txt
+            :param handshifts: Liste mit den Hanshift-ELementen
+            :param destination: Pfad zum Ordner in den, die Txt-Dateiein geschrieben werden sollen
+        """
         import os
         import re
         if not os.path.isdir(destination):
@@ -218,5 +244,5 @@ class HandshiftWriter:
 if __name__ == '__main__':
 
     factory = HandshiftFactory()
-    result = factory.run('xml')
+    result = factory.run('xml/transcript/agad_warszawa')
     HandshiftWriter.write_txt(result, 'firstTest')
