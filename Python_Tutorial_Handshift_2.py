@@ -202,6 +202,8 @@ class HandshiftWriter:
         import re
         if not os.path.isdir(destination):
             os.mkdir(destination)
+        # dieser regulärer Ausdruck ermöglicht es Pfadangaben zu Datein in den Pfad, dem Dateinamen und die Dateiendung zu zerlegen.
+        # eine genaue Erklärung kann unter https://techtavern.wordpress.com/2009/04/06/regex-that-matches-path-filename-and-extension/ gefunden werden
         regex = re.compile(r'^(.*/)?(?:$|(.+?)(?:(\.[^.]*$)|$))')
         for handshift in handshifts:
             source_doc_splitted = re.match(regex, handshift.source_doc)
@@ -216,5 +218,5 @@ class HandshiftWriter:
 if __name__ == '__main__':
 
     factory = HandshiftFactory()
-    result = factory.run('./xml')
+    result = factory.run('xml')
     HandshiftWriter.write_txt(result, 'firstTest')
