@@ -109,13 +109,18 @@
 				</p>
 				<div class="panel-body">
 					Dieses Beispiel ist den digitalisierten Handschriften entnommen:
-					<pre><code>
-						 <zone type="main">
-						 	<textarea>
-                <ge:line xml:id="la" rend="right"><handShift new="#xx_bl_lat"/><fw type="pageNum">20</fw></ge:line>
-                <ge:line xml:id="lb" rend="centered">
-                    <handShift new="#jo_t_lat"/>Ein Gartenhäuschen</ge:line>
-                <ge:line xml:id="lc" rend="centered"><f:grLine f:orient="horiz" f:style="linear" hand="#jo_t_lat"/></ge:line>
+					<pre><code class="language-xml">
+						<textarea>
+<zone type="main">
+	<ge:line xml:id="la" rend="right">
+		<handShift new="#xx_bl_lat"/><fw type="pageNum">20</fw>
+	</ge:line>
+	<ge:line xml:id="lb" rend="centered">
+		<handShift new="#jo_t_lat"/>Ein Gartenhäuschen
+    </ge:line>
+    <ge:line xml:id="lc" rend="centered">
+    	<f:grLine f:orient="horiz" f:style="linear" hand="#jo_t_lat"/>
+    </ge:line>
 							</textarea>
 					</code></pre>
 					<pre><code class="language-xquery">//handShift[@new="#jo_t_lat"]//ancestor::ge:line</code></pre>
