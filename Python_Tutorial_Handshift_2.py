@@ -243,5 +243,8 @@ class HandshiftWriter:
 if __name__ == '__main__':
 
     factory = HandshiftFactory()
+    # der Ordner "xml/transcript/agad_warszawa" wird nun nach XML-Dateien durchsucht
+    # aus diesen werden dann die Handshift-Abschnitte extrahiert
     result = factory.run('xml/transcript/agad_warszawa')
-    HandshiftWriter.write_txt(result, 'firstTest')
+    # die Texte der Abschnitte werden nun in den Ordner "HandShifts" geschrieben
+    HandshiftWriter.write_txt(result, 'HandShits')
