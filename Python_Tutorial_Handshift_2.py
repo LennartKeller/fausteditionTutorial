@@ -169,7 +169,7 @@ class HandshiftFactory:
 
             # Im Falle von Fehlern bei Parsen der Dokumente wird eine Fehlermeldung ausgegeben und diese Datei wird übersprungen.
             try:
-                doc = etree.parse(f, remove_comments=True)
+                doc = etree.parse(f)
             except etree.XMLSyntaxError as e:
                 print('WARNING: Could not parse file {}.\n{}\n'.format(f, str(e)))
                 continue
