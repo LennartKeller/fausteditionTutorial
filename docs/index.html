@@ -776,7 +776,7 @@ print(list(get_text(doc)))
 </textarea>
 </code>
 </pre>
-		Den gesamten Text des XML-Dokuments, nebst der Zeilenumbrüche und Whitespaces, die wir vorher einfach ignoriert haben.
+		Den gesamten Text des XML-Dokuments, nebst der Zeilenumbrüche und Whitespaces, die wir vorher ignoriert haben.
 <pre>
 <code class="language-python">
 ['\n    ', 'Ich ', 'einen Satz.', '\n']
@@ -791,17 +791,17 @@ print(list(get_text(doc)))
 				<h4>Extraktion der Textdaten der handShift-Abschnitte</h4>
 		</div>
 		<p>
-			Im folgenden Beispiel werden die Textdaten der handShift-Abschnitte ausglesen und in Textdateien geschrieben.
+			Im folgenden Beispiel werden die Textdaten der handShift-Abschnitte ausgelesen und in Textdateien geschrieben.
 			Dafür wird die Handshift-Klasse aus dem ersten Beispiel um eine Methode <code class="language-python">get_text</code> zur Extraktion der Texte erweitert.
 			Diese greift auf eine Hilfsmethode <code class="language-python">recursive_dfs</code> zurück.
-			Des weiteren wird eine zweite Klasse HandshiftWriter implementiert mit der die zu verarbeitenden XML-Daten ausgewählt werden können
+			Des weiteren wird eine zweite Klasse HandshiftWriter implementiert, mit der die zu verarbeitenden XML-Daten ausgewählt werden können
 			und die Textdaten geschrieben werden.<br/>
 			Zusätzlich wird der Code zum Auslesen der XML-Dateien und dem Erstellen der Handshift-Objekte in einer weiteren Klasse HandshiftFactory ausgelagert.
 			Einige Besonderheiten bei der Extraktion der Daten ergeben sich aus den Implikationen des im voherigen Abschnitts besprochenenn lxml-Datenmodell,
 			sowie der Tatsache der nicht hierachischen Gliederung der handShift-Daten.</br>
-			Um die Text auszulesen werden die line-Elemente aus dem content-Attribut der Handshift-Objekte betrachtet und deren Text ausgewertet. Hierbei wird auf die Verwendung von XPath verzichtet,
-			um die weiteren Möglichkeiten von lxml zu demonstrieren. Auch wird eine Funktionalität implementiert, die es ernmöglicht bestimmte Elemente bei diesem Schritt zu 
-			ignorieren, das heißt deren Text nicht zu extrahieren.<br/>
+			Um die Texte auszulesen werden die line-Elemente aus dem content-Attribut der Handshift-Objekte betrachtet und deren Text ausgewertet. Hierbei wird auf die Verwendung von XPath verzichtet,
+			um die weiteren Möglichkeiten von lxml zu demonstrieren. Auch wird eine Funktionalität implementiert, die es ermöglicht bestimmte Elemente bei diesem Schritt zu 
+			ignorieren, also deren Text nicht zu extrahieren.<br/>
 			
 		
 
