@@ -247,4 +247,4 @@ if __name__ == '__main__':
     # aus diesen werden dann die Handshift-Abschnitte extrahiert
     result = factory.run('xml/transcript/agad_warszawa')
     # die Texte der Abschnitte werden nun in den Ordner "HandShifts" geschrieben
-    HandshiftWriter.write_txt(result, 'HandShits')
+    HandshiftWriter.write_txt(result, 'HandShifts')
