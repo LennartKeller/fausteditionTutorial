@@ -700,7 +700,7 @@ if __name__ == '__main__':
 			Eigenheiten des lxml-Datenmodels 
 			in Bezug auf Textdaten einige Worte zu widmen. Die XML-Spezifikation sieht eigentlich
 			vor Text, als Kindelemente (oder Blätter, um in der Baumterminolgie zu bleiben) der Elemente, die ihn enthalten, zu behandeln.<br/>
-			Angenommmen wir haben dieses einfach strukturierte XML-Dokuement:
+			Angenommmen wir haben dieses einfach strukturierte XML-Dokument:
 			<pre><code class="language-xml">
 <textarea>
 <dokument>
@@ -841,8 +841,8 @@ def get_text_without_comments(node):
 		yield node.tail
 </code>
 </pre>
-		Hier wird nur der Text des Kommentarknoten, also der eigentliche Kommentar ignoriert. Sonst wird das Element weiterhin wie alle anderen behandelt,
-		denn im <code class="language-python">tail</code> Attribut kann wiederum releveanter Text enthalten sein.
+		Hier wird nur der Text des Kommentarknoten, also der eigentliche Kommentar ignoriert. Sonst wird das Element nicht gesondert behandelt,
+		denn im <code class="language-python">tail</code> Attribut kann wiederum relevanter Text enthalten sein.
 		</p>
 		<div class="panel-heading">
 				<h4>Extraktion der Textdaten der handShift-Abschnitte</h4>
