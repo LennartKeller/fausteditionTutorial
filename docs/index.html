@@ -141,22 +141,19 @@
 					<h5>FLOWR-Ausdrücke</h5>
 				</div>
 				<p>
-					
+					Der wichtigste Bestandteil der XQuery Syntax sind die FLWOR-Ausdrücke, deren Bezeichnung sich aus den Anfangsbuchstaben von For-Schleife, Let-Variablendeklaration, Where-Bedingung, Order-Sortierreihenfolge und Return-Ausgabebefehl, zusammensetzt. 
+					Sie können mit geschweiften Klammern geschachtelt werden um komplexe Anfragen zu realisieren. 
 				</p>
 				<div class="panel-heading">
-					<h4>Schreiber und ihre Styles</h4>
+					<h5>Transformation - Anleitung für XQuery-Neulinge</h5>
 				</div>
-				Mit diesem Programm können Sie auf einen Blick in den jeweiligen Handschriften herausfinden, welche Schreiber es gibt und
-				welche Styles ihnen zugeordnet werden. Dies wird mit der Abfragesprache XQuery erreicht.
-				<br/>
-				<div class="panel-heading">Tutorial für Anfänger:</div>
 				<ol>
 					<li>
 						<p>Laden Sie die XML-Dateien
 							<a href="platzhalter" target="_blank">hier</a> herunter und verschieben Sie sie in einen leeren Ordner.</p>
 					</li>
 					<li>
-						<p>Laden Sie die Datei mit dem XQuery-Code
+						<p>Laden Sie eine Datei mit XQuery-Code
 							<a href="platzhalter" target="_blank">hier</a> herunter.</p>
 					</li>
 					<li>
@@ -169,7 +166,9 @@
 						<p>Erstellen Sie eine neue XQuery-Transformation.</p>
 					</li>
 					<li>
-						<p>Im Feld XML URL: suchen Sie ihre gewünschte Handschriften-Datei aus.</p>
+						<p>Wenn Sie die Query als Softcode über eine einzelne Datei laufen lassen wollen: Im Feld "XML URL": suchen Sie ihre gewünschte Handschriften-Datei aus.</p>
+						<p>Wenn Sie die Query als Hardcode über eine oder mehrere Dateien laufen lassen wollen: Feld "XML URL" leer lassen, der Pfad zu gewünschter Datei oder Verzeichnis muss direkt im Code der $repository-Variablen zugeordnet werden.</p>
+						<p>In beiden Fällen kann das Feld "XQuery URL" mit "${currentFileURL}" gefüllt werden, um die aktuell geöffnete Datei auszuführen.</p>
 					</li>
 					<li>
 						<p>Unter dem Reiter Ausgangsdatei: entfernen Sie den Haken bei „Als Sequenz darstellen“ und geben Sie den Speicherort
@@ -179,12 +178,18 @@
 						<p>Drücken Sie auf „OK“ und dann auf „Speichern und schließen“.</p>
 					</li>
 					<li>
-						<p>Drücken Sie Strg+Umschalt+T, um das Transformations-Szenario auszuwenden. Nun ist eine fertige HTML-Datei im von Ihnen
+						<p>Drücken Sie Strg+Umschalt+T, um das Transformations-Szenario anzuwenden. Nun ist eine fertige HTML-Datei im von Ihnen
 							ausgewählten Ordner verfügbar. Diese kann mit einem beliebigen Browser geöffnet werden.</p>
 					</li>
-
+					
 				</ol>
-
+			
+				<div class="panel-heading">
+					<h4>Schreiberhände und ihr Schreibmaterial</h4>
+				</div>
+				Im hier präsentierten Abfragebeispiel wird eine Liste mit zwei Gliederungsebenen erzeugt. Es finden sich alle beteiligten Schreiber in alphabetischer Sortierung. Unter jedem Schreiber sind die Kombinationen aus Schreibmaterial und Schriftart aufgelistet, die er oder sie verwendet hat. Die Kürzel für die jeweiligen Informationen werden als Attribute in die Listenelemente geschrieben. So sind sie für die Weiterverarbeitung als XML-Datei mit weiteren Abfragesprachen zugänglich, werden jedoch - als HTML-Datei transformiert - vor dem Benutzer verborgen, um die Übersichtlichkeit zu erhöhen. 
+				<br/>
+				
 				<br/>
 
 				<!-- XQUERY-CODE -->
