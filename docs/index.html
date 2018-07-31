@@ -172,11 +172,11 @@
 						<p>In beiden Fällen kann das Feld "XQuery URL" mit "${currentFileURL}" gefüllt werden, um die aktuell geöffnete Datei auszuführen.</p>
 					</li>
 					<li>
-						<p>Unter dem Reiter Ausgangsdatei: entfernen Sie den Haken bei „Als Sequenz darstellen“ und geben Sie den Speicherort
-							der HTML-Datei mit „.html“-Endung ein.</p>
+						<p>Unter dem Reiter Ausgangsdatei: entfernen Sie den Haken bei "Als Sequenz darstellen" und geben Sie den Speicherort
+							der HTML-Datei mit ".html"-Endung ein.</p>
 					</li>
 					<li>
-						<p>Drücken Sie auf „OK“ und dann auf „Speichern und schließen“.</p>
+						<p>Drücken Sie auf "OK" und dann auf "Speichern und schließen".</p>
 					</li>
 					<li>
 						<p>Drücken Sie Strg+Umschalt+T, um das Transformations-Szenario anzuwenden. Nun ist eine fertige HTML-Datei im von Ihnen
@@ -200,25 +200,45 @@
 						<b>Erläuterung des Quellcodes</b>
 					</summary>
 					<div class="panel-body">
-						Die Funktionen im Prolog sind von der angegebenen URL übernommen:
-						<pre><code class=„language-xquery“>declare namespace functx = "http://www.functx.com";</code></pre>
+						Der Prolog der XQuery Datei enthält Namespace-Deklarationen sowie Funktionen, die später vom Hauptteil aufgerufen werden können.
+						Benötigte Namespaces müssen an dieser Stelle festgelegt werden, Funktionen können jedoch in eine separate Datei ausgelagert werden.
+						Hier sind zunächst die Namespaces festgelegt, die in den XML-Dateien des Verzeichnisses vorkommen.
+						<pre><code class="language-xquery">declare namespace f = "http://www.faustedition.net/ns";
+declare namespace ge = "http://www.tei-c.org/ns/geneticEditions";
+</code></pre>
 					</div>
-					<div class="panel-body">Schneidet den Anfang eines strings aus, bis der übergebene regex matched:
-						<pre><code class=„language-xquery“>declare function functx:substring-before-match
-( $arg as xs:string? ,
-    $regex as xs:string )  as xs:string {
-
-   tokenize($arg,$regex)[1]
- } ;</code></pre>
+					<div class="panel-body">Wenn sich die Funktionen in der gleichen Datei befinden sollen wie das ausführbare Hauptmodul der XQuery, dann wird die URL des Namespaces direkt angegeben, und die Operation der Funktion im Prolog programmiert.
+						<pre><code class="language-xquery">declare namespace sns = "http://www.some_ns.com";
+							declare function sns:some-function ( param )
+							{ operation };
+						</code></pre>
+					</div>
+					<div class="panel-body">
+						Alternativ können alle Funktionen in einer Datei gespeichert werden, die eine Moduldeklaration im Prolog enthält, und keinen auszuführenden Abfragecode. Alle dort definierten Funktionen übernehmen den festgelegten Namespace.
+						<pre>module namespace my = "myModule";
+							declare function my:my-function (param) 
+							{ operation };
+						</pre>
+					</div>
+					<div class="panel-body">
+						Im Hauptmodul, in dem der eigentliche Abfragecode geschrieben ist, wird dann nur das davor erstellte Modul eingebettet, um mit dem entsprechenden Namespace alle darin festgelegten Funktionen abrufen zu können. 
+						<pre>import module namespace my = "myModule" at "/myPath/myModule.xquery"; </pre>
 					</div>
 					<!--copypaste-element:
 			<div class="panel-body">
 			Erklärung
 				<pre>Code</pre>
 			</div> -->
+					<div class="panel-body">Schneidet den Anfang eines strings aus, bis der übergebene regex matched:
+						<pre><code class="language-xquery">declare function functx:substring-before-match
+( $arg as xs:string? ,
+    $regex as xs:string )  as xs:string {
+
+   tokenize($arg,$regex)[1]
+ } ;</code></pre>
 					<div class="panel-body">
 						Schneidet das Ende eines strings aus, ab dem match mit dem übergebenem regex:
-						<pre><code class=„language-xquery“>declare function functx:substring-after-match
+						<pre><code class="language-xquery">declare function functx:substring-after-match
   ( $arg as xs:string? ,
     $regex as xs:string )  as xs:string? {
 
@@ -227,64 +247,64 @@
 					</div>
 					<div class="panel-body">
 						Liste mit allen handNote-Elementen wird in $list gespeichert:
-						<pre><code class=„language-xquery“>let $liste := //handNote</pre>
+						<pre><code class="language-xquery">let $liste := //handNote</pre>
 						</code>
 					</div>
 					<div class="panel-body">
 						Sammelt alle vorkommenden IDs der Schreiber aus den Elementen:
-						<pre><code class=„language-xquery“>let $wIDcollection := for $i in $list/functx:substring-before-match(data(@xml:id), '_') return $i</code></pre>
+						<pre><code class="language-xquery">let $wIDcollection := for $i in $list/functx:substring-before-match(data(@xml:id), '_') return $i</code></pre>
 					</div>
 					<div class="panel-body">
 						Eliminiert Dopplungen:
-						<pre><code class=„language-xquery“>let $wIDlist := for $i in fn:distinct-values($wIDcollection) return $i</code></pre>
+						<pre><code class="language-xquery">let $wIDlist := for $i in fn:distinct-values($wIDcollection) return $i</code></pre>
 					</div>
 					<div class="panel-body">
 						Iteriert über Liste der Schreiber-IDs:
-						<pre><code class=„language-xquery“>for $currentWID in $wIDlist </code></pre>
+						<pre><code class="language-xquery">for $currentWID in $wIDlist </code></pre>
 					</div>
 					<div class="panel-body">
 						Generiert einen &lt;p/>-Block für jeden Schreiber mit Attributen Typ und Schreiber-ID:
-						<pre><code class=„language-xquery“>&lt;p type="writer" xml:id="{$currentWID}"></code></pre>
+						<pre><code class="language-xquery">&lt;p type="writer" xml:id="{$currentWID}"></code></pre>
 					</div>
 					<div class="panel-body">
 						Liste mit allen Elementen, die sich auf den aktuellen Schreiber beziehen:
-						<pre><code class=„language-xquery“>let $writerList := for $i in $list where /functx:substring-before-match($i/data(@xml:id), '_')=$currentWID return $i </code></pre>
+						<pre><code class="language-xquery">let $writerList := for $i in $list where /functx:substring-before-match($i/data(@xml:id), '_')=$currentWID return $i </code></pre>
 					</div>
 					<div class="panel-body">
 						Liste mit den Schreibernamen aus allen relevanten Elementen:
-						<pre><code class=„language-xquery“>let $currentWriter := for $i in $writerList/functx:substring-before-match(text(), '\s\(') return $i</code></pre>
+						<pre><code class="language-xquery">let $currentWriter := for $i in $writerList/functx:substring-before-match(text(), '\s\(') return $i</code></pre>
 					</div>
 					<div class="panel-body">
 						Eliminiert Dopplungen:
-						<pre><code class=„language-xquery“>let $writer := for $i in fn:distinct-values($currentWriter) return $i</code></pre>
+						<pre><code class="language-xquery">let $writer := for $i in fn:distinct-values($currentWriter) return $i</code></pre>
 					</div>
 					<div class="panel-body">
 						Sammelt alle vorkommenden IDs der Style aus den aktuell relevanten Elementen:
-						<pre><code class=„language-xquery“>let $vIDcollection := for $i in $writerList/functx:substring-after-match(data(@xml:id), '_') return $i</code></pre>
+						<pre><code class="language-xquery">let $vIDcollection := for $i in $writerList/functx:substring-after-match(data(@xml:id), '_') return $i</code></pre>
 					</div>
 					<div class="panel-body">
 						Iteriert über Liste der Style-IDs:
-						<pre><code class=„language-xquery“>for $currentVID in $vIDcollection</code></pre>
+						<pre><code class="language-xquery">for $currentVID in $vIDcollection</code></pre>
 					</div>
 					<div class="panel-body">
 						Generiert einen Listeneintrag für jede Variante mit Attributen Typ und Style-ID:
-						<pre><code class=„language-xquery“>&lt;li type="variant" xml:id="{$currentVID}"></code></pre>
+						<pre><code class="language-xquery">&lt;li type="variant" xml:id="{$currentVID}"></code></pre>
 					</div>
 					<div class="panel-body">
 						Ordnet Elemente der aktuellen Style ID zu:
-						<pre><code class=„language-xquery“>let $variantList := for $i in $list where /functx:substring-after-match($i/data(@xml:id), '_')=$currentVID return $i</code></pre>
+						<pre><code class="language-xquery">let $variantList := for $i in $list where /functx:substring-after-match($i/data(@xml:id), '_')=$currentVID return $i</code></pre>
 					</div>
 					<div class="panel-body">
 						Liest die Stylebezeichnung aus Element aus:
-						<pre><code class=„language-xquery“>let $currentVariant := for $i in $variantList/functx:substring-before-match(functx:substring-after-match(text(), '\s+\('), '\)') return $i</code></pre>
+						<pre><code class="language-xquery">let $currentVariant := for $i in $variantList/functx:substring-before-match(functx:substring-after-match(text(), '\s+\('), '\)') return $i</code></pre>
 					</div>
 					<div class="panel-body">
 						Eliminiert Dopplungen:
-						<pre><code class=„language-xquery“>let $variant := fn:distinct-values($currentVariant)</code></pre>
+						<pre><code class="language-xquery">let $variant := fn:distinct-values($currentVariant)</code></pre>
 					</div>
 					<div class="panel-body">
 						Schreibt diese in den Listeneintrag:
-						<pre><code class=„language-xquery“>return $variant</code></pre>
+						<pre><code class="language-xquery">return $variant</code></pre>
 					</div>
 				</details>
 				<br/>
