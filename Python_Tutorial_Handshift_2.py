@@ -76,8 +76,8 @@ class Handshift:
         if node.tag in exclude:
             return
 
-        # Überprüfe, ob das betrachtete Element text enthält (vgl. Exkurs lxml-Textmodel)
-        if node.text:
+        # Überprüfe, ob das betrachtete Element text enthält (vgl. Exkurs lxml-Textmodel) und dieser kein Kommentar ist
+        if node.text and not isinstance(node, etree._Comment):
             yield node.text
 
         # Überprüfe, ob das betrachtete Element Kindelemente hat
@@ -169,7 +169,7 @@ class HandshiftFactory:
 
             # Im Falle von Fehlern bei Parsen der Dokumente wird eine Fehlermeldung ausgegeben und diese Datei wird übersprungen.
             try:
-                doc = etree.parse(f)
+                doc = etree.parse(f, remove_comments=True)
             except etree.XMLSyntaxError as e:
                 print('WARNING: Could not parse file {}.\n{}\n'.format(f, str(e)))
                 continue

@@ -801,7 +801,22 @@ print(list(get_text(doc)))
 		Dieser Algorithmus wird auch in abgewandelter Form im folgenden Beispiel eingesetzt.<br/> Zu beachten ist hier noch die Rekursionstiefe,
 		die die zulässige Anzahl von Selbstaufrufen einer Funktion beschränkt. Bei großen Datenmengen könnte dies zu Abbrüchen führen.
 		Dieser Fall trat aber bei einem Test mit allen Daten der Faustedition nicht auf. Da Elemente im TEI-Markup nicht über allzu viele 
-		Ebenen verschachtelt sind, sollte dies auch für andere Fälle kein Problem darstellen.
+		Ebenen verschachtelt sind, sollte dies auch für andere Fälle kein Problem darstellen.<br/>
+		Außerdem wird auch der Text von Kommentarknoten ausgegeben. Um dies zu verhindern muss der Alogrithmus um eine Bedingung erweitert werden:
+
+<pre>
+<code class="language-python">
+def get_text_without_comments(node):
+	if node.text and not isinstance(node, etree._Comment):
+			yield node.text
+	for child in node.iterchildren():
+			yield from get_text_without_comments(child)
+	if node.tail:
+		yield node.tail
+</code>
+</pre>
+		Hier wird nur der Text des Kommentarknoten, also der eigentliche Kommentar ignoriert. Sonst wird das Element weiterhin wie alle anderen behandelt,
+		denn im <code class="language-python">tail</code> Attribut kann wiederum releveanter Text enthalten sein.
 		</p>
 		<div class="panel-heading">
 				<h4>Extraktion der Textdaten der handShift-Abschnitte</h4>
@@ -909,9 +924,9 @@ class Handshift:
 		if node.tag in exclude:
 			return
 
-		# Überprüfe, ob das betrachtete Element text enthält (vgl. Exkurs lxml-Textmodel)
+		# Überprüfe, ob das betrachtete Element text enthält (vgl. Exkurs lxml-Textmodel) und dieser kein Kommentar ist
 		if node.text:
-			yield node.text
+			yield node.text and not isinstance(node, etree._Comment):
 
 		# Überprüfe, ob das betrachtete Element Kindelemente hat
 		children = list(node.iterchildren())
