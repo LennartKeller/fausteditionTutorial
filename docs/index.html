@@ -245,10 +245,10 @@
 				</div>
 				<p>Python ist eine frei verfügbare, flexible Programmiersprache, die relativ leicht zu erlernen ist. Obwohl sie als Skriptsprache
 					konzipiert wurde, unterstützt sie verschiedene Programierparadigmen, wie Objektorientierung oder funktioanle Elemente.
-					Da es auch möglich ist diese Stile zu mischen, wird ein hohes Maß ein Freiheit garantiert. Durch den Zwang sein Programm
-					durch Einrückungen zu strukturieren, wird die Lesbarkeit des Codes automatisch verbessert. Aufgrund dieser Eigenschaften
-					und der knappen und einfach zu erlernenden Syntax ist Python auch für Quereinsteiger interessant, da die Einstiegshürden
-					im Vergleich zu anderen Programmiersprachen sehr niedrig sind. Aufgrund ihrer Popularität existieren heute für beinahe
+					Da es auch möglich ist diese Stile zu mischen, wird ein hohes Maß ein Freiheit garantiert. Durch den Zwang den Quellcode
+					durch Einrückungen zu strukturieren, wird die Lesbarkeit automatisch verbessert. Aufgrund dieser Eigenschaften
+					und der knappen und einfach zu erlernenden Syntax ist Python auch für Quereinsteiger interessant. Die Einstiegshürden sind
+					im Vergleich zu anderen Programmiersprachen sehr niedrig. Angesichts ihrer Popularität existieren heute für beinahe
 					jeden Anwendungsfall (meist) Bibliotheken, die den Funktionsumfang der Sprache beinahe beliebig erweitern. Diese
 					lassen sich meist sehr einfach über den integrierten Packetmanager pip installieren.
 			
@@ -256,52 +256,54 @@
 				<div class="panel-heading">
 					<h5>Python und XML</h5>
 				</div>
-				<p>XML ist nicht nur im Umfeld der Digitalen Editionen ein etabliertes Format zum Datenaustausch. Deshalb bietet Python
-					verschiedene Wege XML-Daten auszulesen und zu schreiben. Zuerst zu erwähnen wären die DOM-, SAX- oder ElementTree-API, die Python
+				<p>XML ist nicht nur im Umfeld der Digitalen Editionen ein etabliertes Format zum Datenaustausch. Python bietet
+					verschiedene Wege XML-Daten auszulesen und zu schreiben. Zuerst zu erwähnen sind die DOM-, SAX- oder ElementTree-API, die Python
 					standardmäßig mitbringt.
 				</p>
 	
 				<p>Die DOM-API ermöglicht es ein XML-Dokument als Document-Object-Model abzubilden und zu verabeiten. Hierfür wird das gesamte
-					Dokument als Baum in den Hauptspeicher geladen. Dies hat den Vorteil, dass man zu jedem Zeitpunkt auf alle Daten zugreifen
+					Dokument als Baum in den Hauptspeicher geladen. Dies hat den Vorteil, dass zu jedem Zeitpunkt auf alle Daten zugegriffen werden
 					kann. Der Speicherbedarf dieses Ansatzes kann aber bei großen Datenmengen recht schnell wachsen. Der DOM-Standard ist
 					in verschiedenen Versionen vom W3C spezifiziert und diese Python Implementation unterstützt die Level 1 und 2 Spezifikationen.<br/>
 					Für weitere Informationen besuchen Sie die
 					<a href="https://docs.python.org/3.7/library/xml.dom.html">offizielle Python-Dokumentation</a>.
 				</p>
-				<p>In Fällen in denen der Speicherbedarf eine Rolle spielt kann es sinnvoller sein die SAX-API zu verwenden. SAX steht für
-					Simple API for XML und behandelt behandelt XML als einen Datenstrom der sequentiell eingelesen wird. Man kann nun bestimmte
-					Events definieren zum Beispiel das Auftreten eines bestimmten Elements, die während des Einlesens ausgelöst werden. Innerhalb
-					dieser Events findet dann die Verarbeitung statt. Ein Nachteil dieser Methode ist aber, dass man so den Kontext der Daten nur eingeschränkt, das bedeutet nur innerhalb des Events überblicken kann.
+				<p>In Fällen in denen der Speicherbedarf eine Rolle spielt, kann es sinnvoller sein die SAX-API zu verwenden. SAX steht für
+					Simple API for XML und behandelt XML als einen Datenstrom der sequentiell eingelesen wird. Man kann nun bestimmte
+					Events definieren, wie  zum Beispiel das Auftreten eines bestimmten Elements. Diese Events werden während des Einlesens ausgelöst. Innerhalb
+					dieser Events findet die eigentliche Datenverarbeitung statt. Ein Nachteil dieser Methode ist aber, dass man so den Kontext der Daten
+					nur eingeschränkt - das bedeutet nur innerhalb des Events - überblicken kann.
 					Dafür ist der Speicherbedarf geringer als beim DOM.<br/>
 					Für weitere Informationen besuchen Sie die <a href="https://docs.python.org/3.7/library/xml.sax.html">offizielle Python-Dokumentation</a>.
 				</p>
 				<p>Die ElementTree-API verfolgt das Ziel möglichst einfach und effizient in der Benutzung zu sein. Die Grundlage bilden zwei Datentypen: ElemenTree und Element.
 					Der ElementTree repräsentiert die Daten - ähnlich dem DOM - in einer Baumstruktur und stellt Methoden bereit durch diesen zu navigieren.
 					Konzeptuell ist dieser Datentyp und seine Funktionen an der Listen-Implementation von Python angelehnt.
-					Der Datentyp Element repräsentiert logischerweise die einzelnen Elemente des ElementTree. Hier versucht man sich an den Konventionen von der Dictionaries von Python zu orientieren.
+					Der Datentyp Element repräsentiert die einzelnen Elemente des ElementTree. Hier versucht man sich an den Konventionen von der Dictionaries von Python zu orientieren.
 					Des weiteren bietet die ElementTree-API eine funktionell stark eingeschränkte XPath-Implementation an, die eine Teilmenge der Syntax unterstützt.
-					Um die Performance zu verbessern sind Teile der API in C geschrieben.<br/>
+					Um die Performance zu verbessern, sind Teile der API in C geschrieben.<br/>
 					Für weitere Informationen besuchen Sie die <a href="https://docs.python.org/3.7/library/xml.etree.elementtree.html">offizielle Python-Dokumentation</a>.
 
 				</p>
 				<p>
 					Nachteile  der ersten beiden Ansätze sind neben der Tatsache, dass in beiden Fällen viel "Handarbeit" nötig ist, um Ergebnisse zu erzielen, die eher schlechte Verarbeitungsgeschwindigkeit <!-- Performance-->,
-					sowie das Fehlen XML spezifischer Features XPath und XSLT. Die ElementTree-API hingegen ist zwar schnell zu erlernen und man erzielt aufgrund der komfortablen Methoden schnell zu Ergebnissen
-					aber die eingeschränkte XPath-Unterstützung und das Fehlen weiterer XML-spezifischer Technologien wie XSLT lassen auch hier noch Spielraum zum Wünschen übrig.<br/>
+					sowie das Fehlen XML spezifischer Features XPath und XSLT. Die ElementTree-API hingegen ist zwar schnell zu erlernen und man erzielt aufgrund der komfortablen Methoden schnell Ergebnisse.
+					Die eingeschränkte XPath-Unterstützung und das Fehlen weiterer XML-spezifischer Technologien wie XSLT lassen aber in noch Verbesserungspotential erkennen.<br/>
 					Die Bibliothek lxml versucht hier Abhilfe zu schaffen. Sie verbindet die Performance der in C geschriebenen Bibliotheken libxml2 und libxslt, die intern verwendet werden, mit einer weitesgehenden
 					Kompatibilität zur benutzerfreundlichen ElementTree-API bei den bereitgestellten Methoden. Daneben unterstützt sie XSLT und XPath in Version 1.0.<br/>
 					In den folgenden Beispielen wird lxml verwendet, um die XML-Daten der Edition zu verarbeiten. Da sie nicht zum Standardumfang einer Python-Installation
-					gehört muss sie, falls nicht bereits vorhanden, über Kommandozeile mit <code class="language-bash">$ pip install lxml</code> installiert werden.
+					gehört, muss sie, falls nicht bereits vorhanden, über Kommandozeile mit <code class="language-bash">$ pip install lxml</code> installiert werden.
 				</p>
 				<br/>
 				<br/>
-				<div class="pangel-heading">
-					<h6>Vorbemerkung</h6>
+
+				<div class="panel-heading">
+					<h5>Vorbemerkung</h5>
+				</div>
 					<p>
 						In diesem Abschnitt ist ein Großteil der Erläuterungen in den mit # gekennzeichnteten Kommentaren direkt im Quellcode zu finden.<br/>
 						Dieser muss so nicht unterteilt werden, was dazu führt, dass die Einrückungen besser ersichtlich sind.
 					</p>
-				</div>
 				<div class="panel-heading">
 					<h5>Auslesen der Handshift-Daten</h5>
 				</div>
@@ -325,7 +327,7 @@
 					</li>
 					<li>Im letzten Schritt werden die Daten dann in die Ergebnis-Datei aus dem XQuery-Beispiel integriert.<br/>
 						⇒ Dies führt jedoch
-						dazu, dass diese Datei relativ groß und unübersichtlich wird. Jedoch kann damit gut zeigen, wie einfach sich mithilfe
+						dazu, dass diese Datei relativ groß und unübersichtlich wird. Jedoch kann damit gut gezeigt werden, wie einfach sich mithilfe
 						von lxml XML-Dateien modifizieren lassen.</li>
 				</ol>
 				<br/>
@@ -652,10 +654,11 @@ if __name__ == '__main__':
 
 				<div class="panel-body">
 					<div class="panel-heading"><h5>Exkurs: Besonderheiten des Datenmodel von lxml</h5></div>
-			Da im folgenden Abschnitt die Textdaten der handShift Abschnitte ausgelesen werden, ist es an dieser Stelle nötig den Eigenheiten des lxml-Datenmodels 
+			Da im folgenden Abschnitt die Textdaten der handShift Abschnitte ausgelesen werden, ist es an dieser Stelle nötig den 
+			Eigenheiten des lxml-Datenmodels 
 			in Bezug auf Textdaten einige Worte zu widmen. Die XML-Spezifikation sieht eigentlich
-			vor Text als Kindelemente (oder Blätter um in der Baumterminolgie zu bleiben) der Elemente die ihn enthalten zu behandeln.<br/>
-			Angenommmen wir haben dieses simple XML-Dokuement:
+			vor Text, als Kindelemente (oder Blätter, um in der Baumterminolgie zu bleiben) der Elemente, die ihn enthalten, zu behandeln.<br/>
+			Angenommmen wir haben dieses einfach strukturierte XML-Dokuement:
 			<pre><code class="language-xml">
 <textarea>
 <dokument>
@@ -702,9 +705,10 @@ Ich
 			Aber wo ist das Ende des Satzes geblieben?
 			lxml unterscheidet hier anhand der Position des Textes. 
 			Liegt dieser an erster Stelle, das bedeutet er tritt direkt nach dem Öffnen des Elements auf, wird er dem Element als Attribut <code>text</code> zu geordnet.
-			Enthält das Elternelement dieses Texts auch noch andere Elemente hinter denen weiterer Text liegt, wird dieser den Kindelementen zugordnet und ist als Attribut <code>tail</code>
+			Enthält das Elternelement dieses Texts auch noch andere Elemente, hinter denen weiterer Text liegt, wird dieser den Kindelementen
+			zugordnet und ist als Attribut <code>tail</code>
 			gespeichert.<br/>
-			Um an den ganzen Text zu kommen muss man also alle Geschwisterelemente des Textes bzw. alle Kinder des Element, das ihn enthält, auswerten.<br/>
+			Um an den gesamten Text zu kommen muss man also alle Geschwisterelemente des Textes bzw. alle Kinder des Elementes, das ihn enthält, auswerten.<br/>
 			In unserem Fall zum Beispiel so:
 <pre>
 <code class="language-python">
@@ -730,8 +734,8 @@ Ich
 einen Satz.
 </code>
 </pre>
-			Wird XML als Markup verwendet ist häufig vonnöten den Text eines Elements und all seiner Nachkommen in der richtigen Reihenfolge zu durchlaufen.
-			Eine Möglichkeit dies mit lxml zu bewerkstelligen ohne XPath zu verwenden, wäre die Verwendung eines rekursiven Algorithmus:
+			Wird XML als Markup verwendet ist es häufig vonnöten, den Text eines Elements und all seiner Nachkommen in der richtigen Reihenfolge zu durchlaufen.
+			Eine Möglichkeit dies mit lxml zu bewerkstelligen, ohne XPath zu verwenden, wäre die Verwendung eines rekursiven Algorithmus:
 <pre>
 <code class="language-python">
 def get_text(node):
@@ -745,8 +749,9 @@ def get_text(node):
 </pre>
 		Diese Funktion gibt ein Generator-Objekt zurück, dass den Text dann in der korrekten Reihenfolge ausgibt.
 		Dafür wird der Teilbaum des übergebenen Elements und all seiner Nachfahren ähnlich der <a href="https://de.wikipedia.org/wiki/Tiefensuche">Tiefensuche</a> durchlaufen.
-		Falls vorhanden wird der Inhalt des Text-Attributs des gerade betrachteten Elements ausgegeben, dann werden alle Nachfahren betrachtet. Erst wenn diese alle abgearbeitet
-		wurden, werden die tail-Attribute in aufsteigender Reihenfolge betrachtet und deren Inhalt ausgegeben. So wird die richtige Reihenfolge des Textes beibehalten.
+		Falls vorhanden wird der Inhalt des Text-Attributs des gerade betrachteten Elements ausgegeben, dann werden alle Nachfahren betrachtet.
+		Erst wenn diese vollständig abgearbeitet
+		worden sind, werden die tail-Attribute in aufsteigender Reihenfolge betrachtet und deren Inhalt ausgegeben. So wird die richtige Reihenfolge des Textes beibehalten.
 		In unserem Fall erhalten wir nach dem Ausführen von:
 <pre>
 <code class="language-python">
@@ -1053,11 +1058,12 @@ class HandshiftWriter:
 
 # Begin des eigentlichen Programmablaufs
 if __name__ == '__main__':
-
 	factory = HandshiftFactory()
-	result = factory.run('xml/transcript/agad_warszawa')
-	HandshiftWriter.write_txt(result, 'firstTest')
-		</textarea></code></pre>
+    # der Ordner "xml/transcript/agad_warszawa" wird nun nach XML-Dateien durchsucht
+    # aus diesen werden dann die Handshift-Abschnitte extrahiert
+    result = factory.run('xml/transcript/agad_warszawa')
+    # die Texte der Abschnitte werden nun in den Ordner "HandShifts" geschrieben
+    HandshiftWriter.write_txt(result, 'HandShifts')
 			</div>
 		</details>
 				</div>
