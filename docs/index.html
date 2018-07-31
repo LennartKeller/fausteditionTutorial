@@ -270,12 +270,12 @@
 				</p>
 				<p>In Fällen in denen der Speicherbedarf eine Rolle spielt kann es sinnvoller sein die SAX-API zu verwenden. SAX steht für
 					Simple API for XML und behandelt behandelt XML als einen Datenstrom der sequentiell eingelesen wird. Man kann nun bestimmte
-					Events definieren zum Beispiel beim Auftreten eines bestimmten Elements während des Einlesens ausgelöst werden. Innerhalb
+					Events definieren zum Beispiel das Auftreten eines bestimmten Elements, die während des Einlesens ausgelöst werden. Innerhalb
 					dieser Events findet dann die Verarbeitung statt. Ein Nachteil dieser Methode ist aber, dass man so den Kontext der Daten nur eingeschränkt, das bedeutet nur innerhalb des Events überblicken kann.
 					Dafür ist der Speicherbedarf geringer als beim DOM.<br/>
 					Für weitere Informationen besuchen Sie die <a href="https://docs.python.org/3.7/library/xml.sax.html">offizielle Python-Dokumentation</a>.
 				</p>
-				<p>Die ElementTree-API verfolgt das Ziel möglichst einfach und effizient  in der Benutzung zu sein. Die Grundlage bilden zwei Datentypen: ElemenTree und Element.
+				<p>Die ElementTree-API verfolgt das Ziel möglichst einfach und effizient in der Benutzung zu sein. Die Grundlage bilden zwei Datentypen: ElemenTree und Element.
 					Der ElementTree repräsentiert die Daten - ähnlich dem DOM - in einer Baumstruktur und stellt Methoden bereit durch diesen zu navigieren.
 					Konzeptuell ist dieser Datentyp und seine Funktionen an der Listen-Implementation von Python angelehnt.
 					Der Datentyp Element repräsentiert logischerweise die einzelnen Elemente des ElementTree. Hier versucht man sich an den Konventionen von der Dictionaries von Python zu orientieren.
@@ -550,7 +550,104 @@ if __name__ == '__main__':
 				</code></pre>
 					</div>
 				</details>
+				<br/>
+				<p>Das Ergebnis sieht nach dem Ausführen dieses Programms nun so aus:</p>
+				<br/>
+
+				<details>
+					<summary><b>Ergebnis</b></summary>
+					<div class="panel-body">
+						<pre>
+							<code class="language-html">
+<textarea>
+...
+<!--
+	Dies ist nur ein Auschnitt aus der Datei.
+	Dort wo verfügbar wurden die Angaben um den Pfad zu den Quelldokumenten erweitert.
+-->
+<p type="writer" wID="xx">
+	<h4>Fremde Hand #1</h4>
+	<ul>
+		<li type="variant" vID="bl">
+			pencil - Schrift
+			<ul type="file_list"></ul>
+		</li>
+		<li type="variant" vID="bl_gr">
+			pencil - greek
+			<ul type="file_list"></ul>
+		</li>
+		<li type="variant" vID="bl_lat">
+			pencil - latin
+			<ul type="file_list">
+				<li type="file">./xml/transcript/agad_warszawa/PL_1_354_13-16-24/0012.xml</li>
+				<li type="file">./xml/transcript/agad_warszawa/PL_1_354_13-16-24/0013.xml</li>
+				<li type="file">./xml/transcript/agad_warszawa/PL_1_354_13-16-24/0014.xml</li>
+				<li type="file">./xml/transcript/agad_warszawa/PL_1_354_13-16-24/0015.xml</li>
+				<li type="file">./xml/transcript/agad_warszawa/PL_1_354_13-16-24/0016.xml</li>
+				<li type="file">./xml/transcript/agad_warszawa/PL_1_354_13-16-24/0017.xml</li>
+				<li type="file">./xml/transcript/agad_warszawa/PL_1_354_13-16-24/0018.xml</li>
+				<li type="file">./xml/transcript/agad_warszawa/PL_1_354_13-16-24/0019.xml</li>
+				<li type="file">./xml/transcript/agad_warszawa/PL_1_354_13-16-24/0020.xml</li>
+				<li type="file">./xml/transcript/agad_warszawa/PL_1_354_13-16-24/0021.xml</li>
+				<li type="file">./xml/transcript/agad_warszawa/PL_1_354_13-16-24/0022.xml</li>
+				<li type="file">./xml/transcript/agad_warszawa/PL_1_354_13-16-24/0023.xml</li>
+				<li type="file">./xml/transcript/agad_warszawa/PL_1_354_13-16-24/0024.xml</li>
+			</ul>
+		</li>
+		<li type="variant" vID="blau">
+			blue pencil - Schrift
+			<ul type="file_list"></ul>
+		</li>
+		<li type="variant" vID="blau_gr">
+			blue pencil - greek
+			<ul type="file_list"></ul>
+		</li>
+		<li type="variant" vID="blau_lat">
+			blue pencil - latin
+			<ul type="file_list"></ul>
+		</li>
+		<li type="variant" vID="ro">
+			ruddle - Schrift
+			<ul type="file_list"></ul>
+		</li>
+		<li type="variant" vID="ro_lat">
+			ruddle - latin
+			<ul type="file_list"></ul>
+		</li>
+		<li type="variant" vID="t">
+			ink - Schrift
+			<ul type="file_list"></ul>
+		</li>
+		<li type="variant" vID="t_gr">
+			ink - greek
+			<ul type="file_list"></ul>
+		</li>
+		<li type="variant" vID="t_lat">
+			ink - latin
+			<ul type="file_list"></ul>
+		</li>
+		<li type="variant" vID="tr">
+			ink red/brown - Schrift
+			<ul type="file_list"></ul>
+		</li>
+		<li type="variant" vID="tr_gr">
+			ink red/brown - greek
+			<ul type="file_list"></ul>
+		</li>
+		<li type="variant" vID="tr_lat">
+			ink red/brown - latin
+			<ul type="file_list"></ul>
+		</li>
+	</ul>
+</p>
+...
+</textarea>
+							</code>
+						</pre>
+					</div>
+				</details>
 			</div>
+			<br/>
 
 
 				<div class="panel-body">
