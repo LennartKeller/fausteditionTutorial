@@ -105,28 +105,44 @@
 					Durch den Aufbau dieser Sprache kann (wenigstens) alles gefunden werden was mit XPath gefunden werden kann. Dabei kann XPath bereits genutzt werden, um in einzelnen XML-Dateien einfach nach Inhalten zu suchen. Außerdem wird anhand der Funktionsweise von XPath gleichzeitig das Strukturkonzept von XML-Dateien klarer. 
 				</p>
 				<p>
-					Sobald XPath ins Spiel kommt, muss die metaphorische Bezeichnung "Baum"-struktur der Dateien auf "Stammbaum"-struktur erweitert werden. Denn die Bezeichnungen der Verhältnisse zwischen einzelnen Bestandteilen bedienen sich eben diesem Vokabular. So ist alles innerhalb des einzigartigen root-Elements ein Nachkommen (descendant) desselben. Jeder Nachkommen kann wiederum weitere Kinder oder weiter entfernte Nachkommen haben. Kinder mit dem selben Elternknoten sind Geschwister (following-siblings). Von jedem Element im Dokument lässt sich über seine Vorfahren (ancestor) wieder die Wurzel erreichen. Dies ermöglicht beinahe uneingeschränkte Navigation zwischen den Knoten und ihren Inhalten. Einen vollständigen Überblick über die Funktionsweise von XPath erhalten Sie <a href="https://www.w3schools.com/xml/xpath_intro.asp" target="_blank">hier</a>. 
+					Sobald XPath ins Spiel kommt, muss die metaphorische Bezeichnung "Baum"-struktur der Dateien auf "Stammbaum"-struktur erweitert werden. Denn die Bezeichnungen der Verhältnisse zwischen einzelnen Bestandteilen bedienen sich eben diesem Vokabular. 
+					So ist alles innerhalb des einzigartigen root-Elements ein Nachkommen (descendant) desselben. 
+					Jeder Nachkommen kann wiederum weitere Kinder oder weiter entfernte Nachkommen haben. 
+					Kinder mit dem selben Elternknoten sind Geschwister (following-siblings). 
+					Von jedem Element im Dokument lässt sich über seine Vorfahren (ancestor) wieder die Wurzel erreichen. 
+					Dies ermöglicht beinahe uneingeschränkte Navigation zwischen den Knoten und ihren Inhalten. 
+					Einen vollständigen Überblick über die Funktionsweise von XPath erhalten Sie <a href="https://www.w3schools.com/xml/xpath_intro.asp" target="_blank">hier</a>.  
 				</p>
 				<div class="panel-body">
-					Dieses Beispiel ist den digitalisierten Handschriften entnommen:
+					Dieser Auszug einer XML-Datei ist den digitalisierten Handschriften entnommen:
 					<pre><code class="language-xml">
 						<textarea>
-<zone type="main">
-	<ge:line xml:id="la" rend="right">
-		<handShift new="#xx_bl_lat"/><fw type="pageNum">20</fw>
-	</ge:line>
-	<ge:line xml:id="lb" rend="centered">
-		<handShift new="#jo_t_lat"/>Ein Gartenhäuschen
-    </ge:line>
-    <ge:line xml:id="lc" rend="centered">
-    	<f:grLine f:orient="horiz" f:style="linear" hand="#jo_t_lat"/>
-    </ge:line>
+							
+<ge:line xml:id="la" rend="right">
+	<handShift new="#xx_bl_lat"/>
+	<fw type="pageNum">20</fw>
+</ge:line>
+<ge:line xml:id="lb" rend="centered">
+	<handShift new="#jo_t_lat"/>Ein Gartenhäuschen
+</ge:line>
+<ge:line xml:id="lc" rend="centered">
+	<f:grLine f:orient="horiz" f:style="linear" hand="#jo_t_lat"/>
+</ge:line>
 							</textarea>
-					</code></pre>
+					</code></pre></div>
+				<div class="panel-body">
+					Mit diesem XPath Ausdruck werden zuerst alle Nachkommen der Wurzel gesucht, die ein handShift-Element sind.
+					Davon werden die ausgewählt, deren new-Attribut das Kürzel für "John - Tinte - Latein" beeinhalten.
+					Von hieraus wird zu dem Vorfahrenelement navigiert, das ein ge:line-Element ist.
 					<pre><code class="language-xquery">//handShift[@new="#jo_t_lat"]//ancestor::ge:line</code></pre>
-						
-					</div>
-				
+				</div>
+				<div class="panel-body">Der Inhalt des gefundenen Elements wird ausgegeben: "Ein Gartenhäuschen"</div>
+				<div class="panel-heading">
+					<h5>FLOWR-Ausdrücke</h5>
+				</div>
+				<p>
+					
+				</p>
 				<div class="panel-heading">
 					<h4>Schreiber und ihre Styles</h4>
 				</div>
