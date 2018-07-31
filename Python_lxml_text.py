@@ -33,7 +33,7 @@ def get_text_without_comments(node):
 
 doc = etree.fromstring("""
 <dokument>
-    <zeile>Ich <verwischt/><!-- TODO: Überprüfen --><?Hallo?>einen Satz.</zeile>
+    <zeile>Ich <verwischt/><!-- TODO: Überprüfen -->einen Satz.</zeile>
 </dokument>
 """)
 
