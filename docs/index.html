@@ -69,9 +69,9 @@
 				<p>Um die Einarbeitung in die XML-Dateien zu vereinfachen, soll Ihnen dies Tutorial zeigen, wie Sie mit ihnen umgehen und anhand dessen zielführend ihre spezifischen Fragen beantworten können. Das geschieht mithilfe von zwei Beispiel-Lösungen. Dort werden Ihnen die Programmcodes, Erläuterungen dazu, Hintergrundinformationen zu den verwendeten Sprachen und Schwierigkeiten bei der Problemlösung geboten. Momentan stehen Ihnen die Codes zu einer XQuery- und einer Python-Variante zur Verfügung. Weitere Codes werden folgen.</p>
 				<div class="panel-heading"><h4>Voraussetzungen:</h4></div>
 				<p>Um Forschungsfragen selbständig zu klären, werden die zu erforschenden Objekte benötigt. Diese Handschriftendaten finden Sie <a href="platzhalter" target="_blank">hier</a>. Dort sind sowohl die textuellen als auch die dokumentarischen Transkripte aufgeführt. Die Dateien können einzeln oder zusammen heruntergeladen werden. Um mit den Handschriften arbeiten zu können, braucht es ein Verständnis für die Datenstruktur.</p>
-				<p>Ausgehend vom dokumentarischen Transkript kann eine grobe Übersicht zur ersten Orientierung gegeben werden. Es finden sich im TEI-Header allgemeine Informationen über Titel (titleStmt), Veröffentlichung (publicationStmt), Quellennachweis (sourceDesc) und die Handschriften mit ihren IDs im "handNotes"-Element. Das "xml:id"-Attribut innerhalb der "handNote"-Tags stellt die abgekürzte Form der Varianten dar. Beispielsweise steht "g_tr_lat" für den Schreiber (g/Goethe), das verwendete Schreibmittel (t/Tinte), die Schriftfarbe (r/rotbraun) und die Schriftart (lat/Latein). Auf diese handNotes wird weiter unten, wo der Text steht, mithilfe des handShift-Elements refereiert. Nach Varianten werden die Änderungen, Änderungszeiten und die Zuständigen dafür aufgeführt. Zwischen TEI-Header und dem Dokument wird das Faksimile mit der entsprechenden URL angezeigt. Im "ge:document"-Element wird der Text dargestellt, unterteilt in vier Zonen. Die "zone"-Elemente beinhalten Attribute, die die Lage des Textes grob bestimmen. Diese Attribute folgen dem Schema "f:Richtung1-Richtung2", wobei "Richtung2" die auschlaggebende Richtung ist. Steht in einer "zone" also das Attribut "f:bottom-top", so liegt der Text innerhalb dieser Zone oben. Der Haupttext wird durch das Attribut "type="main"" definiert. "ge:line" zeigt Zeilen an. Innerhalb dieses Elementes stellt das "rend"-Attribut die Ausrichtung dar. Zum vertieften Verständnis der Datenstruktur dient die Dokumentation. Da diese sehr umfangreich ist, kann sie hier nicht in voller Gänze dargestellt werden. Die vollständige Dokumentation der XML-Datenstruktur kann <a href="platzhalter" target="_blank">hier</a> nachgelesen werden.</p>
-				<p>Für das XQuery-Beispiel brauchen Sie Folgendes: xQuery Editor (z.B. <a href="https://www.oxygenxml.com/xml_editor/download_oxygenxml_editor.html">oXygen</a>), Transformationsprozessor (z.B. Saxon; in Oxygen implementiert)</p>
-				<>Für das Python-Beispiel brauchen Sie Folgendes: <a href="https://www.python.org/downloads/" target="_blank">Python</a>, lxml-Bibliothek (pip install lxml)
+				<p>Ausgehend vom dokumentarischen Transkript kann eine grobe Übersicht zur ersten Orientierung gegeben werden. Es finden sich im TEI-Header allgemeine Informationen über Titel (titleStmt), Veröffentlichung (publicationStmt), Quellennachweis (sourceDesc) und die Handschriften mit ihren IDs im "handNotes"-Element. Das "xml:id"-Attribut innerhalb der "handNote"-Tags stellt die abgekürzte Form der Styles dar. Beispielsweise steht "g_tr_lat" für den Schreiber (g/Goethe), das verwendete Schreibmittel (t/Tinte), die Schriftfarbe (r/rotbraun) und die Schriftart (lat/Latein). Auf diese handNotes wird weiter unten, wo der Text steht, mithilfe des handShift-Elements refereiert. Nach Styles werden die Änderungen, Änderungszeiten und die Zuständigen dafür aufgeführt. Zwischen TEI-Header und dem Dokument wird das Faksimile mit der entsprechenden URL angezeigt. Im "ge:document"-Element wird der Text dargestellt, unterteilt in vier Zonen. Die "zone"-Elemente beinhalten Attribute, die die Lage des Textes grob bestimmen. Diese Attribute folgen dem Schema "f:Richtung1-Richtung2", wobei "Richtung2" die auschlaggebende Richtung ist. Steht in einer "zone" also das Attribut "f:bottom-top", so liegt der Text innerhalb dieser Zone oben. Der Haupttext wird durch das Attribut "type="main"" definiert. "ge:line" zeigt Zeilen an. Innerhalb dieses Elementes stellt das "rend"-Attribut die Ausrichtung dar. Zum vertieften Verständnis der Datenstruktur dient die Dokumentation. Da diese sehr umfangreich ist, kann sie hier nicht in voller Gänze dargestellt werden. Die vollständige Dokumentation der XML-Datenstruktur kann <a href="platzhalter" target="_blank">hier</a> nachgelesen werden.</p>
+				<p>Für das XQuery-Beispiel brauchen Sie Folgendes: XQuery Implementierung (z.B. Saxon, eXist, BaseX, Zorba etc.). Aufgrund der vielfältigen Einsatzmöglichkeiten bezüglich XML-Dateien wird hier auf den oXygen XML Editor verwiesen, in den Saxon bereits eingebettet ist. <a href="https://www.oxygenxml.com/xml_editor/download_oxygenxml_editor.html">oXygen</a></p>
+				<p>Für das Python-Beispiel brauchen Sie Folgendes: <a href="https://www.python.org/downloads/" target="_blank">Python</a>, lxml-Bibliothek (pip install lxml)</p>
 			</div>
 			</div>
 
@@ -86,10 +86,22 @@
 			</div>
 			<div class="container">
 				<div class="panel-heading">
-					<h4>Schreiber und ihre Varianten</h4>
+					<h4>Warum XQuery?</h4>
+				</div>
+					<p>
+						Wenn es darum geht, spezifische Informationen aus einer Sammlung an XML-Dateien zu extrahieren, dann ist XQuery meistens erste Wahl. Die Abfragesprache für XML arbeitet mit XPath Ausdrücken als Grundlage und unterstützt somit die Baumstruktur der XML-Dateien nativ. Als XML Query Language ist XQuery 1.0 seit 2007, XQuery 3.0 seit 2014 die W3C Empfehlung, und kann mittlerweile in über 60 Implementierungen genutzt werden. Sie sind auf die verschiedensten Anwendungsbereiche ausgerichtet und bieten jeweils eigene Vorzüge. Wer nach etwas bestimmtem sucht, kann sich unter <a href="http://www.w3.org/XML/Query/#implementations" target="_blank">www.w3c.org</a> einen Überblick verschaffen.		 
+					</p>
+				<div class="panel-heading">
+					<h4>Funktionsweise von XQuery</h4>
+				</div>
+				<p>
+					Durch den Aufbau dieser Sprache kann (wenigstens) alles gefunden werden was mit XPath gefunden werden kann. Deshalb nun eine kleine Vertiefung zu XPath. 
+				</p>
+				<div class="panel-heading">
+					<h4>Schreiber und ihre Styles</h4>
 				</div>
 				Mit diesem Programm können Sie auf einen Blick in den jeweiligen Handschriften herausfinden, welche Schreiber es gibt und
-				welche Varianten ihnen zugeordnet werden. Dies wird mit der Abfragesprache XQuery erreicht.
+				welche Styles ihnen zugeordnet werden. Dies wird mit der Abfragesprache XQuery erreicht.
 				<br/>
 				<div class="panel-heading">Tutorial für Anfänger:</div>
 				<ol>
@@ -194,23 +206,23 @@
 						<pre><code class=„language-xquery“>let $writer := for $i in fn:distinct-values($currentWriter) return $i</code></pre>
 					</div>
 					<div class="panel-body">
-						Sammelt alle vorkommenden IDs der Varianten aus den aktuell relevanten Elementen:
+						Sammelt alle vorkommenden IDs der Style aus den aktuell relevanten Elementen:
 						<pre><code class=„language-xquery“>let $vIDcollection := for $i in $writerList/functx:substring-after-match(data(@xml:id), '_') return $i</code></pre>
 					</div>
 					<div class="panel-body">
-						Iteriert über Liste der Varianten-IDs:
+						Iteriert über Liste der Style-IDs:
 						<pre><code class=„language-xquery“>for $currentVID in $vIDcollection</code></pre>
 					</div>
 					<div class="panel-body">
-						Generiert einen Listeneintrag für jede Variante mit Attributen Typ und Varianten-ID:
+						Generiert einen Listeneintrag für jede Variante mit Attributen Typ und Style-ID:
 						<pre><code class=„language-xquery“>&lt;li type="variant" xml:id="{$currentVID}"></code></pre>
 					</div>
 					<div class="panel-body">
-						Ordnet Elemente der aktuellen Varianten ID zu:
+						Ordnet Elemente der aktuellen Style ID zu:
 						<pre><code class=„language-xquery“>let $variantList := for $i in $list where /functx:substring-after-match($i/data(@xml:id), '_')=$currentVID return $i</code></pre>
 					</div>
 					<div class="panel-body">
-						Liest die Variantenbezeichnung aus Element aus:
+						Liest die Stylebezeichnung aus Element aus:
 						<pre><code class=„language-xquery“>let $currentVariant := for $i in $variantList/functx:substring-before-match(functx:substring-after-match(text(), '\s+\('), '\)') return $i</code></pre>
 					</div>
 					<div class="panel-body">
