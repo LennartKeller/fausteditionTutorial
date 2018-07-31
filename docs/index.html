@@ -4,6 +4,8 @@
 <head>
 	<meta charset="utf-8">
 	<title>Faustedition Tutorial</title>
+	<link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -897,10 +899,10 @@ class Handshift:
 		if node.text:
 			yield node.text
 
-		# Überprüfe, ob das betrachtete Element Kindeelemente hat
+		# Überprüfe, ob das betrachtete Element Kindelemente hat
 		children = list(node.iterchildren())
 		for child in children:
-			# falls ein Handshift-Elemtn betrachtet wird, kann dies nur das Ende des Abschnitts bedeuten,
+			# falls ein Handshift-Element betrachtet wird, kann dies nur das Ende des Abschnitts bedeuten,
 			# deshalb wird die Funktion beendet
 			if child.tag == self.tei_ns + 'handShift':
 				return
