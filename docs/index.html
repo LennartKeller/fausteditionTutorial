@@ -824,11 +824,7 @@ print(list(get_text(doc)))
 ['\n    ', 'Ich ', 'einen Satz.', '\n']
 </code>
 </pre>
-		Dieser Algorithmus wird auch in abgewandelter Form im folgenden Beispiel eingesetzt.<br/> Zu beachten ist hier noch die Rekursionstiefe,
-		die die zulässige Anzahl von Selbstaufrufen einer Funktion beschränkt. Bei großen Datenmengen könnte dies zu Abbrüchen führen.
-		Dieser Fall trat aber bei einem Test mit allen Daten der Faustedition nicht auf. Da Elemente im TEI-Markup nicht über allzu viele 
-		Ebenen verschachtelt sind, sollte dies auch für andere Fälle kein Problem darstellen.<br/>
-		Außerdem wird auch der Text von Kommentarknoten ausgegeben. Um dies zu verhindern muss der Alogrithmus um eine Bedingung erweitert werden:
+In dieser Form wird jedoch auch der Text von Kommentarknoten ausgegeben. Um dies zu verhindern muss der Alogrithmus um eine Bedingung erweitert werden:
 
 <pre>
 <code class="language-python">
@@ -844,6 +840,11 @@ def get_text_without_comments(node):
 		Hier wird nur der Text des Kommentarknoten, also der eigentliche Kommentar ignoriert. Sonst wird das Element nicht gesondert behandelt,
 		denn im <code class="language-python">tail</code> Attribut kann wiederum relevanter Text enthalten sein.
 		</p>
+		Dieser Algorithmus wird auch in abgewandelter Form im folgenden Beispiel eingesetzt.<br/> Zu beachten ist hier noch die Rekursionstiefe,
+		die die zulässige Anzahl von Selbstaufrufen einer Funktion beschränkt. Bei großen Datenmengen könnte dies zu Abbrüchen führen.
+		Dieser Fall trat aber bei einem Test mit allen Daten der Faustedition nicht auf. Da Elemente im TEI-Markup nicht über allzu viele 
+		Ebenen verschachtelt sind, sollte dies auch für andere Fälle kein Problem darstellen.<br/>
+
 		<div class="panel-heading">
 				<h4>Extraktion der Textdaten der handShift-Abschnitte</h4>
 		</div>
