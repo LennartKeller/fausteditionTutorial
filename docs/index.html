@@ -4,6 +4,8 @@
 <head>
 	<meta charset="utf-8">
 	<title>Faustedition Tutorial</title>
+	<link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -69,9 +71,15 @@
 				<p>Um die Einarbeitung in die XML-Dateien zu vereinfachen, soll Ihnen dies Tutorial zeigen, wie Sie mit ihnen umgehen und anhand dessen zielführend ihre spezifischen Fragen beantworten können. Das geschieht mithilfe von zwei Beispiel-Lösungen. Dort werden Ihnen die Programmcodes, Erläuterungen dazu, Hintergrundinformationen zu den verwendeten Sprachen und Schwierigkeiten bei der Problemlösung geboten. Momentan stehen Ihnen die Codes zu einer XQuery- und einer Python-Variante zur Verfügung. Weitere Codes werden folgen.</p>
 				<div class="panel-heading"><h4>Voraussetzungen:</h4></div>
 				<p>Um Forschungsfragen selbständig zu klären, werden die zu erforschenden Objekte benötigt. Diese Handschriftendaten finden Sie <a href="platzhalter" target="_blank">hier</a>. Dort sind sowohl die textuellen als auch die dokumentarischen Transkripte aufgeführt. Die Dateien können einzeln oder zusammen heruntergeladen werden. Um mit den Handschriften arbeiten zu können, braucht es ein Verständnis für die Datenstruktur.</p>
+<<<<<<< HEAD
 				<p>Ausgehend vom dokumentarischen Transkript kann eine grobe Übersicht zur ersten Orientierung gegeben werden. Es finden sich im TEI-Header allgemeine Informationen über Titel (titleStmt), Veröffentlichung (publicationStmt), Quellennachweis (sourceDesc) und die Handschriften mit ihren IDs im "handNotes"-Element. Das "xml:id"-Attribut innerhalb der "handNote"-Tags stellt die abgekürzte Form der Styles dar. Beispielsweise steht "g_tr_lat" für den Schreiber (g/Goethe), das verwendete Schreibmittel (t/Tinte), die Schriftfarbe (r/rotbraun) und die Schriftart (lat/Latein). Auf diese handNotes wird weiter unten, wo der Text steht, mithilfe des handShift-Elements refereiert. Nach Styles werden die Änderungen, Änderungszeiten und die Zuständigen dafür aufgeführt. Zwischen TEI-Header und dem Dokument wird das Faksimile mit der entsprechenden URL angezeigt. Im "ge:document"-Element wird der Text dargestellt, unterteilt in vier Zonen. Die "zone"-Elemente beinhalten Attribute, die die Lage des Textes grob bestimmen. Diese Attribute folgen dem Schema "f:Richtung1-Richtung2", wobei "Richtung2" die auschlaggebende Richtung ist. Steht in einer "zone" also das Attribut "f:bottom-top", so liegt der Text innerhalb dieser Zone oben. Der Haupttext wird durch das Attribut "type="main"" definiert. "ge:line" zeigt Zeilen an. Innerhalb dieses Elementes stellt das "rend"-Attribut die Ausrichtung dar. Zum vertieften Verständnis der Datenstruktur dient die Dokumentation. Da diese sehr umfangreich ist, kann sie hier nicht in voller Gänze dargestellt werden. Die vollständige Dokumentation der XML-Datenstruktur kann <a href="platzhalter" target="_blank">hier</a> nachgelesen werden.</p>
 				<p>Für das XQuery-Beispiel brauchen Sie Folgendes: XQuery Implementierung (z.B. Saxon, eXist, BaseX, Zorba etc.). Aufgrund der vielfältigen Einsatzmöglichkeiten bezüglich XML-Dateien wird hier auf den oXygen XML Editor verwiesen, in den Saxon bereits eingebettet ist. <a href="https://www.oxygenxml.com/xml_editor/download_oxygenxml_editor.html">oXygen</a></p>
 				<p>Für das Python-Beispiel brauchen Sie Folgendes: <a href="https://www.python.org/downloads/" target="_blank">Python</a>, lxml-Bibliothek (pip install lxml)</p>
+=======
+				<p>Ausgehend vom dokumentarischen Transkript kann eine grobe Übersicht zur ersten Orientierung gegeben werden. Es finden sich im TEI-Header allgemeine Informationen über Titel (titleStmt), Veröffentlichung (publicationStmt), Quellennachweis (sourceDesc) und die Handschriften mit ihren IDs im "handNotes"-Element. Das "xml:id"-Attribut innerhalb der "handNote"-Tags stellt die abgekürzte Form der Varianten dar. Beispielsweise steht "g_tr_lat" für den Schreiber (g/Goethe), das verwendete Schreibmittel (t/Tinte), die Schriftfarbe (r/rotbraun) und die Schriftart (lat/Latein). Auf diese handNotes wird weiter unten, wo der Text steht, mithilfe des handShift-Elements refereiert. Nach Varianten werden die Änderungen, Änderungszeiten und die Zuständigen dafür aufgeführt. Zwischen TEI-Header und dem Dokument wird das Faksimile mit der entsprechenden URL angezeigt. Im "ge:document"-Element wird der Text dargestellt, unterteilt in vier Zonen. Die "zone"-Elemente beinhalten Attribute, die die Lage des Textes grob bestimmen. Diese Attribute folgen dem Schema "f:Richtung1-Richtung2", wobei "Richtung2" die auschlaggebende Richtung ist. Steht in einer "zone" also das Attribut "f:bottom-top", so liegt der Text innerhalb dieser Zone oben. Der Haupttext wird durch das Attribut "type="main"" definiert. "ge:line" zeigt Zeilen an. Innerhalb dieses Elementes stellt das "rend"-Attribut die Ausrichtung dar. Zum vertieften Verständnis der Datenstruktur dient die Dokumentation. Da diese sehr umfangreich ist, kann sie hier nicht in voller Gänze dargestellt werden. Die vollständige Dokumentation der XML-Datenstruktur kann <a href="platzhalter" target="_blank">hier</a> nachgelesen werden.</p>
+				<p>Für das XQuery-Beispiel brauchen Sie Folgendes: xQuery Editor (z.B. <a href="https://www.oxygenxml.com/xml_editor/download_oxygenxml_editor.html">oXygen</a>), Transformationsprozessor (z.B. Saxon; in Oxygen implementiert)</p>
+				<p>Für das Python-Beispiel brauchen Sie Folgendes: <a href="https://www.python.org/downloads/" target="_blank">Python</a>, lxml-Bibliothek (pip install lxml)
+>>>>>>> c7344da9f0e9d77e929d8ff4e3ed8c40b04251a6
 			</div>
 			</div>
 
@@ -257,63 +265,65 @@
 				</div>
 				<p>Python ist eine frei verfügbare, flexible Programmiersprache, die relativ leicht zu erlernen ist. Obwohl sie als Skriptsprache
 					konzipiert wurde, unterstützt sie verschiedene Programierparadigmen, wie Objektorientierung oder funktioanle Elemente.
-					Da es auch möglich ist diese Stile zu mischen, wird ein hohes Maß ein Freiheit garantiert. Durch den Zwang sein Programm
-					durch Einrückungen zu strukturieren, wird die Lesbarkeit des Codes automatisch verbessert. Aufgrund dieser Eigenschaften
-					und der knappen und einfach zu erlernenden Syntax ist Python auch für Quereinsteiger interessant, da die Einstiegshürden
-					im Vergleich zu anderen Programmiersprachen sehr niedrig sind. Aufgrund ihrer Popularität existieren heute für beinahe
-					jeden Anwendungsfall (meist) Bibliotheken, die den Funktionsumfang der Sprache beinahe beliebig erweitern. Diese
+					Da es auch möglich ist diese Stile zu mischen, wird ein hohes Maß ein Freiheit garantiert. Durch den Zwang den Quellcode
+					durch Einrückungen zu strukturieren, wird die Lesbarkeit automatisch verbessert. Aufgrund dieser Eigenschaften
+					und der knappen und einfach zu erlernenden Syntax ist Python auch für Quereinsteiger interessant. Die Einstiegshürden sind
+					im Vergleich zu anderen Programmiersprachen sehr niedrig. Angesichts ihrer Popularität existieren heute für beinahe
+					jeden Anwendungsfall (meist kostenlose) Bibliotheken, die den Funktionsumfang der Sprache beinahe beliebig erweitern. Diese
 					lassen sich meist sehr einfach über den integrierten Packetmanager pip installieren.
 			
 				</p>
 				<div class="panel-heading">
 					<h5>Python und XML</h5>
 				</div>
-				<p>XML ist nicht nur im Umfeld der Digitalen Editionen ein etabliertes Format zum Datenaustausch. Deshalb bietet Python
-					verschiedene Wege XML-Daten auszulesen und zu schreiben. Zuerst zu erwähnen wären die DOM-, SAX- oder ElementTree-API, die Python
+				<p>XML ist nicht nur im Umfeld der Digitalen Editionen ein etabliertes Format zum Datenaustausch. Python bietet
+					verschiedene Wege XML-Daten auszulesen und zu schreiben. Zuerst zu erwähnen sind die DOM-, SAX- oder ElementTree-API, die Python
 					standardmäßig mitbringt.
 				</p>
 	
 				<p>Die DOM-API ermöglicht es ein XML-Dokument als Document-Object-Model abzubilden und zu verabeiten. Hierfür wird das gesamte
-					Dokument als Baum in den Hauptspeicher geladen. Dies hat den Vorteil, dass man zu jedem Zeitpunkt auf alle Daten zugreifen
+					Dokument als Baum in den Hauptspeicher geladen. Dies hat den Vorteil, dass zu jedem Zeitpunkt auf alle Daten zugegriffen werden
 					kann. Der Speicherbedarf dieses Ansatzes kann aber bei großen Datenmengen recht schnell wachsen. Der DOM-Standard ist
 					in verschiedenen Versionen vom W3C spezifiziert und diese Python Implementation unterstützt die Level 1 und 2 Spezifikationen.<br/>
 					Für weitere Informationen besuchen Sie die
 					<a href="https://docs.python.org/3.7/library/xml.dom.html">offizielle Python-Dokumentation</a>.
 				</p>
-				<p>In Fällen in denen der Speicherbedarf eine Rolle spielt kann es sinnvoller sein die SAX-API zu verwenden. SAX steht für
-					Simple API for XML und behandelt behandelt XML als einen Datenstrom der sequentiell eingelesen wird. Man kann nun bestimmte
-					Events definieren zum Beispiel das Auftreten eines bestimmten Elements, die während des Einlesens ausgelöst werden. Innerhalb
-					dieser Events findet dann die Verarbeitung statt. Ein Nachteil dieser Methode ist aber, dass man so den Kontext der Daten nur eingeschränkt, das bedeutet nur innerhalb des Events überblicken kann.
+				<p>In Fällen in denen der Speicherbedarf eine Rolle spielt, kann es sinnvoller sein die SAX-API zu verwenden. SAX steht für
+					Simple API for XML und behandelt XML als einen Datenstrom der sequentiell eingelesen wird. Man kann nun bestimmte
+					Events definieren, wie  zum Beispiel das Auftreten eines bestimmten Elements. Diese Events werden während des Einlesens ausgelöst. Innerhalb
+					dieser Events findet die eigentliche Datenverarbeitung statt. Ein Nachteil dieser Methode ist aber, dass man so den Kontext der Daten
+					nur eingeschränkt - das bedeutet nur innerhalb des Events - überblicken kann.
 					Dafür ist der Speicherbedarf geringer als beim DOM.<br/>
 					Für weitere Informationen besuchen Sie die <a href="https://docs.python.org/3.7/library/xml.sax.html">offizielle Python-Dokumentation</a>.
 				</p>
 				<p>Die ElementTree-API verfolgt das Ziel möglichst einfach und effizient in der Benutzung zu sein. Die Grundlage bilden zwei Datentypen: ElemenTree und Element.
 					Der ElementTree repräsentiert die Daten - ähnlich dem DOM - in einer Baumstruktur und stellt Methoden bereit durch diesen zu navigieren.
 					Konzeptuell ist dieser Datentyp und seine Funktionen an der Listen-Implementation von Python angelehnt.
-					Der Datentyp Element repräsentiert logischerweise die einzelnen Elemente des ElementTree. Hier versucht man sich an den Konventionen von der Dictionaries von Python zu orientieren.
+					Der Datentyp Element repräsentiert die einzelnen Elemente des ElementTree. Hier versucht man sich an den Konventionen von der Dictionaries von Python zu orientieren.
 					Des weiteren bietet die ElementTree-API eine funktionell stark eingeschränkte XPath-Implementation an, die eine Teilmenge der Syntax unterstützt.
-					Um die Performance zu verbessern sind Teile der API in C geschrieben.<br/>
+					Um die Performance zu verbessern, sind Teile der API in C geschrieben.<br/>
 					Für weitere Informationen besuchen Sie die <a href="https://docs.python.org/3.7/library/xml.etree.elementtree.html">offizielle Python-Dokumentation</a>.
 
 				</p>
 				<p>
 					Nachteile  der ersten beiden Ansätze sind neben der Tatsache, dass in beiden Fällen viel "Handarbeit" nötig ist, um Ergebnisse zu erzielen, die eher schlechte Verarbeitungsgeschwindigkeit <!-- Performance-->,
-					sowie das Fehlen XML spezifischer Features XPath und XSLT. Die ElementTree-API hingegen ist zwar schnell zu erlernen und man erzielt aufgrund der komfortablen Methoden schnell zu Ergebnissen
-					aber die eingeschränkte XPath-Unterstützung und das Fehlen weiterer XML-spezifischer Technologien wie XSLT lassen auch hier noch Spielraum zum Wünschen übrig.<br/>
+					sowie das Fehlen XML spezifischer Features XPath und XSLT. Die ElementTree-API hingegen ist zwar schnell zu erlernen und man erzielt aufgrund der komfortablen Methoden schnell Ergebnisse.
+					Die eingeschränkte XPath-Unterstützung und das Fehlen weiterer XML-spezifischer Technologien wie XSLT lassen aber in noch Verbesserungspotential erkennen.<br/>
 					Die Bibliothek lxml versucht hier Abhilfe zu schaffen. Sie verbindet die Performance der in C geschriebenen Bibliotheken libxml2 und libxslt, die intern verwendet werden, mit einer weitesgehenden
 					Kompatibilität zur benutzerfreundlichen ElementTree-API bei den bereitgestellten Methoden. Daneben unterstützt sie XSLT und XPath in Version 1.0.<br/>
 					In den folgenden Beispielen wird lxml verwendet, um die XML-Daten der Edition zu verarbeiten. Da sie nicht zum Standardumfang einer Python-Installation
-					gehört muss sie, falls nicht bereits vorhanden, über Kommandozeile mit <code class="language-bash">$ pip install lxml</code> installiert werden.
+					gehört, muss sie, falls nicht bereits vorhanden, über Kommandozeile mit <code class="language-bash">$ pip install lxml</code> installiert werden.
 				</p>
 				<br/>
 				<br/>
-				<div class="pangel-heading">
-					<h6>Vorbemerkung</h6>
+
+				<div class="panel-heading">
+					<h5>Vorbemerkung</h5>
+				</div>
 					<p>
 						In diesem Abschnitt ist ein Großteil der Erläuterungen in den mit # gekennzeichnteten Kommentaren direkt im Quellcode zu finden.<br/>
 						Dieser muss so nicht unterteilt werden, was dazu führt, dass die Einrückungen besser ersichtlich sind.
 					</p>
-				</div>
 				<div class="panel-heading">
 					<h5>Auslesen der Handshift-Daten</h5>
 				</div>
@@ -337,7 +347,7 @@
 					</li>
 					<li>Im letzten Schritt werden die Daten dann in die Ergebnis-Datei aus dem XQuery-Beispiel integriert.<br/>
 						⇒ Dies führt jedoch
-						dazu, dass diese Datei relativ groß und unübersichtlich wird. Jedoch kann damit gut zeigen, wie einfach sich mithilfe
+						dazu, dass diese Datei relativ groß und unübersichtlich wird. Jedoch kann damit gut gezeigt werden, wie einfach sich mithilfe
 						von lxml XML-Dateien modifizieren lassen.</li>
 				</ol>
 				<br/>
@@ -664,10 +674,11 @@ if __name__ == '__main__':
 
 				<div class="panel-body">
 					<div class="panel-heading"><h5>Exkurs: Besonderheiten des Datenmodel von lxml</h5></div>
-			Da im folgenden Abschnitt die Textdaten der handShift Abschnitte ausgelesen werden, ist es an dieser Stelle nötig den Eigenheiten des lxml-Datenmodels 
+			Da im folgenden Abschnitt die Textdaten der handShift Abschnitte ausgelesen werden, ist es an dieser Stelle nötig den 
+			Eigenheiten des lxml-Datenmodels 
 			in Bezug auf Textdaten einige Worte zu widmen. Die XML-Spezifikation sieht eigentlich
-			vor Text als Kindelemente (oder Blätter um in der Baumterminolgie zu bleiben) der Elemente die ihn enthalten zu behandeln.<br/>
-			Angenommmen wir haben dieses simple XML-Dokuement:
+			vor Text, als Kindelemente (oder Blätter, um in der Baumterminolgie zu bleiben) der Elemente, die ihn enthalten, zu behandeln.<br/>
+			Angenommmen wir haben dieses einfach strukturierte XML-Dokuement:
 			<pre><code class="language-xml">
 <textarea>
 <dokument>
@@ -714,9 +725,10 @@ Ich
 			Aber wo ist das Ende des Satzes geblieben?
 			lxml unterscheidet hier anhand der Position des Textes. 
 			Liegt dieser an erster Stelle, das bedeutet er tritt direkt nach dem Öffnen des Elements auf, wird er dem Element als Attribut <code>text</code> zu geordnet.
-			Enthält das Elternelement dieses Texts auch noch andere Elemente hinter denen weiterer Text liegt, wird dieser den Kindelementen zugordnet und ist als Attribut <code>tail</code>
+			Enthält das Elternelement dieses Texts auch noch andere Elemente, hinter denen weiterer Text liegt, wird dieser den Kindelementen
+			zugordnet und ist als Attribut <code>tail</code>
 			gespeichert.<br/>
-			Um an den ganzen Text zu kommen muss man also alle Geschwisterelemente des Textes bzw. alle Kinder des Element, das ihn enthält, auswerten.<br/>
+			Um an den gesamten Text zu kommen muss man also alle Geschwisterelemente des Textes bzw. alle Kinder des Elementes, das ihn enthält, auswerten.<br/>
 			In unserem Fall zum Beispiel so:
 <pre>
 <code class="language-python">
@@ -742,8 +754,8 @@ Ich
 einen Satz.
 </code>
 </pre>
-			Wird XML als Markup verwendet ist häufig vonnöten den Text eines Elements und all seiner Nachkommen in der richtigen Reihenfolge zu durchlaufen.
-			Eine Möglichkeit dies mit lxml zu bewerkstelligen ohne XPath zu verwenden, wäre die Verwendung eines rekursiven Algorithmus:
+			Wird XML als Markup verwendet ist es häufig vonnöten, den Text eines Elements und all seiner Nachkommen in der richtigen Reihenfolge zu durchlaufen.
+			Eine Möglichkeit dies mit lxml zu bewerkstelligen, ohne XPath zu verwenden, wäre die Verwendung eines rekursiven Algorithmus:
 <pre>
 <code class="language-python">
 def get_text(node):
@@ -757,8 +769,9 @@ def get_text(node):
 </pre>
 		Diese Funktion gibt ein Generator-Objekt zurück, dass den Text dann in der korrekten Reihenfolge ausgibt.
 		Dafür wird der Teilbaum des übergebenen Elements und all seiner Nachfahren ähnlich der <a href="https://de.wikipedia.org/wiki/Tiefensuche">Tiefensuche</a> durchlaufen.
-		Falls vorhanden wird der Inhalt des Text-Attributs des gerade betrachteten Elements ausgegeben, dann werden alle Nachfahren betrachtet. Erst wenn diese alle abgearbeitet
-		wurden, werden die tail-Attribute in aufsteigender Reihenfolge betrachtet und deren Inhalt ausgegeben. So wird die richtige Reihenfolge des Textes beibehalten.
+		Falls vorhanden wird der Inhalt des Text-Attributs des gerade betrachteten Elements ausgegeben, dann werden alle Nachfahren betrachtet.
+		Erst wenn diese vollständig abgearbeitet
+		worden sind, werden die tail-Attribute in aufsteigender Reihenfolge betrachtet und deren Inhalt ausgegeben. So wird die richtige Reihenfolge des Textes beibehalten.
 		In unserem Fall erhalten wir nach dem Ausführen von:
 <pre>
 <code class="language-python">
@@ -783,7 +796,7 @@ print(list(get_text(doc)))
 </textarea>
 </code>
 </pre>
-		Den gesamten Text des XML-Dokuments, nebst der Zeilenumbrüche und Whitespaces, die wir vorher einfach ignoriert haben.
+		Den gesamten Text des XML-Dokuments, nebst der Zeilenumbrüche und Whitespaces, die wir vorher ignoriert haben.
 <pre>
 <code class="language-python">
 ['\n    ', 'Ich ', 'einen Satz.', '\n']
@@ -798,17 +811,17 @@ print(list(get_text(doc)))
 				<h4>Extraktion der Textdaten der handShift-Abschnitte</h4>
 		</div>
 		<p>
-			Im folgenden Beispiel werden die Textdaten der handShift-Abschnitte ausglesen und in Textdateien geschrieben.
+			Im folgenden Beispiel werden die Textdaten der handShift-Abschnitte ausgelesen und in Textdateien geschrieben.
 			Dafür wird die Handshift-Klasse aus dem ersten Beispiel um eine Methode <code class="language-python">get_text</code> zur Extraktion der Texte erweitert.
 			Diese greift auf eine Hilfsmethode <code class="language-python">recursive_dfs</code> zurück.
-			Des weiteren wird eine zweite Klasse HandshiftWriter implementiert mit der die zu verarbeitenden XML-Daten ausgewählt werden können
+			Des weiteren wird eine zweite Klasse HandshiftWriter implementiert, mit der die zu verarbeitenden XML-Daten ausgewählt werden können
 			und die Textdaten geschrieben werden.<br/>
 			Zusätzlich wird der Code zum Auslesen der XML-Dateien und dem Erstellen der Handshift-Objekte in einer weiteren Klasse HandshiftFactory ausgelagert.
 			Einige Besonderheiten bei der Extraktion der Daten ergeben sich aus den Implikationen des im voherigen Abschnitts besprochenenn lxml-Datenmodell,
 			sowie der Tatsache der nicht hierachischen Gliederung der handShift-Daten.</br>
-			Um die Text auszulesen werden die line-Elemente aus dem content-Attribut der Handshift-Objekte betrachtet und deren Text ausgewertet. Hierbei wird auf die Verwendung von XPath verzichtet,
-			um die weiteren Möglichkeiten von lxml zu demonstrieren. Auch wird eine Funktionalität implementiert, die es ernmöglicht bestimmte Elemente bei diesem Schritt zu 
-			ignorieren, das heißt deren Text nicht zu extrahieren.<br/>
+			Um die Texte auszulesen werden die line-Elemente aus dem content-Attribut der Handshift-Objekte betrachtet und deren Text ausgewertet. Hierbei wird auf die Verwendung von XPath verzichtet,
+			um die weiteren Möglichkeiten von lxml zu demonstrieren. Auch wird eine Funktionalität implementiert, die es ermöglicht bestimmte Elemente bei diesem Schritt zu 
+			ignorieren, also deren Text nicht zu extrahieren.<br/>
 			
 		
 
@@ -904,10 +917,10 @@ class Handshift:
 		if node.text:
 			yield node.text
 
-		# Überprüfe, ob das betrachtete Element Kindeelemente hat
+		# Überprüfe, ob das betrachtete Element Kindelemente hat
 		children = list(node.iterchildren())
 		for child in children:
-			# falls ein Handshift-Elemtn betrachtet wird, kann dies nur das Ende des Abschnitts bedeuten,
+			# falls ein Handshift-Element betrachtet wird, kann dies nur das Ende des Abschnitts bedeuten,
 			# deshalb wird die Funktion beendet
 			if child.tag == self.tei_ns + 'handShift':
 				return
@@ -1065,12 +1078,13 @@ class HandshiftWriter:
 
 # Begin des eigentlichen Programmablaufs
 if __name__ == '__main__':
-
 	factory = HandshiftFactory()
-	result = factory.run('xml/transcript/agad_warszawa')
-	HandshiftWriter.write_txt(result, 'firstTest')
-		</textarea></code></pre>
-			</div>
+    # der Ordner "xml/transcript/agad_warszawa" wird nun nach XML-Dateien durchsucht
+    # aus diesen werden dann die Handshift-Abschnitte extrahiert
+    result = factory.run('xml/transcript/agad_warszawa')
+    # die Texte der Abschnitte werden nun in den Ordner "HandShifts" geschrieben
+    HandshiftWriter.write_txt(result, 'HandShifts')
+		</textarea></code></pre></div>
 		</details>
 				</div>
 		<div class="panel-footer">

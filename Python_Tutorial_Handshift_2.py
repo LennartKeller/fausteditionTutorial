@@ -80,10 +80,10 @@ class Handshift:
         if node.text:
             yield node.text
 
-        # Überprüfe, ob das betrachtete Element Kindeelemente hat
+        # Überprüfe, ob das betrachtete Element Kindelemente hat
         children = list(node.iterchildren())
         for child in children:
-            # falls ein Handshift-Elemtn betrachtet wird, kann dies nur das Ende des Abschnitts bedeuten,
+            # falls ein Handshift-Element betrachtet wird, kann dies nur das Ende des Abschnitts bedeuten,
             # deshalb wird die Funktion beendet
             if child.tag == self.tei_ns + 'handShift':
                 return
