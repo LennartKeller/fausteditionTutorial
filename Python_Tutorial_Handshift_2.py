@@ -52,7 +52,6 @@ class Handshift:
         self.handShift = element_list[0]
 
         # der Wert des new-Attributs hat die Form '#<writerid>_<styleid>' oder '#<writerid>_<styleid>_<stylesuffix>'
-        # weshalb hier die Raute weggesch_<styleid>nitten wird und der String beim ersten Unterstrich geteilt wird
         self.new_attrib = self.handShift.attrib['new'][1:]
         if "_" in self.new_attrib:
             ids = self.new_attrib.split('_', 1)
