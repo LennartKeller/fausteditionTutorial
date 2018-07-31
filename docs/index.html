@@ -99,13 +99,20 @@
 					<h4>Funktionsweise von XQuery</h4>
 				</div>
 				<div class="panel-heading">
+					<h5>FLOWR-Ausdrücke</h5>
+				</div>
+				<p>
+					Der wichtigste Bestandteil der XQuery Syntax sind die FLWOR-Ausdrücke, deren Bezeichnung sich aus den Anfangsbuchstaben von For-Schleife, Let-Variablendeklaration, Where-Bedingung, Order-Sortierreihenfolge und Return-Ausgabebefehl, zusammensetzt. 
+					Sie können mit geschweiften Klammern geschachtelt werden um komplexe Anfragen zu realisieren. 
+				</p>
+				<div class="panel-heading">
 					<h5>XPath</h5>
 				</div>
 				<p>
 					Durch den Aufbau dieser Sprache kann (wenigstens) alles gefunden werden was mit XPath gefunden werden kann. Dabei kann XPath bereits genutzt werden, um in einzelnen XML-Dateien einfach nach Inhalten zu suchen. Außerdem wird anhand der Funktionsweise von XPath gleichzeitig das Strukturkonzept von XML-Dateien klarer. 
 				</p>
 				<p>
-					Sobald XPath ins Spiel kommt, muss die metaphorische Bezeichnung "Baum"-struktur der Dateien auf "Stammbaum"-struktur erweitert werden. Denn die Bezeichnungen der Verhältnisse zwischen einzelnen Bestandteilen bedienen sich eben diesem Vokabular. 
+					Sobald XPath ins Spiel kommt, kann die Bezeichnung Baumstruktur der Dateien auf "Stammbaum"-struktur erweitert werden. Denn die Bezeichnungen der Verhältnisse zwischen einzelnen Bestandteilen bedienen sich eben diesem Vokabular. 
 					So ist alles innerhalb des einzigartigen root-Elements ein Nachkommen (descendant) desselben. 
 					Jeder Nachkommen kann wiederum weitere Kinder oder weiter entfernte Nachkommen haben. 
 					Kinder mit dem selben Elternknoten sind Geschwister (following-siblings). 
@@ -138,13 +145,6 @@
 				</div>
 				<div class="panel-body">Der Inhalt des gefundenen Elements wird ausgegeben: "Ein Gartenhäuschen"</div>
 				<div class="panel-heading">
-					<h5>FLOWR-Ausdrücke</h5>
-				</div>
-				<p>
-					Der wichtigste Bestandteil der XQuery Syntax sind die FLWOR-Ausdrücke, deren Bezeichnung sich aus den Anfangsbuchstaben von For-Schleife, Let-Variablendeklaration, Where-Bedingung, Order-Sortierreihenfolge und Return-Ausgabebefehl, zusammensetzt. 
-					Sie können mit geschweiften Klammern geschachtelt werden um komplexe Anfragen zu realisieren. 
-				</p>
-				<div class="panel-heading">
 					<h5>Transformation - Anleitung für XQuery-Neulinge</h5>
 				</div>
 				<ol>
@@ -168,6 +168,7 @@
 					<li>
 						<p>Wenn Sie die Query als Softcode über eine einzelne Datei laufen lassen wollen: Im Feld "XML URL": suchen Sie ihre gewünschte Handschriften-Datei aus.</p>
 						<p>Wenn Sie die Query als Hardcode über eine oder mehrere Dateien laufen lassen wollen: Feld "XML URL" leer lassen, der Pfad zu gewünschter Datei oder Verzeichnis muss direkt im Code der $repository-Variablen zugeordnet werden.</p>
+					<li>
 						<p>In beiden Fällen kann das Feld "XQuery URL" mit "${currentFileURL}" gefüllt werden, um die aktuell geöffnete Datei auszuführen.</p>
 					</li>
 					<li>
@@ -187,7 +188,8 @@
 				<div class="panel-heading">
 					<h4>Schreiberhände und ihr Schreibmaterial</h4>
 				</div>
-				Im hier präsentierten Abfragebeispiel wird eine Liste mit zwei Gliederungsebenen erzeugt. Es finden sich alle beteiligten Schreiber in alphabetischer Sortierung. Unter jedem Schreiber sind die Kombinationen aus Schreibmaterial und Schriftart aufgelistet, die er oder sie verwendet hat. Die Kürzel für die jeweiligen Informationen werden als Attribute in die Listenelemente geschrieben. So sind sie für die Weiterverarbeitung als XML-Datei mit weiteren Abfragesprachen zugänglich, werden jedoch - als HTML-Datei transformiert - vor dem Benutzer verborgen, um die Übersichtlichkeit zu erhöhen. 
+				Im hier präsentierten Abfragebeispiel wird eine Liste mit zwei Gliederungsebenen erzeugt. Es finden sich alle beteiligten Schreiberhände in alphabetischer Sortierung. Unter jeder Schreiberhand sind die Kombinationen aus Schreibmaterial und Schriftart aufgelistet, die sie verwendet hat. Die Kürzel für die jeweiligen Informationen werden als Attribute in die Listenelemente geschrieben. 
+				So sind sie für die Weiterverarbeitung als XML-Datei mit weiteren Abfragesprachen zugänglich, werden jedoch - als HTML-Datei transformiert - vor dem Benutzer verborgen, um die Übersichtlichkeit zu erhöhen.
 				<br/>
 				
 				<br/>
@@ -195,7 +197,7 @@
 				<!-- XQUERY-CODE -->
 				<details>
 					<summary>
-						<b>Erläuterung des Quellcodes für Fortgeschrittene</b>
+						<b>Erläuterung des Quellcodes</b>
 					</summary>
 					<div class="panel-body">
 						Die Funktionen im Prolog sind von der angegebenen URL übernommen:
