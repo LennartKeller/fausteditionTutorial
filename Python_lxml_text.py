@@ -21,3 +21,21 @@ def get_text(node):
         yield node.tail
 
 print(list(get_text(doc)))
+
+def get_text_without_comments(node):
+
+    if node.text and not isinstance(node, etree._Comment):
+            yield node.text
+    for child in node.iterchildren():
+            yield from get_text_without_comments(child)
+    if node.tail:
+        yield node.tail
+
+doc = etree.fromstring("""
+<dokument>
+    <zeile>Ich <verwischt/><!-- TODO: Überprüfen --><?Hallo?>einen Satz.</zeile>
+</dokument>
+""")
+
+print(list(get_text(doc)))
+print(list(get_text_without_comments(doc)))
