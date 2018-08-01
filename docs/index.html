@@ -99,13 +99,20 @@
 					<h4>Funktionsweise von XQuery</h4>
 				</div>
 				<div class="panel-heading">
+					<h5>FLOWR-Ausdrücke</h5>
+				</div>
+				<p>
+					Der wichtigste Bestandteil der XQuery Syntax sind die FLWOR-Ausdrücke, deren Bezeichnung sich aus den Anfangsbuchstaben von For-Schleife, Let-Variablendeklaration, Where-Bedingung, Order-Sortierreihenfolge und Return-Ausgabebefehl, zusammensetzt. 
+					Sie können geschachtelt werden um komplexere Anfragen zu realisieren. Im return-Statement kann außerdem eine Fallunterscheidung mit if-Abfragen unternommen werden. Wie diese Bestandteile konkret umgesetzt werden, können Sie an den bereitgestellten XQuery-Beispielen sehen. 
+				</p>
+				<div class="panel-heading">
 					<h5>XPath</h5>
 				</div>
 				<p>
 					Durch den Aufbau dieser Sprache kann (wenigstens) alles gefunden werden was mit XPath gefunden werden kann. Dabei kann XPath bereits genutzt werden, um in einzelnen XML-Dateien einfach nach Inhalten zu suchen. Außerdem wird anhand der Funktionsweise von XPath gleichzeitig das Strukturkonzept von XML-Dateien klarer. 
 				</p>
 				<p>
-					Sobald XPath ins Spiel kommt, muss die metaphorische Bezeichnung "Baum"-struktur der Dateien auf "Stammbaum"-struktur erweitert werden. Denn die Bezeichnungen der Verhältnisse zwischen einzelnen Bestandteilen bedienen sich eben diesem Vokabular. 
+					Sobald XPath ins Spiel kommt, kann die Bezeichnung Baumstruktur der Dateien auf "Stammbaum"-struktur erweitert werden. Denn die Bezeichnungen der Verhältnisse zwischen einzelnen Bestandteilen bedienen sich eben diesem Vokabular. 
 					So ist alles innerhalb des einzigartigen root-Elements ein Nachkommen (descendant) desselben. 
 					Jeder Nachkommen kann wiederum weitere Kinder oder weiter entfernte Nachkommen haben. 
 					Kinder mit dem selben Elternknoten sind Geschwister (following-siblings). 
@@ -138,25 +145,15 @@
 				</div>
 				<div class="panel-body">Der Inhalt des gefundenen Elements wird ausgegeben: "Ein Gartenhäuschen"</div>
 				<div class="panel-heading">
-					<h5>FLOWR-Ausdrücke</h5>
+					<h5>Transformation - Anleitung für XQuery-Neulinge</h5>
 				</div>
-				<p>
-					
-				</p>
-				<div class="panel-heading">
-					<h4>Schreiber und ihre Styles</h4>
-				</div>
-				Mit diesem Programm können Sie auf einen Blick in den jeweiligen Handschriften herausfinden, welche Schreiber es gibt und
-				welche Styles ihnen zugeordnet werden. Dies wird mit der Abfragesprache XQuery erreicht.
-				<br/>
-				<div class="panel-heading">Tutorial für Anfänger:</div>
 				<ol>
 					<li>
 						<p>Laden Sie die XML-Dateien
 							<a href="platzhalter" target="_blank">hier</a> herunter und verschieben Sie sie in einen leeren Ordner.</p>
 					</li>
 					<li>
-						<p>Laden Sie die Datei mit dem XQuery-Code
+						<p>Laden Sie eine Datei mit XQuery-Code
 							<a href="platzhalter" target="_blank">hier</a> herunter.</p>
 					</li>
 					<li>
@@ -169,49 +166,76 @@
 						<p>Erstellen Sie eine neue XQuery-Transformation.</p>
 					</li>
 					<li>
-						<p>Im Feld XML URL: suchen Sie ihre gewünschte Handschriften-Datei aus.</p>
+						<p>Wenn Sie die Query als Softcode über eine einzelne Datei laufen lassen wollen: Im Feld "XML URL": suchen Sie ihre gewünschte Handschriften-Datei aus.</p>
+						<p>Wenn Sie die Query als Hardcode über eine oder mehrere Dateien laufen lassen wollen: Feld "XML URL" leer lassen, der Pfad zu gewünschter Datei oder Verzeichnis muss direkt im Code der $repository-Variablen zugeordnet werden.</p>
+					<li>
+						<p>In beiden Fällen kann das Feld "XQuery URL" mit "${currentFileURL}" gefüllt werden, um die aktuell geöffnete Datei auszuführen.</p>
 					</li>
 					<li>
-						<p>Unter dem Reiter Ausgangsdatei: entfernen Sie den Haken bei „Als Sequenz darstellen“ und geben Sie den Speicherort
-							der HTML-Datei mit „.html“-Endung ein.</p>
+						<p>Unter dem Reiter Ausgangsdatei: entfernen Sie den Haken bei "Als Sequenz darstellen" und geben Sie den Speicherort
+							der HTML-Datei mit ".html"-Endung ein.</p>
 					</li>
 					<li>
-						<p>Drücken Sie auf „OK“ und dann auf „Speichern und schließen“.</p>
+						<p>Drücken Sie auf "OK" und dann auf "Speichern und schließen".</p>
 					</li>
 					<li>
-						<p>Drücken Sie Strg+Umschalt+T, um das Transformations-Szenario auszuwenden. Nun ist eine fertige HTML-Datei im von Ihnen
+						<p>Drücken Sie Strg+Umschalt+T, um das Transformations-Szenario anzuwenden. Nun ist eine fertige HTML-Datei im von Ihnen
 							ausgewählten Ordner verfügbar. Diese kann mit einem beliebigen Browser geöffnet werden.</p>
 					</li>
-
+					
 				</ol>
-
+			
+				<div class="panel-heading">
+					<h4>Schreiberhände und ihr Schreibmaterial</h4>
+				</div>
+				Im hier präsentierten Abfragebeispiel wird eine Liste mit zwei Gliederungsebenen erzeugt. Es finden sich alle beteiligten Schreiberhände in alphabetischer Sortierung. Unter jeder Schreiberhand sind die Kombinationen aus Schreibmaterial und Schriftart aufgelistet, die sie verwendet hat. Die Kürzel für die jeweiligen Informationen werden als Attribute in die Listenelemente geschrieben. 
+				So sind sie für die Weiterverarbeitung als XML-Datei mit weiteren Abfragesprachen zugänglich, werden jedoch - als HTML-Datei transformiert - vor dem Benutzer verborgen, um die Übersichtlichkeit zu erhöhen.
+				<br/>
+				
 				<br/>
 
 				<!-- XQUERY-CODE -->
 				<details>
 					<summary>
-						<b>Erläuterung des Quellcodes für Fortgeschrittene</b>
+						<b>Erläuterung des Quellcodes</b>
 					</summary>
 					<div class="panel-body">
-						Die Funktionen im Prolog sind von der angegebenen URL übernommen:
-						<pre><code class=„language-xquery“>declare namespace functx = "http://www.functx.com";</code></pre>
+						Der Prolog der XQuery Datei enthält Namespace-Deklarationen sowie Funktionen, die später vom Hauptteil aufgerufen werden können.
+						Benötigte Namespaces müssen an dieser Stelle festgelegt werden, Funktionen können jedoch in eine separate Datei ausgelagert werden.
+						Hier sind zunächst die Namespaces festgelegt, die in den XML-Dateien des Verzeichnisses vorkommen.
+						<pre><code class="language-xquery">declare namespace f = "http://www.faustedition.net/ns";
+declare namespace ge = "http://www.tei-c.org/ns/geneticEditions";
+</code></pre>
 					</div>
-					<div class="panel-body">Schneidet den Anfang eines strings aus, bis der übergebene regex matched:
-						<pre><code class=„language-xquery“>declare function functx:substring-before-match
+					<details><summary>Exkurs: Funktionen in eigenes Modul auslagern</summary>
+					<div class="panel-body">Wenn sich die Funktionen in der gleichen Datei befinden sollen wie das ausführbare Hauptmodul der XQuery, dann wird der Namespace direkt angegeben, und die Operation der Funktion im Prolog programmiert.
+						<pre><code class="language-xquery">declare namespace sns = "http://www.some_ns.com";
+declare function sns:some-function ( param )
+{ operation };
+						</code></pre>
+					</div>
+					<div class="panel-body">
+						Alternativ können alle Funktionen in einer Datei gespeichert werden, die eine Moduldeklaration im Prolog enthält, und keinen auszuführenden Abfragecode. Alle dort definierten Funktionen übernehmen den festgelegten Namespace.
+						<pre><code class="language-xquery">module namespace my = "myModule";
+declare function my:my-function (param) 
+{ operation };</code>
+						</pre>
+					</div>
+					<div class="panel-body">
+						Im Hauptmodul, in dem der eigentliche Abfragecode geschrieben ist, wird dann nur das davor erstellte Modul eingebettet, um mit dem entsprechenden Namespace alle darin festgelegten Funktionen abrufen zu können. 
+						<pre><code class="language-xquery">import module namespace my = "myModule" at "/myPath/myModule.xquery";</code></pre>
+					</div>
+					</details>
+					<div class="panel-body">Der Anfang des übergebenen Strings wird ausgegeben, bis zu der Stelle, an der das Muster des angegebenen regulären Ausdrucks als erstes gefunden wird
+						<pre><code class="language-xquery">declare function functx:substring-before-match
 ( $arg as xs:string? ,
     $regex as xs:string )  as xs:string {
 
    tokenize($arg,$regex)[1]
- } ;</code></pre>
-					</div>
-					<!--copypaste-element:
-			<div class="panel-body">
-			Erklärung
-				<pre>Code</pre>
-			</div> -->
+ } ;</code></pre></div>
 					<div class="panel-body">
-						Schneidet das Ende eines strings aus, ab dem match mit dem übergebenem regex:
-						<pre><code class=„language-xquery“>declare function functx:substring-after-match
+						Das Ende des übergebenen Strings wird ausgegeben, ab der Stelle, an der das Muster des angegebenen regulären Ausdrucks als erstes gefunden wurde
+						<pre><code class="language-xquery">declare function functx:substring-after-match
   ( $arg as xs:string? ,
     $regex as xs:string )  as xs:string? {
 
@@ -219,73 +243,314 @@
  } ;</code></pre>
 					</div>
 					<div class="panel-body">
-						Liste mit allen handNote-Elementen wird in $list gespeichert:
-						<pre><code class=„language-xquery“>let $liste := //handNote</pre>
+						Nach dem Prolog wird zuerst der Header des HTML-Dokuments konstruiert.
+						In der letzten Zeile wird ein Paragraph eröffnet. Die sich öffnende, geschweifte Klammer deutet darauf hin, dass an dieser Stelle auszuführender XQuery Code den späteren Inhalt des Paragraphen füllen soll.
+						<pre><code class="language-xml"><textarea>
+<xhtml xmlns="http://www.w3.org/1999/xhtml" 
+  xmlns:TEI="http://www.tei-c.org/ns/1.0">
+<head>
+    <meta http-equiv="content-type" content="text/xhtml; char set=utf-8"/>
+    <title>Writers and their writing materials</title>
+</head>
+    <h2>Writers and their writing materials</h2>
+<p>{</textarea></code></pre>
+					</div>
+					<div class="panel-body">
+						Zunächst wird der Verzeichnis- bzw. Dateipfad mit den zu durchsuchenden Dateien angegeben. 
+						<pre><code class="language-xquery">let $path := "C:/Fausteditionen/transcript/agad_warszawa/0020.xml"</code></pre>
+					</div>
+					<div class="panel-body">
+						Die eingebaute doc-Funktion ruft die gewünschten Datei auf, sodass sie weiter verarbeitet werden kann.
+						Nur wenn das TEI-Element "handNotes" existiert, ist sie für diese Abfrage brauchbar. Mit dem XPath-Operator // werden alle Nachkommen in der gesamten Datei gefunden, ist dies nicht der Fall, wird ein Error ausgegeben.
+						<pre><code class="language-xquery">let $file := for $file in doc(concat('file:///',$path,'?recurse=yes')) return 
+if ($file//TEI:handNotes) then $file 
+else error( QName('', 'ElementRequest'),  "Missing required element 'handNotes'")</code></pre>
+					</div>
+					<div class="panel-body">
+						Liste mit allen handNote-Elementen wird in $handNotes gespeichert.
+						<pre><code class="language-xquery">let $handNotes := $file//TEI:handNote</pre>
 						</code>
 					</div>
 					<div class="panel-body">
-						Sammelt alle vorkommenden IDs der Schreiber aus den Elementen:
-						<pre><code class=„language-xquery“>let $wIDcollection := for $i in $list/functx:substring-before-match(data(@xml:id), '_') return $i</code></pre>
+						In den xml:id-Attributen der handNotes-Elemente steht eine Kombination von Schreiber-ID und Schriftart-ID. Da diese mit Unterstrich voneinander getrennt sind, findet die Funktion alle vorkommenden IDs der Schreiber.
+						<pre><code class="language-xquery">let $wIDcollection := for $writerID in $handNotes/functx:substring-before-match(data(@xml:id), '_') return $writerID</code></pre>
 					</div>
 					<div class="panel-body">
-						Eliminiert Dopplungen:
-						<pre><code class=„language-xquery“>let $wIDlist := for $i in fn:distinct-values($wIDcollection) return $i</code></pre>
+						Da die einzelnen Schreiber mit verschiedenen Schriftarten aufgelistet sind, ergeben sich Dopplungen wenn nur die Schreiber betrachtet werden. Die eingebaute distinct-values-Funktion eliminiert diese.
+						<pre><code class="language-xquery">let $wIDs := for $wID in fn:distinct-values($wIDcollection) return $wID</code></pre>
 					</div>
 					<div class="panel-body">
-						Iteriert über Liste der Schreiber-IDs:
-						<pre><code class=„language-xquery“>for $currentWID in $wIDlist </code></pre>
+						Für jeden Schreiber wird in einer Schleife ein Paragraph erzeugt. Dabei sind sie alphabetisch nach ihren Kürzeln sortiert, wodurch "Fremde Hand 1 (xx)" am Ende der Ausgabe landet.
+						Die Schreiber-ID, über die gerade iteriert wird, wird als Attributinhalt in das Element geschrieben. Für jeden Schreiber wird danach der Querycode ausgeführt, der danach im p-Element steht.
+						<pre><code class="language-xquery">for $currentWID in $wIDs     
+order by $currentWID
+return <textarea><p type="writer" wID="{$currentWID}"></textarea>{</code></pre>
 					</div>
 					<div class="panel-body">
-						Generiert einen &lt;p/>-Block für jeden Schreiber mit Attributen Typ und Schreiber-ID:
-						<pre><code class=„language-xquery“>&lt;p type="writer" xml:id="{$currentWID}"></code></pre>
+						Durch die where-Bedingung wird sichergestellt, dass nur die Elemente mit Schreiber-Schriftart Kombinationen in die Liste geschrieben werden, die in ihrem xml:id-Attribut das Schreiber-Kürzel haben, das gerade unter $currentWID in das Elternelement geschrieben wurde.  
+						<pre><code class="language-xquery">let $stylesOfCurrentWriter := for $eachStyle in $handNotes 
+where $fileCollection/functx:substring-before-match($eachStyle/data(@xml:id), '_') = $currentWID 
+return $eachStyle  </code></pre>
 					</div>
 					<div class="panel-body">
-						Liste mit allen Elementen, die sich auf den aktuellen Schreiber beziehen:
-						<pre><code class=„language-xquery“>let $writerList := for $i in $list where /functx:substring-before-match($i/data(@xml:id), '_')=$currentWID return $i </code></pre>
+						Durch den vorherigen Test wurde bereits sichergestellt, dass überall der richtige Schreiber involviert ist. Hier wird aus dem Textinhalt des Elements sein voller Name extrahiert, der immer vor einem Whitespace mit darauffolgender runder Klammer steht.
+						<pre><code class="language-xquery">let $currentWriterName := for $name in $stylesOfCurrentWriter/functx:substring-before-match(text(), '\s\(') return $name</code></pre>
 					</div>
 					<div class="panel-body">
-						Liste mit den Schreibernamen aus allen relevanten Elementen:
-						<pre><code class=„language-xquery“>let $currentWriter := for $i in $writerList/functx:substring-before-match(text(), '\s\(') return $i</code></pre>
+						Der Name des Schreibers wird nun innerhalb des vorher eröffneten Paragraphen in ein Überschriftenelement h4 geschrieben. 
+						Außerdem wird bereits eine unsortierte Liste eröffnet, in die als nächstes die von ihm verwendeten Schriftarten eingefügt werden sollen.
+						<pre><code class="language-xquery">let $writer := fn:distinct-values($currentWriterName)      
+return 
+<textarea>(<h4>{$writer}</h4>,
+<ul></textarea>{</code></pre>
 					</div>
 					<div class="panel-body">
-						Eliminiert Dopplungen:
-						<pre><code class=„language-xquery“>let $writer := for $i in fn:distinct-values($currentWriter) return $i</code></pre>
+						Nun werden in der gleichen Iteration wie für die Schreiber-IDs die Schriftarten-IDs ausgelesen, indem hier die substring-<b>after</b>-match-Funktion bezogen auf den Unterstrich verwendet wird.
+						<pre><code class="language-xquery">let $sIDcollection := for $style in $stylesOfCurrentWriter/functx:substring-after-match(data(@xml:id), '_') return $style</code></pre>
 					</div>
 					<div class="panel-body">
-						Sammelt alle vorkommenden IDs der Style aus den aktuell relevanten Elementen:
-						<pre><code class=„language-xquery“>let $vIDcollection := for $i in $writerList/functx:substring-after-match(data(@xml:id), '_') return $i</code></pre>
+						Iteriert über Liste der Style-IDs und schreibt jede als Attribut in ein einzelnes Listenelement. 
+						<pre><code class="language-xquery">for $currentSID in $sIDcollection  
+order by $currentSID
+return
+<textarea><li type="style" sID="{$currentSID}">{</textarea></code></pre>
 					</div>
 					<div class="panel-body">
-						Iteriert über Liste der Style-IDs:
-						<pre><code class=„language-xquery“>for $currentVID in $vIDcollection</code></pre>
+						Elemente mit der aktuellen Schriftarten-ID werden gefunden und abgespeichert
+						<pre><code class="language-xquery">let $styleList := for $eachStyle in $stylesOfCurrentWriter 
+where $fileCollection/functx:substring-after-match($eachStyle/data(@xml:id), '_') = $currentSID 
+return $eachStyle</code></pre>
 					</div>
 					<div class="panel-body">
-						Generiert einen Listeneintrag für jede Variante mit Attributen Typ und Style-ID:
-						<pre><code class=„language-xquery“>&lt;li type="variant" xml:id="{$currentVID}"></code></pre>
+						Die Volltextbezeichnung für die Schriftart wird sowohl mit before- als auch after-match extrahiert, da sie immer am Ende der Zeile, jedoch in Klammern, steht. Sie kann nun direkt in das Listenelement ausgegeben werden.
+						<pre><code class="language-xquery">let $currentStyle := for $style in $styleList/functx:substring-before-match(functx:substring-after-match(text(), '\s+\('), '\)') return $style
+return $currentStyle</code></pre>
 					</div>
 					<div class="panel-body">
-						Ordnet Elemente der aktuellen Style ID zu:
-						<pre><code class=„language-xquery“>let $variantList := for $i in $list where /functx:substring-after-match($i/data(@xml:id), '_')=$currentVID return $i</code></pre>
+						Am Ende des Dokuments werden nur noch die geöffneten Konstruktorelemente wieder geschlossen, ebenso wie die geschweiften Klammern für den dazwischenliegenden XQuery-Code
+						<pre><code class="language-xquery"><textarea>
+				}</li>
+			}</ul>)
+		}</p>
+	}</p>
+</xhtml></textarea>
+</code></pre>
 					</div>
 					<div class="panel-body">
-						Liest die Stylebezeichnung aus Element aus:
-						<pre><code class=„language-xquery“>let $currentVariant := for $i in $variantList/functx:substring-before-match(functx:substring-after-match(text(), '\s+\('), '\)') return $i</code></pre>
+				</details>
+				<details>
+					<summary><b>Ergebnis</b></summary>
+					<p>Zunächst ein Ausschnitt der Version, die als HTML-Datei gespeichert wurde und im Browser angezeigt werden kann.</p>
+					<p type="writer" wID="ec">
+						<h4>Eckermann</h4>
+						<ul>
+							<li type="style" sID="bl">pencil - Schrift</li>
+							<li type="style" sID="bl_gr">pencil - greek</li>
+							<li type="style" sID="bl_lat">pencil - latin</li>
+							<li type="style" sID="t">ink - Schrift</li>
+							<li type="style" sID="t_gr">ink - greek</li>
+							<li type="style" sID="t_lat">ink - latin</li>
+							<li type="style" sID="tr">ink red/brown - Schrift</li>
+							<li type="style" sID="tr_gr">ink red/brown - greek</li>
+							<li type="style" sID="tr_lat">ink red/brown - latin</li>
+						</ul>
+					</p>
+					<p type="writer" wID="f">
+						<h4>Färber</h4>
+						<ul>
+							<li type="style" sID="t">ink - Schrift</li>
+							<li type="style" sID="t_lat">ink - latin</li>
+						</ul>
+					</p>
+					<p type="writer" wID="g">
+						<h4>Goethe</h4>
+						<ul>
+							<li type="style" sID="bl">pencil - Schrift</li>
+							<li type="style" sID="bl_gr">pencil - greek</li>
+							<li type="style" sID="bl_lat">pencil - latin</li>
+							<li type="style" sID="g">ohne Schreibmaterial</li>
+							<li type="style" sID="ko">charcoal - Schrift</li>
+							<li type="style" sID="ko_gr">charcoal - greek</li>
+							<li type="style" sID="ko_lat">charcoal - latin</li>
+							<li type="style" sID="ro">ruddle - Schrift</li>
+							<li type="style" sID="ro_gr">ruddle - greek</li>
+							<li type="style" sID="ro_lat">ruddle - latin</li>
+							<li type="style" sID="t">ink - Schrift</li>
+							<li type="style" sID="t_gr">ink - greek</li>
+							<li type="style" sID="t_lat">ink - latin</li>
+							<li type="style" sID="tr">ink red/brown - Schrift</li>
+							<li type="style" sID="tr_gr">ink red/brown - greek</li>
+							<li type="style" sID="tr_lat">ink red/brown - latin</li>
+						</ul>
+					</p>
+				
+				<br/>
+				<div class="panel-body">
+					Ein kleinerer Ausschnitt des Ergebnisses sieht als XML-Datei wie folgt aus: 
+					<pre><code class="language-xml">
+						<textarea>
+							
+<p type="writer" wID="ec">
+	<h4>Eckermann</h4>
+	<ul>
+		<li type="style" sID="bl">pencil - Schrift</li>
+		<li type="style" sID="bl_gr">pencil - greek</li>
+		<li type="style" sID="bl_lat">pencil - latin</li>
+		<li type="style" sID="t">ink - Schrift</li>
+		<li type="style" sID="t_gr">ink - greek</li>
+		<li type="style" sID="t_lat">ink - latin</li>
+		<li type="style" sID="tr">ink red/brown - Schrift</li>
+		<li type="style" sID="tr_gr">ink red/brown - greek</li>
+		<li type="style" sID="tr_lat">ink red/brown - latin</li>
+	</ul>
+</p>
+<p type="writer" wID="f">
+	<h4>Färber</h4>
+	<ul>
+		<li type="style" sID="t">ink - Schrift</li>
+		<li type="style" sID="t_lat">ink - latin</li>
+	</ul>
+</p>
+						</textarea></code></pre></div>
+	</details>
+				<details>
+					<summary>
+						<b>Erweiterung der ersten XQuery-Abfrage</b>
+					</summary>
+					<!--copypaste-element:
+			<div class="panel-body">
+			
+				<pre><code class="language-xquery">
+				</code></pre>
+			</div> 
+					-->
+					<div class="panel-body">
+						Dieses Codebeispiel stellt eine Erweiterung der vorherigen Query dar, die nun über ein Verzeichnis mehrerer Dateien angewandt.
+						Aus diesen Dateien wird eine Statistik erstellt, in welchen Elementen sich die Wechsel auf die jeweiligen Schreiber-Schriftarten Kombinationen finden lassen.
+						<pre><code class="language-xquery">let $path := "C:/Fausteditionen/transcript/gsa"</code></pre>
 					</div>
 					<div class="panel-body">
-						Eliminiert Dopplungen:
-						<pre><code class=„language-xquery“>let $variant := fn:distinct-values($currentVariant)</code></pre>
+						<p>Für diese Erweiterung werden zwei weitere Funktionen benötigt, die im Prolog deklariert werden.</p>
+						Die erste Funktion funktioniert wie substring-after-match, ist jedoch nicht greedy, wartet also den letzten Treffer des regulären Ausdrucks ab, bis sie den substring abschneidet.
+						Die zweite Funktion wird für die erste benötigt, um wie gewünscht mit regulären Ausdrücken umgehen zu können.
+						<pre><code class="language-xquery">declare function functx:substring-after-last
+  ( $arg as xs:string? ,
+    $delim as xs:string )  as xs:string {
+
+   replace ($arg,concat('^.*',functx:escape-for-regex($delim)),'')
+ } ;
+ declare function functx:escape-for-regex 
+  ( $arg as xs:string? )  as xs:string {
+
+   replace($arg,
+           '(\.|\[|\]|\\|\||\-|\^|\$|\?|\*|\+|\{|\}|\(|\))','\\$1')
+ } ;
+				</code></pre>
+					</div> 
+					<div>Der folgende Code wird an das letzte return-Statement der vorherigen XQuery angehängt.</div> 
+					<div class="panel-body">
+						Aus dem angegebenen Verzeichnis werden die Dateien extrahiert, die das gewünschte Kürzel in einem der beiden dafür verwendeten Attributen aufweisen.
+						<pre><code class="language-xquery">let $fileList := for $file in $fileCollection where exists($file//*[@new|@hand = concat("#",$currentWID,"_",$currentSID)]) return $file
+				</code></pre>
 					</div>
 					<div class="panel-body">
-						Schreibt diese in den Listeneintrag:
-						<pre><code class=„language-xquery“>return $variant</code></pre>
+						Die Dateinamen werden mit ihrem relativen Pfad gespeichert, der sich auf das angegebenen Verzeichnis bezieht.
+						<pre><code class="language-xquery">let $fileNames := for $fileName in $fileList return functx:substring-after-last($fileName//fn:document-uri(), $path)
+				</code></pre>
+					</div>	
+					<div class="panel-body">
+						In der Beschreibung des aufklappbaren Elements wird angegeben, in wie vielen Dateien die Schriftart gefunden wurde. Zwischen Singular und Plural von "file/s" wird je nach Listenlänge unterschieden.
+						Danach wird eine Liste mit den entsprechenden Dateipfaden ausgegeben.
+						<pre><code class="language-xquery">if (count($fileList)>0) 
+then (<textarea><details><summary><div><i>
+	Found in {count($fileList)} file{if (count($fileList)>1) then "s" else ""}</i></div></summary>
+<ol>{for $file in fn:distinct-values($fileNames) order by $file return 
+<textarea><li type="file">{$file}</li>}</ol></details>,<div>{</textarea> 
+				</code></pre>
+					</div> 
+					<div class="panel-body">
+						Unter den gefundenen Elementen wird zwischen handNotes und anderen unterschieden. Handelt es sich um ein handNotes-Element, wird zusätzlich nach dessen Parent-Element gefragt.
+						<pre><code class="language-xquery">let $relevantNodes := for $anyNode in $fileList//* order by $anyNode return 
+    if ($anyNode[@new]) then (name($anyNode), concat("handShift in ", name($anyNode/ancestor::*[1])))
+    else if ($anyNode[@hand]) then name($anyNode)
+    else ""
+				</code></pre>
+					</div>
+					<div class="panel-body">
+						Schließlich werden alle gefundenen Knoten in der Liste abgezählt und der erhaltene Wert hinter den Elementnamen in den Listeneintrag geschrieben.
+						<pre><code class="language-xquery">let $relevant := distinct-values($relevantNodes)
+for $name in $relevant return if ($name>"") then <ul>{<li>{$name}: {count(for $node in $relevantNodes where $node=$name return $node)}</li>}</ul>
+				</code></pre>
 					</div>
 				</details>
-				<br/>
+			<details>
+				<summary><b>Ergebnis der Erweiterung</b></summary>
+				<p>Die erweiterte XQuery Abfrage gibt eine Liste nach diesem Schema aus, die je nach übergebenen Dateien entsprechende statistische Werte enthält</p>
+				<p type="writer" wID="avg">
+					<h4>August von Goethe</h4>
+					<ul>
+						<li type="style" sID="t">ink - Schrift<details>
+							<summary>
+								<div>
+									<i>Found in 1 file</i>
+								</div>
+							</summary>
+							<ol>
+								<li type="file">/390358/0004.xml</li>
+							</ol>
+						</details>
+							<div>
+								<ul>
+									<li>ge:used: 1</li>
+								</ul>
+								<ul>
+									<li>handShift: 16</li>
+								</ul>
+								<ul>
+									<li>handShift in ge:line: 14</li>
+								</ul>
+								<ul>
+									<li>handShift in hi: 2</li>
+								</ul>
+							</div>
+						</li>
+						<li type="style" sID="t_lat">ink - latin<details>
+							<summary>
+								<div>
+									<i>Found in 2 files</i>
+								</div>
+							</summary>
+							<ol>
+								<li type="file">/390358/0004.xml</li>
+								<li type="file">/391455/0002.xml</li>
+							</ol>
+						</details>
+							<div>
+								<ul>
+									<li>ge:used: 2</li>
+								</ul>
+								<ul>
+									<li>handShift: 19</li>
+								</ul>
+								<ul>
+									<li>handShift in ge:line: 17</li>
+								</ul>
+								<ul>
+									<li>handShift in hi: 2</li>
+								</ul>
+								<ul>
+									<li>f:st: 4</li>
+								</ul>
+							</div>
+						</li>
+					</ul>
+				</p>
+			</details>
 				<div class="panel-footer">
 					<a href="https://github.com/LennartKeller/faustedition_referat" target="_blank">Hier erhalten Sie die Datei mit dem vollständigen Code</a>
 				</div>
 			</div>
-
+			
 
 
 			<!-- PYTHON-BEISPIEL ab hier-->
