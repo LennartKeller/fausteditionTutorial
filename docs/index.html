@@ -255,9 +255,9 @@ declare function my:my-function (param)
   xmlns:TEI="http://www.tei-c.org/ns/1.0">
 <head>
     <meta http-equiv="content-type" content="text/xhtml; char set=utf-8"/>
-    <title>Writers and their hands</title>
+    <title>Writers and their writing materials</title>
 </head>
-    <h2>Writers and their hands</h2>
+    <h2>Writers and their writing materials</h2>
 <p>{</textarea></code></pre>
 					</div>
 					<div class="panel-body">
@@ -343,12 +343,176 @@ return $currentStyle</code></pre>
 					</div>
 					<div class="panel-body">
 				</details>
+				<details>
+					<summary><b>Ergebnis</b></summary>
+					<p>Zunächst ein Ausschnitt der Version, die als HTML-Datei gespeichert wurde und im Browser angezeigt werden kann.</p>
+					<p type="writer" wID="ec">
+						<h4>Eckermann</h4>
+						<ul>
+							<li type="style" sID="bl">pencil - Schrift</li>
+							<li type="style" sID="bl_gr">pencil - greek</li>
+							<li type="style" sID="bl_lat">pencil - latin</li>
+							<li type="style" sID="t">ink - Schrift</li>
+							<li type="style" sID="t_gr">ink - greek</li>
+							<li type="style" sID="t_lat">ink - latin</li>
+							<li type="style" sID="tr">ink red/brown - Schrift</li>
+							<li type="style" sID="tr_gr">ink red/brown - greek</li>
+							<li type="style" sID="tr_lat">ink red/brown - latin</li>
+						</ul>
+					</p>
+					<p type="writer" wID="f">
+						<h4>Färber</h4>
+						<ul>
+							<li type="style" sID="t">ink - Schrift</li>
+							<li type="style" sID="t_lat">ink - latin</li>
+						</ul>
+					</p>
+					<p type="writer" wID="g">
+						<h4>Goethe</h4>
+						<ul>
+							<li type="style" sID="bl">pencil - Schrift</li>
+							<li type="style" sID="bl_gr">pencil - greek</li>
+							<li type="style" sID="bl_lat">pencil - latin</li>
+							<li type="style" sID="g">ohne Schreibmaterial</li>
+							<li type="style" sID="ko">charcoal - Schrift</li>
+							<li type="style" sID="ko_gr">charcoal - greek</li>
+							<li type="style" sID="ko_lat">charcoal - latin</li>
+							<li type="style" sID="ro">ruddle - Schrift</li>
+							<li type="style" sID="ro_gr">ruddle - greek</li>
+							<li type="style" sID="ro_lat">ruddle - latin</li>
+							<li type="style" sID="t">ink - Schrift</li>
+							<li type="style" sID="t_gr">ink - greek</li>
+							<li type="style" sID="t_lat">ink - latin</li>
+							<li type="style" sID="tr">ink red/brown - Schrift</li>
+							<li type="style" sID="tr_gr">ink red/brown - greek</li>
+							<li type="style" sID="tr_lat">ink red/brown - latin</li>
+						</ul>
+					</p>
+				
 				<br/>
+				<div class="panel-body">
+					Ein kleinerer Ausschnitt des Ergebnisses sieht als XML-Datei wie folgt aus: 
+					<pre><code class="language-xml">
+						<textarea>
+							
+<p type="writer" wID="ec">
+	<h4>Eckermann</h4>
+	<ul>
+		<li type="style" sID="bl">pencil - Schrift</li>
+		<li type="style" sID="bl_gr">pencil - greek</li>
+		<li type="style" sID="bl_lat">pencil - latin</li>
+		<li type="style" sID="t">ink - Schrift</li>
+		<li type="style" sID="t_gr">ink - greek</li>
+		<li type="style" sID="t_lat">ink - latin</li>
+		<li type="style" sID="tr">ink red/brown - Schrift</li>
+		<li type="style" sID="tr_gr">ink red/brown - greek</li>
+		<li type="style" sID="tr_lat">ink red/brown - latin</li>
+	</ul>
+</p>
+<p type="writer" wID="f">
+	<h4>Färber</h4>
+	<ul>
+		<li type="style" sID="t">ink - Schrift</li>
+		<li type="style" sID="t_lat">ink - latin</li>
+	</ul>
+</p>
+						</textarea></code></pre></div>
+	</details>
+				<details>
+					<summary>
+						<b>Erweiterung der ersten XQuery-Abfrage</b>
+					</summary>
+					<div class="panel-body">
+						Der folgende Code stellt eine Erweiterung der vorherigen Query dar. Dabei muss diese nun über ein Verzeichnis mehrerer Dateien angewandt werden.
+						<pre><code class="language-xquery"></code></pre>
+					</div>
+					
+						</code></pre>
+						</div>
+			<details>
+				<summary><b>Ergebnis</b></summary>
+				<p type="writer" wID="aj">
+					<h4>Anna Jameson</h4>
+					<ul>
+						<li type="style" sID="t">ink - Schrift </li>
+						<li type="style" sID="t_lat">ink - latin </li>
+					</ul>
+				</p>
+				<p type="writer" wID="avg">
+					<h4>August von Goethe</h4>
+					<ul>
+						<li type="style" sID="t">ink - Schrift </li>
+						<li type="style" sID="t_lat">ink - latin </li>
+					</ul>
+				</p>
+				<p type="writer" wID="ec">
+					<h4>Eckermann</h4>
+					<ul>
+						<li type="style" sID="bl">pencil - Schrift<details>
+							<summary>
+								<div>
+									<i>Found in 1 files</i>
+								</div>
+							</summary>
+							<ol>
+								<li type="file">/0122.xml</li>
+							</ol>
+						</details>
+							<div>
+								<ul>
+									<li>handShift: 1</li>
+								</ul>
+								<ul>
+									<li>Handshift in ge:line: 1</li>
+								</ul>
+							</div>
+						</li>
+						<li type="style" sID="bl_gr">pencil - greek </li>
+						<li type="style" sID="bl_lat">pencil - latin </li>
+						<li type="style" sID="t">ink - Schrift<details>
+							<summary>
+								<div>
+									<i>Found in 1 files</i>
+								</div>
+							</summary>
+							<ol>
+								<li type="file">/0122.xml</li>
+							</ol>
+						</details>
+							<div>
+								<ul>
+									<li>handShift: 4</li>
+								</ul>
+								<ul>
+									<li>Handshift in f:over: 3</li>
+								</ul>
+								<ul>
+									<li>ge:rewrite: 2</li>
+								</ul>
+								<ul>
+									<li>f:st: 3</li>
+								</ul>
+								<ul>
+									<li>f:ins: 1</li>
+								</ul>
+								<ul>
+									<li>Handshift in f:ins: 1</li>
+								</ul>
+							</div>
+						</li>
+						<li type="style" sID="t_gr">ink - greek </li>
+						<li type="style" sID="t_lat">ink - latin </li>
+						<li type="style" sID="tr">ink red/brown - Schrift </li>
+						<li type="style" sID="tr_gr">ink red/brown - greek </li>
+						<li type="style" sID="tr_lat">ink red/brown - latin </li>
+					</ul>
+				</p>
+			</details>
 				<div class="panel-footer">
 					<a href="https://github.com/LennartKeller/faustedition_referat" target="_blank">Hier erhalten Sie die Datei mit dem vollständigen Code</a>
 				</div>
 			</div>
-
+			
 
 
 			<!-- PYTHON-BEISPIEL ab hier-->
