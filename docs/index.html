@@ -207,37 +207,39 @@
 declare namespace ge = "http://www.tei-c.org/ns/geneticEditions";
 </code></pre>
 					</div>
-					<div class="panel-body">Wenn sich die Funktionen in der gleichen Datei befinden sollen wie das ausführbare Hauptmodul der XQuery, dann wird die URL des Namespaces direkt angegeben, und die Operation der Funktion im Prolog programmiert.
+					<details><summary>Exkurs: Funktionen in eigenes Modul auslagern</summary>
+					<div class="panel-body">Wenn sich die Funktionen in der gleichen Datei befinden sollen wie das ausführbare Hauptmodul der XQuery, dann wird der Namespace direkt angegeben, und die Operation der Funktion im Prolog programmiert.
 						<pre><code class="language-xquery">declare namespace sns = "http://www.some_ns.com";
-							declare function sns:some-function ( param )
-							{ operation };
+declare function sns:some-function ( param )
+{ operation };
 						</code></pre>
 					</div>
 					<div class="panel-body">
 						Alternativ können alle Funktionen in einer Datei gespeichert werden, die eine Moduldeklaration im Prolog enthält, und keinen auszuführenden Abfragecode. Alle dort definierten Funktionen übernehmen den festgelegten Namespace.
-						<pre>module namespace my = "myModule";
-							declare function my:my-function (param) 
-							{ operation };
+						<pre><code class="language-xquery">module namespace my = "myModule";
+declare function my:my-function (param) 
+{ operation };</code>
 						</pre>
 					</div>
 					<div class="panel-body">
 						Im Hauptmodul, in dem der eigentliche Abfragecode geschrieben ist, wird dann nur das davor erstellte Modul eingebettet, um mit dem entsprechenden Namespace alle darin festgelegten Funktionen abrufen zu können. 
-						<pre>import module namespace my = "myModule" at "/myPath/myModule.xquery"; </pre>
+						<pre><code class="language-xquery">import module namespace my = "myModule" at "/myPath/myModule.xquery";</code></pre>
 					</div>
+					</details>
 					<!--copypaste-element:
 			<div class="panel-body">
 			Erklärung
-				<pre>Code</pre>
+				<pre><code class="language-xquery"></code></pre>
 			</div> -->
-					<div class="panel-body">Schneidet den Anfang eines strings aus, bis der übergebene regex matched:
+					<div class="panel-body">Der Anfang des übergebenen Strings wird ausgegeben, bis zu der Stelle, an der das Muster des angegebenen regulären Ausdrucks als erstes gefunden wird
 						<pre><code class="language-xquery">declare function functx:substring-before-match
 ( $arg as xs:string? ,
     $regex as xs:string )  as xs:string {
 
    tokenize($arg,$regex)[1]
- } ;</code></pre>
+ } ;</code></pre></div>
 					<div class="panel-body">
-						Schneidet das Ende eines strings aus, ab dem match mit dem übergebenem regex:
+						Das Ende des übergebenen Strings wird ausgegeben, ab der Stelle, an der das Muster des angegebenen regulären Ausdrucks als erstes gefunden wurde
 						<pre><code class="language-xquery">declare function functx:substring-after-match
   ( $arg as xs:string? ,
     $regex as xs:string )  as xs:string? {
@@ -246,21 +248,48 @@ declare namespace ge = "http://www.tei-c.org/ns/geneticEditions";
  } ;</code></pre>
 					</div>
 					<div class="panel-body">
-						Liste mit allen handNote-Elementen wird in $list gespeichert:
-						<pre><code class="language-xquery">let $liste := //handNote</pre>
+						Nach dem Prolog wird zuerst der Header des HTML-Dokuments konstruiert.
+						In der letzten Zeile wird ein Paragraph eröffnet. Die sich öffnende, geschweifte Klammer deutet darauf hin, dass an dieser Stelle auszuführender XQuery Code den späteren Inhalt des Paragraphen füllen soll.
+						<pre><code class="language-xml"><textarea>
+<xhtml xmlns="http://www.w3.org/1999/xhtml" 
+  xmlns:TEI="http://www.tei-c.org/ns/1.0">
+<head>
+    <meta http-equiv="content-type" content="text/xhtml; char set=utf-8"/>
+    <title>Writers and their hands</title>
+</head>
+    <h2>Writers and their hands</h2>
+<p>{</textarea></code></pre>
+					</div>
+					<div class="panel-body">
+						Zunächst wird der Verzeichnis- bzw. Dateipfad mit den zu durchsuchenden Dateien angegeben. 
+						<pre><code class="language-xquery">let $path := "C:/Fausteditionen/transcript/agad_warszawa/0020.xml"</code></pre>
+					</div>
+					<div class="panel-body">
+						Die eingebaute doc-Funktion ruft die gewünschten Datei auf, sodass sie weiter verarbeitet werden kann.
+						Nur wenn das TEI-Element "handNotes" existiert, ist sie für diese Abfrage brauchbar. Mit dem XPath-Operator // werden alle Nachkommen in der gesamten Datei gefunden, ist dies nicht der Fall, wird ein Error ausgegeben.
+						<pre><code class="language-xquery">let $file := for $file in doc(concat('file:///',$path,'?recurse=yes')) return 
+							if ($file//TEI:handNotes) then $file 
+							else error( QName('', 'ElementRequest'),  "Missing required element 'handNotes'")</code></pre>
+					</div>
+					<div class="panel-body">
+						Liste mit allen handNote-Elementen wird in $handNotes gespeichert.
+						<pre><code class="language-xquery">let $handNotes := $file//TEI:handNote</pre>
 						</code>
 					</div>
 					<div class="panel-body">
-						Sammelt alle vorkommenden IDs der Schreiber aus den Elementen:
-						<pre><code class="language-xquery">let $wIDcollection := for $i in $list/functx:substring-before-match(data(@xml:id), '_') return $i</code></pre>
+						In den xml:id-Attributen der handNotes-Elemente steht eine Kombination von Schreiber-ID und Schriftart-ID. Da diese mit Unterstrich voneinander getrennt sind, findet die Funktion alle vorkommenden IDs der Schreiber.
+						<pre><code class="language-xquery">let $wIDcollection := for $writerID in $handNotes/functx:substring-before-match(data(@xml:id), '_') return $writerID</code></pre>
 					</div>
 					<div class="panel-body">
-						Eliminiert Dopplungen:
-						<pre><code class="language-xquery">let $wIDlist := for $i in fn:distinct-values($wIDcollection) return $i</code></pre>
+						Da die einzelnen Schreiber mit verschiedenen Schriftarten aufgelistet sind, ergeben sich Dopplungen wenn nur die Schreiber betrachtet werden. Die eingebaute distinct-values-Funktion eliminiert diese.
+						<pre><code class="language-xquery">let $wIDs := for $wID in fn:distinct-values($wIDcollection) return $wID</code></pre>
 					</div>
 					<div class="panel-body">
-						Iteriert über Liste der Schreiber-IDs:
-						<pre><code class="language-xquery">for $currentWID in $wIDlist </code></pre>
+						Für jeden Schreiber wird in einer Schleife ein Paragraph erzeugt. Dabei sind sie alphabetisch nach ihren Kürzeln sortiert, wodurch "Fremde Hand 1 (xx)" am Ende der Ausgabe landet.
+						Die Schreiber-ID, über die gerade iteriert wird, wird als Attributinhalt in das Element geschrieben. Für jeden Schreiber wird danach der Querycode ausgeführt, der danach im p-Element steht.
+						<pre><code class="language-xquery">for $currentWID in $wIDs     
+order by $currentWID
+return <textarea><p type="writer" wID="{$currentWID}"></textarea>{</code></pre>
 					</div>
 					<div class="panel-body">
 						Generiert einen &lt;p/>-Block für jeden Schreiber mit Attributen Typ und Schreiber-ID:
