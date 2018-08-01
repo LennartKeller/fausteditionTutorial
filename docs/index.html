@@ -762,9 +762,9 @@ Ich
 </pre>
 			Aber wo ist das Ende des Satzes geblieben?
 			lxml unterscheidet hier anhand der Position des Textes. 
-			Liegt dieser an erster Stelle, das bedeutet er tritt direkt nach dem Öffnen des Elements auf, wird er dem Element als Attribut <code>text</code> zu geordnet.
+			Liegt dieser an erster Stelle, das bedeutet er tritt direkt nach dem Öffnen des Elements auf, wird er dem Element als Attribut <code class="language-python">text</code> zu geordnet.
 			Enthält das Elternelement dieses Texts auch noch andere Elemente, hinter denen weiterer Text liegt, wird dieser den Kindelementen
-			zugordnet und ist als Attribut <code>tail</code>
+			zugordnet und ist als Attribut <code class="language-python">tail</code>
 			gespeichert.<br/>
 			Um an den gesamten Text zu kommen muss man also alle Geschwisterelemente des Textes bzw. alle Kinder des Elementes, das ihn enthält, auswerten.<br/>
 			In unserem Fall zum Beispiel so:
@@ -807,9 +807,9 @@ def get_text(node):
 </pre>
 		Diese Funktion gibt ein Generator-Objekt zurück, dass den Text dann in der korrekten Reihenfolge ausgibt.
 		Dafür wird der Teilbaum des übergebenen Elements und all seiner Nachfahren ähnlich der <a href="https://de.wikipedia.org/wiki/Tiefensuche">Tiefensuche</a> durchlaufen.
-		Falls vorhanden wird der Inhalt des Text-Attributs des gerade betrachteten Elements ausgegeben, dann werden alle Nachfahren betrachtet.
+		Falls vorhanden wird der Inhalt des <code class="language-python">text</code>-Attributs des gerade betrachteten Elements ausgegeben, dann werden alle Nachfahren betrachtet.
 		Erst wenn diese vollständig abgearbeitet
-		worden sind, werden die tail-Attribute in aufsteigender Reihenfolge betrachtet und deren Inhalt ausgegeben. So wird die richtige Reihenfolge des Textes beibehalten.
+		worden sind, werden die <code class="language-python">tail</code>-Attribute in aufsteigender Reihenfolge betrachtet und deren Inhalt ausgegeben. So wird die richtige Reihenfolge des Textes beibehalten.
 		In unserem Fall erhalten wir nach dem Ausführen von:
 <pre>
 <code class="language-python">
@@ -1117,7 +1117,7 @@ class HandshiftWriter:
 		import os
 		import re
 		if not os.path.isdir(destination):
-			os.mkdir(destination)
+			os.mkdir(destination)class="language-python"
 		# dieser regulärer Ausdruck ermöglicht es Pfadangaben zu Datein in den Pfad, dem Dateinamen und die Dateiendung zu zerlegen.
 		# eine genaue Erklärung kann unter https://techtavern.wordpress.com/2009/04/06/regex-that-matches-path-filename-and-extension/ gefunden werden
 		regex = re.compile(r'^(.*/)?(?:$|(.+?)(?:(\.[^.]*$)|$))')
