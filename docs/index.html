@@ -268,8 +268,8 @@ declare function my:my-function (param)
 						Die eingebaute doc-Funktion ruft die gewünschten Datei auf, sodass sie weiter verarbeitet werden kann.
 						Nur wenn das TEI-Element "handNotes" existiert, ist sie für diese Abfrage brauchbar. Mit dem XPath-Operator // werden alle Nachkommen in der gesamten Datei gefunden, ist dies nicht der Fall, wird ein Error ausgegeben.
 						<pre><code class="language-xquery">let $file := for $file in doc(concat('file:///',$path,'?recurse=yes')) return 
-							if ($file//TEI:handNotes) then $file 
-							else error( QName('', 'ElementRequest'),  "Missing required element 'handNotes'")</code></pre>
+if ($file//TEI:handNotes) then $file 
+else error( QName('', 'ElementRequest'),  "Missing required element 'handNotes'")</code></pre>
 					</div>
 					<div class="panel-body">
 						Liste mit allen handNote-Elementen wird in $handNotes gespeichert.
@@ -292,49 +292,56 @@ order by $currentWID
 return <textarea><p type="writer" wID="{$currentWID}"></textarea>{</code></pre>
 					</div>
 					<div class="panel-body">
-						Generiert einen &lt;p/>-Block für jeden Schreiber mit Attributen Typ und Schreiber-ID:
-						<pre><code class="language-xquery">&lt;p type="writer" xml:id="{$currentWID}"></code></pre>
+						Durch die where-Bedingung wird sichergestellt, dass nur die Elemente mit Schreiber-Schriftart Kombinationen in die Liste geschrieben werden, die in ihrem xml:id-Attribut das Schreiber-Kürzel haben, das gerade unter $currentWID in das Elternelement geschrieben wurde.  
+						<pre><code class="language-xquery">let $stylesOfCurrentWriter := for $eachStyle in $handNotes 
+where $fileCollection/functx:substring-before-match($eachStyle/data(@xml:id), '_') = $currentWID 
+return $eachStyle  </code></pre>
 					</div>
 					<div class="panel-body">
-						Liste mit allen Elementen, die sich auf den aktuellen Schreiber beziehen:
-						<pre><code class="language-xquery">let $writerList := for $i in $list where /functx:substring-before-match($i/data(@xml:id), '_')=$currentWID return $i </code></pre>
+						Durch den vorherigen Test wurde bereits sichergestellt, dass überall der richtige Schreiber involviert ist. Hier wird aus dem Textinhalt des Elements sein voller Name extrahiert, der immer vor einem Whitespace mit darauffolgender runder Klammer steht.
+						<pre><code class="language-xquery">let $currentWriterName := for $name in $stylesOfCurrentWriter/functx:substring-before-match(text(), '\s\(') return $name</code></pre>
 					</div>
 					<div class="panel-body">
-						Liste mit den Schreibernamen aus allen relevanten Elementen:
-						<pre><code class="language-xquery">let $currentWriter := for $i in $writerList/functx:substring-before-match(text(), '\s\(') return $i</code></pre>
+						Der Name des Schreibers wird nun innerhalb des vorher eröffneten Paragraphen in ein Überschriftenelement h4 geschrieben. 
+						Außerdem wird bereits eine unsortierte Liste eröffnet, in die als nächstes die von ihm verwendeten Schriftarten eingefügt werden sollen.
+						<pre><code class="language-xquery">let $writer := fn:distinct-values($currentWriterName)      
+return 
+<textarea>(<h4>{$writer}</h4>,
+<ul></textarea>{</code></pre>
 					</div>
 					<div class="panel-body">
-						Eliminiert Dopplungen:
-						<pre><code class="language-xquery">let $writer := for $i in fn:distinct-values($currentWriter) return $i</code></pre>
+						Nun werden in der gleichen Iteration wie für die Schreiber-IDs die Schriftarten-IDs ausgelesen, indem hier die substring-<b>after</b>-match-Funktion bezogen auf den Unterstrich verwendet wird.
+						<pre><code class="language-xquery">let $sIDcollection := for $style in $stylesOfCurrentWriter/functx:substring-after-match(data(@xml:id), '_') return $style</code></pre>
 					</div>
 					<div class="panel-body">
-						Sammelt alle vorkommenden IDs der Style aus den aktuell relevanten Elementen:
-						<pre><code class="language-xquery">let $vIDcollection := for $i in $writerList/functx:substring-after-match(data(@xml:id), '_') return $i</code></pre>
+						Iteriert über Liste der Style-IDs und schreibt jede als Attribut in ein einzelnes Listenelement. 
+						<pre><code class="language-xquery">for $currentSID in $sIDcollection  
+order by $currentSID
+return
+<textarea><li type="style" sID="{$currentSID}">{</textarea></code></pre>
 					</div>
 					<div class="panel-body">
-						Iteriert über Liste der Style-IDs:
-						<pre><code class="language-xquery">for $currentVID in $vIDcollection</code></pre>
+						Elemente mit der aktuellen Schriftarten-ID werden gefunden und abgespeichert
+						<pre><code class="language-xquery">let $styleList := for $eachStyle in $stylesOfCurrentWriter 
+where $fileCollection/functx:substring-after-match($eachStyle/data(@xml:id), '_') = $currentSID 
+return $eachStyle</code></pre>
 					</div>
 					<div class="panel-body">
-						Generiert einen Listeneintrag für jede Variante mit Attributen Typ und Style-ID:
-						<pre><code class="language-xquery">&lt;li type="variant" xml:id="{$currentVID}"></code></pre>
+						Die Volltextbezeichnung für die Schriftart wird sowohl mit before- als auch after-match extrahiert, da sie immer am Ende der Zeile, jedoch in Klammern, steht. Sie kann nun direkt in das Listenelement ausgegeben werden.
+						<pre><code class="language-xquery">let $currentStyle := for $style in $styleList/functx:substring-before-match(functx:substring-after-match(text(), '\s+\('), '\)') return $style
+return $currentStyle</code></pre>
 					</div>
 					<div class="panel-body">
-						Ordnet Elemente der aktuellen Style ID zu:
-						<pre><code class="language-xquery">let $variantList := for $i in $list where /functx:substring-after-match($i/data(@xml:id), '_')=$currentVID return $i</code></pre>
+						Am Ende des Dokuments werden nur noch die geöffneten Konstruktorelemente wieder geschlossen, ebenso wie die geschweiften Klammern für den dazwischenliegenden XQuery-Code
+						<pre><code class="language-xquery"><textarea>
+				}</li>
+			}</ul>)
+		}</p>
+	}</p>
+</xhtml></textarea>
+</code></pre>
 					</div>
 					<div class="panel-body">
-						Liest die Stylebezeichnung aus Element aus:
-						<pre><code class="language-xquery">let $currentVariant := for $i in $variantList/functx:substring-before-match(functx:substring-after-match(text(), '\s+\('), '\)') return $i</code></pre>
-					</div>
-					<div class="panel-body">
-						Eliminiert Dopplungen:
-						<pre><code class="language-xquery">let $variant := fn:distinct-values($currentVariant)</code></pre>
-					</div>
-					<div class="panel-body">
-						Schreibt diese in den Listeneintrag:
-						<pre><code class="language-xquery">return $variant</code></pre>
-					</div>
 				</details>
 				<br/>
 				<div class="panel-footer">
